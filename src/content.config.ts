@@ -1,19 +1,19 @@
 import { defineCollection, z } from 'astro:content';
 
-// Define a estrutura para a coleção 'blog'
+// Define the structure for the 'blog' collection
 const blogCollection = defineCollection({
-  type: 'content', // ou 'data' para arquivos JSON/YAML
+  type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.date(),
-    // CORREÇÃO: Informa ao Astro que 'heroImage' é um caminho para uma imagem
-    // que ele precisa processar.
+    // CORREÇÃO: Usamos .transform() para converter a string de data
+    // em um objeto de Data válido que o Astro pode usar.
+    pubDate: z.string().transform((str) => new Date(str)),
     heroImage: z.string(),
   }),
 });
 
-// Exporta as coleções
+// Export the collections
 export const collections = {
   'blog': blogCollection,
 };
