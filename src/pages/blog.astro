@@ -1,74 +1,101 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets'; // Importa o componente de imagem otimizada
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
-// CORREÇÃO: Usa getCollection em vez de Astro.glob para buscar os posts
-const posts = (await getCollection('blog')).sort(
+// Busca os posts da coleção 'blog'
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-
-// Mapeia os caminhos das imagens para importá-las dinamicamente
-// Esta é a "mágica" para o Astro processar as imagens corretamente
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/blog/*.{jpeg,jpg,png,gif}');
 ---
+
 <Layout title="Blog | ELOnARTE" description="Artigos e reflexões sobre arte, tecnologia e consciência.">
 	<div class="container">
-		<section>
+		<header class="blog-header">
 			<h1>Blog</h1>
-			<ul class="post-list">
-				{posts.map(async (post) => {
-					// CORREÇÃO: Verifica se a imagem do frontmatter existe no nosso mapa de imagens importadas
-					if (!images[post.data.heroImage]) {
-						throw new Error(`A imagem "${post.data.heroImage}" não foi encontrada na pasta /src/assets/blog/!`);
-					}
-					
-					return (
+			<p>Nossas reflexões mais recentes sobre arte, tecnologia e consciência.</p>
+		</header>
+		
+		<main>
+			{sortedPosts.length > 0 ? (
+				<ul class="post-list">
+					{sortedPosts.map((post: CollectionEntry<'blog'>) => (
 						<li>
-							<a href={`/blog/${post.slug}/`} class="post-link">
-								<Image
-									src={images[post.data.heroImage]()}
-									alt=""
-									width={300}
-									height={150}
-									class="post-image"
-								/>
+							<a href={`/blog/${post.slug}/`} class="post-card">
+								<div class="image-container">
+									{post.data.heroImage && (
+										<Image
+											src={post.data.heroImage}
+											alt={`Imagem de capa para o post: ${post.data.title}`}
+											width={400}
+											height={225}
+											class="post-image"
+										/>
+									)}
+								</div>
 								<div class="post-text">
 									<h2 class="post-title">{post.data.title}</h2>
-									<p class="post-date">{post.data.pubDate.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+									<p class="post-date">
+										{new Date(post.data.pubDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+									</p>
 									<p class="post-description">{post.data.description}</p>
 								</div>
 							</a>
 						</li>
-					)
-				})}
-			</ul>
-		</section>
+					))}
+				</ul>
+			) : (
+				<p class="no-posts">Ainda não há publicações no blog. Volte em breve!</p>
+			)}
+		</main>
 	</div>
 </Layout>
 
 <style>
+	.container {
+		max-width: 900px;
+	}
+	.blog-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+	.blog-header h1 {
+		font-size: 3rem;
+	}
+	.blog-header p {
+		font-size: 1.125rem;
+		color: var(--color-text-secondary);
+	}
 	.post-list {
 		list-style: none;
 		padding: 0;
 		display: grid;
 		gap: 2rem;
 	}
-	.post-link {
+	.post-card {
 		display: block;
 		background-color: var(--color-bg-light);
-		border-radius: 8px;
+		border-radius: 12px;
 		overflow: hidden;
 		text-decoration: none;
 		color: var(--color-text-primary);
-		transition: transform 0.3s ease;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		border: 1px solid transparent;
 	}
-	.post-link:hover {
-		transform: translateY(-5px);
+	.post-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+		border-color: var(--accent-lilac);
+	}
+	.image-container {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background-color: var(--color-bg);
 	}
 	.post-image {
 		width: 100%;
-		height: auto;
+		height: 100%;
 		object-fit: cover;
 	}
 	.post-text {
@@ -82,5 +109,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/blog/*.
 		color: var(--color-text-secondary);
 		font-size: 0.9rem;
 		margin-bottom: 1rem;
+	}
+	.no-posts {
+		text-align: center;
+		padding: 4rem 1rem;
+		background-color: var(--color-bg-light);
+		border-radius: 8px;
 	}
 </style>
