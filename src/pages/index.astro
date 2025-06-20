@@ -125,7 +125,7 @@ import Card from '../components/Card.astro';
             mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("is-open");
                 const isOpen = mobileMenu.classList.contains("is-open");
-                mobileMenuButton.setAttribute("aria-expanded", isOpen);
+                mobileMenuButton.setAttribute("aria-expanded", isOpen.toString());
                 mobileMenuButton.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
             });
         }
