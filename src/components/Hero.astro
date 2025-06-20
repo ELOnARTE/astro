@@ -1,0 +1,42 @@
+{/* src/components/Hero.astro */}
+<section id="hero" class="hero">
+    <h1>Boas-vindas a este<br>elegante <span class="accent accent-turquoise">elo</span> <span class="accent accent-lilac">na</span> <span class="accent accent-lightpink">arte</span><br>inspirada!</h1>
+    <p>Conectando arte, terapia e tecnologia<br>para realizar, inspirar, incluir...</p>
+    <a href="#artes-digitais" class="btn">Conheça Nossos Serviços</a>
+</section>
+
+<style>
+.hero {
+    padding: 3rem 1.5rem;
+    margin-bottom: 4rem;
+    border-radius: 12px;
+    border-left: 4px solid;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-light), var(--color-bg));
+    border-color: var(--color-text-primary);
+}
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hero p {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+.hero .accent { display: inline-block; }
+.hero .accent-turquoise { color: var(--accent-turquoise); }
+.hero .accent-lightpink { color: var(--accent-lightpink); }
+.hero .accent-lilac { color: var(--accent-lilac); }
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+}
+</style>

@@ -1,0 +1,29 @@
+---
+// src/components/BlogHighlight.astro
+import Card from './Card.astro';
+const { posts } = Astro.props;
+---
+<section id="blog-highlight" class="service-section">
+    <h2 style="color: var(--color-text-primary);">Últimas do Blog</h2>
+    <p class="subtitle">Nossas reflexões mais recentes sobre arte, tecnologia e consciência.</p>
+    <div class="cards-grid">
+        {posts.map((post: { slug: string; data: { title: string; description: string } }) => (
+            <a href={`/blog/${post.slug}/`} class="card-link">
+                <Card title={post.data.title} description={post.data.description} />
+            </a>
+        ))}
+    </div>
+    <div class="cta-container">
+        <a href="/blog" class="btn">Ver Todas as Publicações</a>
+    </div>
+</section>
+
+<style>
+.card-link {
+    text-decoration: none;
+}
+.cta-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+</style>

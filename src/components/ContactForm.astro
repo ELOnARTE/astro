@@ -1,0 +1,97 @@
+{/* src/components/ContactForm.astro */}
+<section id="contato">
+    <h2>Entre em Contato</h2>
+    <p>Pronto para decolar suas ideias ou iniciar uma jornada de autoconhecimento? Envie-nos um sinal!</p>
+    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xrbkgzlw" method="POST">
+        <div class="form-group">
+            <label for="name">Seu Nome</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Seu E-mail</label>
+            <input type="email" name="_replyto" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Sua Mensagem</label>
+            <textarea name="message" id="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn">Enviar Mensagem</button>
+    </form>
+    <div id="form-status"></div>
+</section>
+
+<style>
+#contato {
+    background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-light), var(--color-bg));
+    text-align: center;
+    padding: 4rem 1.5rem;
+    margin-bottom: 4rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-lilac);
+    scroll-margin-top: 5rem;
+}
+#contato h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+#contato p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: var(--color-text-secondary);
+}
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: .5rem; font-size: .9rem; }
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: .75rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-bg-form);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-serif);
+}
+#form-status { margin-top: 1.5rem; font-weight: 700; }
+#form-status.success { color: var(--accent-green); }
+#form-status.error { color: var(--accent-red); }
+</style>
+
+<script>
+// Script do Formspree
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const status = document.getElementById("form-status");
+
+    if (form && status) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            status.textContent = "Enviando sua mensagem...";
+            status.className = "";
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    status.textContent = "Mensagem enviada com sucesso! Obrigado.";
+                    status.className = "success";
+                    form.reset();
+                } else {
+                    const json = await response.json();
+                    status.textContent = json.errors?.map((error: { message: string }) => error.message).join(", ") || "Ocorreu um erro ao enviar a mensagem.";
+                    status.className = "error";
+                }
+            } catch (error) {
+                status.textContent = "Ocorreu um erro de rede. Tente novamente.";
+                status.className = "error";
+            }
+        });
+    }
+});
+</script>
