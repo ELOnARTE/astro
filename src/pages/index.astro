@@ -7,7 +7,7 @@ import Card from '../components/Card.astro';
 import ContactForm from '../components/ContactForm.astro';
 import BlogHighlight from '../components/BlogHighlight.astro';
 
-// Busca, ordena e seleciona os posts mais recentes do blog
+// Busca os posts mais recentes para a seção de destaques
 const allPosts = await Astro.glob('../content/blog/*.md');
 const sortedPosts = allPosts.sort((a, b) => 
     new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
@@ -17,24 +17,21 @@ const recentPosts = sortedPosts.slice(0, 3);
 
 <Layout>
     <div class="container">
-        <!-- Seção Hero -->
         <Hero />
 
-        <!-- Seção Artes Digitais (3 cards) -->
+        <!-- Seção Artes Digitais -->
         <ServiceSection
             id="artes-digitais"
             title="Artes Digitais"
             subtitle="Criamos, publicamos e construímos sua presença online."
             accentColor="var(--accent-turquoise)">
+            <!-- Os cards são colocados DENTRO do componente ServiceSection -->
             <Card title="Produção Multimídia" description="Damos vida às suas ideias com vídeos, animações e design gráfico que capturam a imaginação." />
             <Card title="Publicações Digitais" description="Lançamos seus e-books, músicas e podcasts nas principais plataformas com design profissional." />
             <Card title="Desenvolvimento Web" description="Construímos portais e aplicativos que não são apenas funcionais, mas obras de arte digitais." />
         </ServiceSection>
         
-        <!-- Seção de Destaques do Blog (se houver posts) -->
-        {recentPosts.length > 0 && <BlogHighlight posts={recentPosts} />}
-
-        <!-- Seção Arteterapia (2 cards) -->
+        <!-- Seção Arteterapia -->
         <ServiceSection
             id="arteterapia"
             title="Arteterapia e Terapias Integrativas"
@@ -44,7 +41,7 @@ const recentPosts = sortedPosts.slice(0, 3);
             <Card title="Terapias Holísticas" description="Combinamos práticas integrativas e complementares para um bem-estar completo." />
         </ServiceSection>
         
-        <!-- Seção Ensino (TODOS os 4 cards) -->
+        <!-- Seção Ensino -->
         <ServiceSection
             id="ensino"
             title="Arte e Educação"
@@ -55,6 +52,9 @@ const recentPosts = sortedPosts.slice(0, 3);
             <Card title="Idiomas e Programação" description="Aulas de Inglês, Português e Programação com uma metodologia divertida e eficaz." />
             <Card title="Expressões do Eu Profundo" description="Estudo aprofundado do ateliê da Consciência através das artes inspiradas." />
         </ServiceSection>
+
+        <!-- ORDEM CORRIGIDA: Seção do Blog movida para antes do Contato -->
+        {recentPosts.length > 0 && <BlogHighlight posts={recentPosts} />}
 
         <!-- Seção de Contato -->
         <ContactForm />
