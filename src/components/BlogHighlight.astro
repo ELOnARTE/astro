@@ -1,15 +1,26 @@
 ---
 // src/components/BlogHighlight.astro
 import Card from './Card.astro';
-const { posts } = Astro.props;
+
+// Define a interface para a prop 'post' para garantir a tipagem correta
+interface Post {
+  url: string;
+  frontmatter: {
+    title: string;
+    description: string;
+  };
+}
+
+// Extrai e tipa a prop 'posts'
+const { posts } = Astro.props as { posts: Post[] };
 ---
 <section id="blog-highlight" class="service-section">
     <h2 style="color: var(--color-text-primary);">Últimas do Blog</h2>
     <p class="subtitle">Nossas reflexões mais recentes sobre arte, tecnologia e consciência.</p>
     <div class="cards-grid">
-        {posts.map((post: { slug: string; data: { title: string; description: string } }) => (
-            <a href={`/blog/${post.slug}/`} class="card-link">
-                <Card title={post.data.title} description={post.data.description} />
+        {posts.map((post) => (
+            <a href={post.url} class="card-link">
+                <Card title={post.frontmatter.title} description={post.frontmatter.description} />
             </a>
         ))}
     </div>
