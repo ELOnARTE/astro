@@ -12,38 +12,161 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
+---
+// src/pages/servicos.astro
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+// Você também pode criar componentes para o Header e Footer e importá-los aqui
+---
+<Layout 
+    title="ELOnARTE - Nossos Serviços"
+    description="Conectando arte, terapia e tecnologia para realizar, inspirar, incluir..."
+>
+    <header class="main-header">
+        </header>
+
+    <main class="container">
+        <section id="artes-digitais" class="service-section">
+            <h2 class="accent-turquoise">Artes Digitais</h2>
+            <p class="subtitle">Criamos, publicamos e construímos sua presença online.</p>
+            <div class="cards-grid">
+                <Card 
+                    title="Produção Multimídia"
+                    description="Damos vida às suas ideias com vídeos, animações e design gráfico que capturam a imaginação."
+                />
+                <Card 
+                    title="Publicações Digitais"
+                    description="Lançamos seus e-books, músicas e podcasts nas principais plataformas com design profissional."
+                />
+                <Card 
+                    title="Desenvolvimento Web"
+                    description="Construímos portais e aplicativos que não são apenas funcionais, mas obras de arte digitais."
+                />
+            </div>
+        </section>
+
+        <section id="arteterapia" class="service-section">
+            <h2 class="accent-lilac">Arteterapia e Terapias Integrativas</h2>
+            <p class="subtitle">Navegue pelo seu universo interior e encontre equilíbrio e bem-estar.</p>
+            <div class="cards-grid">
+                <Card 
+                    title="Sessões de Arteterapia"
+                    description="Utilize a expressão criativa como ferramenta de autoconhecimento e cura de padrões mentais e emocionais."
+                />
+                <Card 
+                    title="Terapias Holísticas"
+                    description="Combinamos práticas integrativas e complementares para um bem-estar completo."
+                />
+            </div>
+        </section>
+
+        <section id="ensino" class="service-section">
+            <h2 class="accent-lightpink">Arte e Educação</h2>
+            <p class="subtitle">Aprenda conosco de uma forma leve, artística e inovadora.</p>
+            <div class="cards-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        </footer>
+
+</Layout>
+
+<style>
+    /* Estilos específicos para esta página */
+    main {
+        padding: 4rem 0;
+    }
+    .service-section {
+        padding: 3rem 1.5rem;
+        margin-bottom: 4rem;
+        border-radius: 12px;
+        border-left: 4px solid;
+        scroll-margin-top: 5rem;
+    }
+    #artes-digitais {
+        background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-section-1), var(--color-bg));
+        border-color: var(--accent-turquoise);
+    }
+    #arteterapia {
+        background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-section-2), var(--color-bg));
+        border-color: var(--accent-lilac);
+    }
+    #ensino {
+        background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-section-3), var(--color-bg));
+        border-color: var(--accent-lightpink);
+    }
+    .service-section h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: .5rem;
+    }
+    .service-section .subtitle {
+        text-align: center;
+        color: var(--color-text-secondary);
+        margin-bottom: 3rem;
+    }
+    .cards-grid {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    /* Opcional: Estilos para o Header e Footer se você não os transformou em componentes */
+    .main-header {
+         /* ... estilos do header ... */
+    }
+    .main-footer {
+        /* ... estilos do footer ... */
+    }
+
+    @media (min-width: 768px) {
+        .cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        #artes-digitais .cards-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+</style>
+
+<script>
+    // O JavaScript do seu HTML original vai aqui
+    document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.toggle("is-open");
+                const isOpen = mobileMenu.classList.contains("is-open");
+                mobileMenuButton.setAttribute("aria-expanded", isOpen);
+                mobileMenuButton.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+            });
+        }
+
+        const cards = document.querySelectorAll(".card.fade-in");
+        if (cards.length > 0) {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1,
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // O código do formulário de contato continua igual
+    });
+</script>
 		<Footer />
 	</body>
 </html>
