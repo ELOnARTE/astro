@@ -2,6 +2,7 @@
 // src/pages/blog/[slug].astro
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro'; // Usando seu layout de Post de Blog
+import Layout from '../../layouts/Layout.astro'; // Importando o componente Layout
 
 // Esta função informa ao Astro para criar uma página para cada post
 export async function getStaticPaths() {
@@ -18,6 +19,12 @@ const post = Astro.props;
 // CORRIGIDO: Usando a sintaxe moderna post.render()
 const { Content } = await post.render(); 
 ---
+
+<Layout
+    title={post.data.title}
+    description={post.data.description}  {/* <-- GARANTA QUE ESTA LINHA EXISTA */}
+    image={post.data.heroImage.src}
+>
 
 <BlogPost {...post.data}>
     <Content />

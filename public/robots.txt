@@ -1,0 +1,6 @@
+# Este arquivo permite que todos os robôs de busca acessem todo o site.
+User-agent: *
+Allow: /
+
+# Este é o caminho para o seu mapa do site, que ajuda os robôs a encontrar suas páginas.
+Sitemap: https://elonart.pages.dev/sitemap-index.xml
