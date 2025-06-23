@@ -1,88 +1,84 @@
 ---
+// src/layouts/BlogPost.astro
 import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import { Image } from 'astro:assets';
+import Seo from '../components/Seo.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+// Definimos que este layout espera receber um post completo como prop
+export interface Props {
+    post: CollectionEntry<'blog'>;
+}
 
-const { title, description, pubDate, heroImage } = Astro.props;
-const updatedDate = (Astro.props as any).updatedDate;
-
+const { post } = Astro.props;
+---
+<!doctype html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+    {/* Usando nosso componente de SEO para as meta tags do post */}
+    <Seo
+        title={post.data.title}
+        description={post.data.description}
+        image={post.data.heroImage?.src}
+    />
+</head>
+
+<body>
+    <Header />
+    <main>
+        <article class="prose">
+            <div class="post-header">
+                {post.data.heroImage && (
+                    <img src={post.data.heroImage.src} alt={`Imagem para ${post.data.title}`} class="hero-image" />
+                )}
+                <h1>{post.data.title}</h1>
+                <p class="publish-date">
+                    Publicado em: {new Date(post.data.pubDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+            </div>
+
+            {/* O <slot /> é onde o conteúdo do post será renderizado */}
+            <slot />
+        </article>
+    </main>
+    <Footer />
+</body>
 </html>
+
+<style>
+    .prose {
+        max-width: 80ch;
+        margin: auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .post-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--color-bg-light);
+        padding-bottom: 2rem;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .post-header h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: var(--color-text-primary);
+    }
+
+    .publish-date {
+        color: var(--color-text-secondary);
+        font-style: italic;
+    }
+</style>
