@@ -1,31 +1,23 @@
 ---
 // src/pages/blog/[slug].astro
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro'; // Usando seu layout de Post de Blog
-import Layout from '../../layouts/Layout.astro'; // Importando o componente Layout
+import BlogPost from '../../layouts/BlogPost.astro'; // Layout que acabamos de corrigir
 
-// Esta função informa ao Astro para criar uma página para cada post
 export async function getStaticPaths() {
     const posts = await getCollection('blog');
     return posts.map((post) => ({
-        // CORRIGIDO: Usando post.slug para corresponder aos links
-        params: { slug: post.slug }, 
-        props: post,
+        params: { slug: post.slug },
+        props: { post }, // Passando o objeto post inteiro como uma prop chamada "post"
     }));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = {
+    post: CollectionEntry<'blog'>;
+};
 
-const post = Astro.props;
-// CORRIGIDO: Usando a sintaxe moderna post.render()
-const { Content } = await post.render(); 
+const { post } = Astro.props;
+const { Content } = await post.render();
 ---
 
-<Layout
-    title={post.data.title}
-    description={post.data.description}  {/* <-- GARANTA QUE ESTA LINHA EXISTA */}
-    image={post.data.heroImage.src}
->
-
-<BlogPost {...post.data}>
+<BlogPost post={post}>
     <Content />
 </BlogPost>
