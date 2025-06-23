@@ -3,20 +3,20 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro'; // 1. Importa o Header
 import Footer from '../components/Footer.astro'; // 2. Importa o Footer
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Seo from '../components/Seo.astro';
 
-const { 
-    title = SITE_TITLE, 
-    description = SITE_DESCRIPTION 
-} = Astro.props;
+//... outros imports
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
 ---
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
-<head>
+<html lang="pt-BR">
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
+    <meta name="viewport" content="width=device-width" />
+    <Seo title={title} description={description} image={image} />
     
     <!-- Seus links de Favicon, etc. -->
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
