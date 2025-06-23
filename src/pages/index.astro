@@ -20,7 +20,7 @@ const sortedPosts = allPosts.sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// Pega apenas os 3 mais recentes
+// Pega apenas os 3 POSTS mais recentes
 const recentPosts = sortedPosts.slice(0, 3);
 ---
 
@@ -30,8 +30,6 @@ const recentPosts = sortedPosts.slice(0, 3);
 >
     <div class="container">
         <Hero />
-
-        {/* SEÇÕES DE SERVIÇO RESTAURADAS ABAIXO */}
         
         <ServiceSection
             id="artes-digitais"
@@ -63,7 +61,6 @@ const recentPosts = sortedPosts.slice(0, 3);
             <Card title="Expressões do Eu Profundo" description="Estudo aprofundado do ateliê da Consciência através das artes inspiradas." />
         </ServiceSection>
 
-        {/* SEÇÃO DO BLOG COM O CÓDIGO CORRIGIDO */}
         {recentPosts.length > 0 && (
             <section id="blog-highlight" class="service-section">
                 <h2 style="color: var(--color-text-primary);">Últimas do Blog</h2>
