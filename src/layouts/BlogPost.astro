@@ -12,7 +12,9 @@ const { title, description, pubDate, heroImage } = Astro.props;
 const updatedDate = (Astro.props as any).updatedDate;
 
 <html lang="pt-BR">
-	<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
