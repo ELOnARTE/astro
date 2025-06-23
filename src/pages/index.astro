@@ -7,11 +7,10 @@ import Hero from '../components/Hero.astro';
 import ServiceSection from '../components/ServiceSection.astro';
 import Card from '../components/Card.astro';
 import ContactForm from '../components/ContactForm.astro';
-import BlogHighlight from '../components/BlogHighlight.astro';
 
 // Imports do Astro para buscar conteúdo
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content'; // 1. Importe o tipo!
+import type { CollectionEntry } from 'astro:content';
 
 // Busca os posts da coleção 'blog'
 const allPosts = await getCollection('blog');
@@ -31,15 +30,45 @@ const recentPosts = sortedPosts.slice(0, 3);
 >
     <div class="container">
         <Hero />
+
+        {/* SEÇÕES DE SERVIÇO RESTAURADAS ABAIXO */}
         
-        {/* ... outras seções do seu site ... */}
+        <ServiceSection
+            id="artes-digitais"
+            title="Artes Digitais"
+            subtitle="Criamos, publicamos e construímos sua presença online."
+            accentColor="var(--accent-turquoise)">
+            <Card title="Produção Multimídia" description="Deixamos suas ideias fluírem em cores, movimentos e sons. Nossas produções artísticas são o espaço por onde a criatividade voa livre." />
+            <Card title="Publicações Digitais" description="Lançamos seus e-books, músicas e podcasts nas principais plataformas com design profissional." />
+            <Card title="Desenvolvimento Web" description="Construímos portais e aplicativos que não são apenas funcionais, mas obras de arte digitais." />
+        </ServiceSection>
         
+        <ServiceSection
+            id="arteterapia"
+            title="Arteterapia e Terapias Integrativas"
+            subtitle="Navegue pelo seu universo interior e encontre equilíbrio e bem-estar."
+            accentColor="var(--accent-lilac)">
+            <Card title="Sessões de Arteterapia" description="Utilize a expressão criativa como ferramenta de autoconhecimento e cura de padrões mentais e emocionais." />
+            <Card title="Terapias Holísticas" description="Combinamos práticas integrativas e complementares para um bem-estar completo." />
+        </ServiceSection>
+        
+        <ServiceSection
+            id="ensino"
+            title="Arte e Educação"
+            subtitle="Aprenda conosco de uma forma leve, artística e inovadora."
+            accentColor="var(--accent-lightpink)">
+            <Card title="Ferramentas Criativas" description="Aulas práticas de design, desenvolvimento web, produção multimídia e mais." />
+            <Card title="Inteligência Artificial" description="Desvende os mistérios da IA para otimizar seu trabalho e estudos." />
+            <Card title="Idiomas e Programação" description="Aulas de Inglês, Português e Programação com uma metodologia divertida e eficaz." />
+            <Card title="Expressões do Eu Profundo" description="Estudo aprofundado do ateliê da Consciência através das artes inspiradas." />
+        </ServiceSection>
+
+        {/* SEÇÃO DO BLOG COM O CÓDIGO CORRIGIDO */}
         {recentPosts.length > 0 && (
             <section id="blog-highlight" class="service-section">
                 <h2 style="color: var(--color-text-primary);">Últimas do Blog</h2>
                 <p class="subtitle">Nossas reflexões mais recentes sobre arte, tecnologia e consciência.</p>
                 <div class="cards-grid">
-                    {/* 2. Aplique o tipo ao parâmetro 'post' */}
                     {recentPosts.map((post: CollectionEntry<'blog'>) => (
                         <a href={`/blog/${post.slug}/`} class="card-link">
                             <Card title={post.data.title} description={post.data.description} />
