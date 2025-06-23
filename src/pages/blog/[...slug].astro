@@ -1,13 +1,14 @@
 ---
 // src/pages/blog/[slug].astro
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro'; // Layout que acabamos de corrigir
+import Layout from '../../layouts/Layout.astro';
+import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
     const posts = await getCollection('blog');
     return posts.map((post) => ({
         params: { slug: post.slug },
-        props: { post }, // Passando o objeto post inteiro como uma prop chamada "post"
+        props: { post },
     }));
 }
 type Props = {
@@ -17,7 +18,12 @@ type Props = {
 const { post } = Astro.props;
 const { Content } = await post.render();
 ---
-
-<BlogPost post={post}>
-    <Content />
-</BlogPost>
+<Layout 
+    title={post.data.title} 
+    description={post.data.description} 
+    image={post.data.heroImage?.src}
+>
+    <BlogPost post={post}>
+        <Content />
+    </BlogPost>
+</Layout>

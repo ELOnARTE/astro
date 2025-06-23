@@ -1,77 +1,50 @@
 ---
 // src/layouts/BlogPost.astro
-
-// 1. IMPORTS NECESSÁRIOS PARA O LAYOUT FUNCIONAR
 import type { CollectionEntry } from 'astro:content';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Seo from '../components/Seo.astro';
-
-// 2. IMPORT ADICIONAL PARA A OTIMIZAÇÃO DE IMAGEM
 import { Image } from 'astro:assets';
 
-// Definimos que este layout espera receber um post completo como prop
 export interface Props {
     post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;
 ---
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <Seo
-        title={post.data.title}
-        description={post.data.description}
-        image={post.data.heroImage?.src}
-    />
-</head>
-
-<body>
-    <Header />
-    <main>
-        <article class="prose">
-            <div class="post-header">
-                {post.data.heroImage && (
-                    // 3. TAG <Image /> OTIMIZADA APLICADA
-                    <Image 
-                        src={post.data.heroImage} 
-                        alt={`Imagem para ${post.data.title}`} 
-                        class="hero-image" 
-                        widths={[400, 800, 1200]}
-                        sizes="(max-width: 800px) 100vw, 800px"
-                    />
-                )}
-                <h1>{post.data.title}</h1>
-                <p class="publish-date">
-                    Publicado em: {new Date(post.data.pubDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
-                </p>
-            </div>
-            
-            {/* O <slot /> é onde o conteúdo do post (o <Content /> da página [slug].astro) será renderizado */}
-            <slot />
-        </article>
-    </main>
-    <Footer />
-</body>
-</html>
+<article class="prose">
+    <div class="post-header">
+        {post.data.heroImage && (
+            <Image 
+                src={post.data.heroImage} 
+                alt={`Imagem para ${post.data.title}`} 
+                class="hero-image" 
+                widths={[400, 800, 1200]}
+                sizes="(max-width: 800px) 100vw, 800px"
+            />
+        )}
+        <h1>{post.data.title}</h1>
+        <p class="publish-date">
+            Publicado em: {new Date(post.data.pubDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+    </div>
+    
+    <slot />
+</article>
 
 <style>
     .prose {
         max-width: 80ch;
         margin: auto;
         padding: 2rem 1.5rem;
+        background-color: var(--color-bg);
+        border-radius: 12px;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
     }
-
     .post-header {
         text-align: center;
         margin-bottom: 2rem;
         border-bottom: 1px solid var(--color-bg-light);
         padding-bottom: 2rem;
     }
-
     .hero-image {
         width: 100%;
         max-height: 400px;
@@ -79,14 +52,12 @@ const { post } = Astro.props;
         border-radius: 12px;
         margin-bottom: 2rem;
     }
-
     .post-header h1 {
         font-size: 2.5rem;
         line-height: 1.2;
         margin-bottom: 1rem;
         color: var(--color-text-primary);
     }
-
     .publish-date {
         color: var(--color-text-secondary);
         font-style: italic;
