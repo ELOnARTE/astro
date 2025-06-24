@@ -18,7 +18,7 @@ const { pathname } = Astro.url;
             <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>
                 Artigos do Blog
             </a>
-            <a href="/contato" class:list={{ active: pathname === '/#contato' }}>
+            <a href="/#contato" class:list={{ active: pathname === '/#contato' }}>
                 Contato
             </a>
         </div>
