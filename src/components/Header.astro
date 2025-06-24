@@ -1,57 +1,44 @@
 ---
 // src/components/Header.astro
-
-// Vamos reintroduzir a constante SITE_TITLE para o logo, uma boa prática do template.
-// Certifique-se de que o arquivo src/consts.ts existe e exporta SITE_TITLE.
-// Se não, pode substituir {SITE_TITLE} por "ELOnARTE" no HTML abaixo.
-import { SITE_TITLE } from '../consts';
-
-// Pega o caminho da URL atual para destacar o link ativo
-const pathname = Astro.url.pathname;
+const { pathname } = Astro.url;
 ---
-
 <header class="main-header">
     <nav class="container">
-        {/* O logo agora usa SITE_TITLE e sempre aponta para a página inicial */}
-        <a href="/" class="logo" title={`Ir para a página inicial de ${SITE_TITLE}`}>
+        <a href="/" class="logo">
             <span class="elo">ELO</span><span class="n">n</span><span class="arte">ARTE</span>
         </a>
 
-        {/* NAVEGAÇÃO HÍBRIDA */}
         <div class="nav-links">
-            {/* Links para seções na PÁGINA INICIAL */}
-            <a href="/sobre" class:list={{ active: pathname === '/sobre' }}>
-                Sobre nós
-            </a>
-            <a href="/#servicos">
+            <a href="/" class:list={{ active: pathname === '/' }}>
                 Serviços oferecidos
             </a>
-             <a href="/blog" class:list={{ active: pathname.startsWith('/blog') }}>
+            <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>
+                Sobre nós
+            </a>
+            <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>
                 Artigos do Blog
             </a>
-            <a href="/#contato">
+            <a href="/contato" class:list={{ active: pathname === '/contato' }}>
                 Contato
             </a>
         </div>
 
-        <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Abrir menu" aria-expanded="false">
-            <svg class="mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
+        <div class="mobile-menu-container">
+            <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
+            <label for="mobile-menu-toggle" class="mobile-menu-button" aria-label="Abrir menu">
+                <svg class="mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </label>
+            <div class="mobile-nav">
+                <a href="/">Início</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/blog">Blog</a>
+                <a href="/contato">Contato</a>
+            </div>
+        </div>
     </nav>
-    
-    {/* O menu mobile também terá os links híbridos */}
-    <div class="mobile-nav" id="mobile-menu">
-        <a href="/#artes-digitais">Serviços</a>
-        <a href="/#contato">Contato</a>
-        <a href="/blog">Blog</a>
-        <a href="/about">Sobre</a>
-    </div>
 </header>
 
 <style>
-    /* Todos os estilos do cabeçalho ELOnARTE que já tínhamos */
     .main-header {
         background-color: rgba(15, 23, 42, .8);
         backdrop-filter: blur(8px);
@@ -60,75 +47,98 @@ const pathname = Astro.url.pathname;
         z-index: 100;
         border-bottom: 1px solid var(--color-bg-light);
     }
-    .main-header nav {
+    .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: 1rem;
         padding-bottom: 1rem;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
     .logo {
         font-size: 1.75rem;
         font-weight: 700;
         text-decoration: none;
         color: #fff;
+        z-index: 101; /* Garante que o logo fique acima do menu mobile */
     }
     .logo .elo { color: var(--accent-turquoise); }
     .logo .n { color: var(--accent-lilac); }
     .logo .arte { color: var(--accent-lightpink); }
-    
+
+    .nav-links {
+        display: none; /* Escondido por padrão */
+        gap: 1rem;
+    }
+    @media (min-width: 768px) {
+        .nav-links {
+            display: flex; /* Visível em telas maiores */
+        }
+    }
     .nav-links a {
-        color: var(--color-text-primary);
+        color: var(--color-text-secondary);
         text-decoration: none;
-        padding: .5rem 1rem;
-        transition: color .3s ease, border-bottom-color .3s ease;
+        padding: 0.5rem 0.25rem;
+        transition: color 0.3s ease;
+        position: relative;
         border-bottom: 2px solid transparent;
     }
     .nav-links a:hover {
         color: #fff;
     }
-    
-    /* ESTILO ADICIONADO: Destaque visual para o link da página ativa */
     .nav-links a.active {
         color: #fff;
-        border-bottom-color: var(--accent-turquoise);
+        font-weight: 700;
+        border-bottom-color: var(--accent-lilac);
     }
 
+    /* ESTILOS DO MENU MOBILE */
+    .mobile-menu-container {
+        display: block; /* Visível por padrão */
+    }
+     @media (min-width: 768px) {
+        .mobile-menu-container {
+            display: none; /* Escondido em telas maiores */
+        }
+    }
+    .mobile-menu-toggle {
+        display: none; /* O checkbox fica sempre invisível */
+    }
     .mobile-menu-button {
-        display: none;
-        background: transparent;
+        background: none;
         border: none;
         color: #fff;
         cursor: pointer;
+        padding: 0.5rem;
     }
-    .mobile-menu-icon { width: 28px; height: 28px; }
-    
-    .mobile-nav { display: none; background-color: var(--color-bg-light); }
+    .mobile-menu-icon {
+        width: 28px;
+        height: 28px;
+    }
+    .mobile-nav {
+        display: none; /* Menu escondido por padrão */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-top: 6rem; /* Espaço para o header */
+        padding-bottom: 2rem;
+        background-color: var(--color-bg);
+        text-align: center;
+    }
     .mobile-nav a {
         display: block;
-        padding: 1rem 1.5rem;
+        padding: 1.25rem 1.5rem;
         color: var(--color-text-primary);
         text-decoration: none;
+        font-size: 1.25rem;
     }
-    .mobile-nav.is-open { display: block; }
-
-    @media (max-width: 768px) {
-        .nav-links { display: none; }
-        .mobile-menu-button { display: block; }
+    /* MÁGICA DO CSS: Mostra o menu quando o checkbox está marcado */
+    .mobile-menu-toggle:checked ~ .mobile-nav {
+        display: block;
     }
 </style>
-
-<script>
-    // O script do menu mobile permanece o mesmo, sem necessidade de alterações.
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener("click", () => {
-            mobileMenu.classList.toggle("is-open");
-            const isOpen = mobileMenu.classList.contains("is-open");
-            mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
-            mobileMenuButton.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
-        });
-    }
-</script>
