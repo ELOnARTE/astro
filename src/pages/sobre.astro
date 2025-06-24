@@ -1,0 +1,190 @@
+---
+// src/pages/about.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import aboutImage from '../assets/sobre-elonarte.webp'; // Salve a imagem aqui
+---
+<Layout
+    title="Sobre a ELOnARTE"
+    description="Conheça a história, o propósito e a essência da ELOnARTE. Um elo entre arte, terapia e tecnologia para a expressão plena do ser."
+>
+    <div class="about-container">
+        <header class="about-header">
+            <h1>O Elo entre Arte, Terapia e Tecnologia</h1>
+            <p class="subtitle">Somos um ateliê de criação e consciência, dedicado a manifestar o potencial humano em sua forma mais autêntica e inspirada.</p>
+        </header>
+
+        <div class="image-wrapper">
+            <Image src={aboutImage} alt="Ilustração abstrata e cósmica representando a essência da ELOnARTE" class="about-image" />
+        </div>
+
+        <section class="content-section">
+            <h2>Nossa Essência e Propósito</h2>
+            <p>A ELOnARTE nasceu com a profunda intenção de ser um catalisador para o crescimento. Nossa missão é capacitar cada ser humano a criar e recriar-se, a desenvolver seus dons e a evoluir continuamente. Acreditamos em um ciclo virtuoso onde podemos ser nutridos e nutrir, ser curados e curar, ser educados e educar. Buscamos satisfazer a necessidade universal de paz e realização, conduzindo à expressão criativa plena com integridade, respeito e responsabilidade. Nosso real objetivo é ser fonte de inspiração para nós mesmos e para quem mais quiser recebê-la.</p>
+        </section>
+
+        <section class="content-section history">
+            <h2>Nossa História</h2>
+            <p>A jornada da ELOnARTE começou em 8 de agosto de 2002, sob o nome de <strong>Partilhar Luz</strong>, idealizada por Leonardo da Fonte (Leonarte). A semente foi plantada com a intenção de expressar percepções para a construção de um mundo novo, pleno de criatividade amorosa, paz e realizações — um mundo onde somos a mudança que gostaríamos de ver florescer na Terra, através de nossos sentimentos, pensamentos, palavras e ações.</p>
+            <p><strong>Leonarte</strong>, o coração do projeto, é produtor artístico, arteterapeuta, educador e desenvolvedor, unindo todas as facetas da ELOnARTE em seu trabalho e oferecendo cursos e retiros de autoconhecimento e autoexpressão.</p>
+        </section>
+
+        <section class="content-section services">
+            <h2>Como Ajudamos a Realizar Seus Sonhos</h2>
+            <p>Estamos receptivos para escutar suas ideias criativas e seus sonhos mais inspirados, ajudando a realizá-los com leveza e expertise. Com mais de 20 anos de experiência, nossa maturidade facilita todo o processo de criação em diversas frentes:</p>
+            <ul class="services-list">
+                <li>Produção de artes multimídia em alta resolução.</li>
+                <li>Distribuição de conteúdo digital: livros, músicas e vídeos.</li>
+                <li>Criação e aperfeiçoamento de sites, lojas virtuais e redes sociais.</li>
+                <li>Divulgação estratégica para ampliar o alcance de produtos e serviços.</li>
+                <li>Cursos criativos focados na autoexpressão inspirada.</li>
+                <li>Terapias online para superação de crenças limitantes.</li>
+                <li>Terapias e retiros presenciais para liberação de traumas e medos.</li>
+                <li>Mentoria para transição de carreira e para viver de sua arte.</li>
+            </ul>
+        </section>
+
+        <section class="content-section values">
+            <h2>Nossos Diferenciais</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Respeito Acima de Tudo</h3>
+                    <p>Prezamos pela cordialidade e gentileza em cada interação. Acreditamos que um ambiente respeitoso torna o processo de criação mais fácil, leve e agradável para todos.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Ótimo Custo/Benefício</h3>
+                    <p>Nosso foco é servir com nossos dons. Por trabalharmos com o que amamos, nosso bom humor se reflete em preços acessíveis. A maior recompensa é facilitar a jornada de quem precisa de nossos serviços.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <blockquote>
+                “A consciência da plenitude nos dá a certeza de já recebermos multiplicado tudo aquilo que servimos com criatividade amorosa. Assim, podemos simplesmente focar no que temos a oferecer.”
+                <cite>– Leonarte</cite>
+            </blockquote>
+        </section>
+
+        <div class="cta-section">
+            <a href="/contato" class="btn">Vamos criar juntos?</a>
+        </div>
+
+    </div>
+</Layout>
+
+<style>
+    .about-container {
+        max-width: 90ch;
+        margin: auto;
+        padding: 2rem 1.5rem 4rem;
+    }
+    .about-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    .about-header h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    .subtitle {
+        font-size: 1.25rem;
+        color: var(--color-text-secondary);
+        max-width: 60ch;
+        margin: auto;
+    }
+    .image-wrapper {
+        margin-bottom: 4rem;
+    }
+    .about-image {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .content-section {
+        margin-bottom: 3.5rem;
+    }
+    .content-section h2 {
+        font-size: 2rem;
+        border-left: 4px solid var(--accent-lilac);
+        padding-left: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .content-section p {
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+    }
+    .services-list {
+        list-style: none;
+        padding-left: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        color: var(--color-text-secondary);
+    }
+    .services-list li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: flex-start;
+    }
+    .services-list li::before {
+        content: '✦';
+        color: var(--accent-turquoise);
+        margin-right: 0.75rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+    .values-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    @media (min-width: 768px) {
+        .values-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    .value-card {
+        background-color: var(--color-bg-light);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+    .value-card:hover {
+        border-color: var(--accent-lilac);
+    }
+    .value-card h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        color: var(--color-text-primary);
+    }
+    .quote-section {
+        text-align: center;
+        padding: 3rem 1rem;
+        margin: 4rem 0;
+        border-top: 1px solid var(--color-bg-light);
+        border-bottom: 1px solid var(--color-bg-light);
+    }
+    .quote-section blockquote {
+        font-size: 1.5rem;
+        font-style: italic;
+        max-width: 70ch;
+        margin: auto;
+        line-height: 1.6;
+        color: var(--color-text-primary);
+    }
+    .quote-section cite {
+        display: block;
+        margin-top: 1rem;
+        font-size: 1rem;
+        font-style: normal;
+        color: var(--color-text-secondary);
+    }
+    .cta-section {
+        text-align: center;
+    }
+</style>
