@@ -2,7 +2,7 @@
 title: 'O Ateliê da Consciência: Dialogando com a Natureza Através da Arte'
 description: 'Uma reflexão profunda sobre como a observação da natureza, aliada à prática artística, pode se tornar uma poderosa ferramenta para o autoconhecimento e a expansão da consciência.'
 pubDate: '2025-06-27'
-heroImage: '/images/blog/atelie-consciencia.webp'
+heroImage: '../../assets/atelie-consciencia.webp'
 ---
 
 Em um mundo acelerado, muitas vezes nos esquecemos da nossa conexão mais fundamental: aquela com a natureza e com nosso próprio interior. O **Ateliê da Consciência** não é um lugar físico, mas um espaço interno que cultivamos — um estúdio para a alma, onde a observação do mundo natural se torna a matéria-prima para a autodescoberta.

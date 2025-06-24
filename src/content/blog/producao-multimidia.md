@@ -2,7 +2,7 @@
 title: 'Produção Multimídia: A Nova Tela da Expressão Artística'
 description: 'Descubra como a produção multimídia vai além da técnica, transformando-se em uma poderosa ferramenta de storytelling para dar vida às suas ideias e construir uma presença online autêntica.'
 pubDate: '2025-06-24'
-heroImage: '/images/blog/producao-multimidia.webp'
+heroImage: '../../assets/producao-multimidia.webp'
 ---
 
 No universo da ELOnARTE, acreditamos que toda ideia carrega uma pulsação, uma cor e um som. No mundo digital de hoje, a **Produção Multimídia** é a ponte que conecta a essência de uma visão à percepção do mundo. Não se trata apenas de tecnologia; trata-se de uma nova e vasta tela para a expressão artística.
