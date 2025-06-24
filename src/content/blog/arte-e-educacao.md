@@ -2,7 +2,7 @@
 title: 'Arte e Educação: Aprender é um Ato de Criar'
 description: 'Como a fusão entre arte e educação pode transformar o aprendizado de temas complexos, como tecnologia e idiomas, em uma jornada criativa, engajadora e profundamente humana.'
 pubDate: '2025-06-26'
-heroImage: '../../assets/arte-educacao.webp'
+heroImage: '../../assets/arteduca.png'
 ---
 
 E se a sala de aula fosse menos como uma linha de montagem e mais como um ateliê? Um lugar de experimentação, descoberta e criação. Na ELOnARTE, acreditamos que o aprendizado mais profundo não vem da memorização passiva, mas da participação ativa no processo de criação. A arte, em sua essência, é fundamental para uma educação integral, pois estimula não apenas a criatividade e a imaginação, mas também a afetividade e a inteligência emocional.
