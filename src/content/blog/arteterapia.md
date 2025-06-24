@@ -2,7 +2,7 @@
 title: 'Arteterapia: Quando a Alma Pinta o que as Palavras Não Dizem'
 description: 'Explore a Arteterapia, uma jornada de autoconhecimento onde a expressão criativa se torna uma poderosa ferramenta de cura para a mente e as emoções.'
 pubDate: '2025-06-25'
-heroImage: '../../assets/arteterapia.png'
+heroImage: '../../assets/arteterapia5.png'
 ---
 
 Existem paisagens dentro de nós que as palavras não conseguem mapear. Sentimentos, memórias e padrões que residem em um lugar profundo, quase pré-verbal. É nesse espaço que a **Arteterapia** oferece uma linguagem — a linguagem da criação — para que a alma possa finalmente se expressar.
