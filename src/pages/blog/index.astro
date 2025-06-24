@@ -30,12 +30,14 @@ const sortedPosts = allPosts.sort(
 								<div class="image-container">
 									{post.data.heroImage && (
 										<Image
-											src={post.data.heroImage}
-											alt={`Imagem de capa para o post: ${post.data.title}`}
-											width={400}
-											height={225}
-											class="post-image"
-										/>
+    src={post.data.heroImage}
+    alt={`Imagem de capa para o post: ${post.data.title}`}
+    width={720}
+    height={405}
+    widths={[400, 720, 1080]}
+    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 400px"
+    class="post-image"
+/>
 									)}
 								</div>
 								<div class="post-text">
