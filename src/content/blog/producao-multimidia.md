@@ -23,7 +23,11 @@ Sua visão merece mais do que palavras em uma página. Ela merece movimento, som
 
 #### **Referências**
 [1] Sagy Marketing Digital. "O que é Multimídia: Entenda sua Importância". Acessado em 24 de junho de 2025.
+
 [2] Ecorporative. "5 benefícios dos recursos audiovisuais para o fortalecimento da sua marca". Acessado em 24 de junho de 2025.
+
 [3] Customizzei. "A Importância do Audiovisual nas Campanhas de Marketing". Acessado em 24 de junho de 2025.
+
 [4] KOR Creatives. "Storytelling Visual: De que forma o Design aumenta o impacto das Histórias das Marcas". Acessado em 24 de junho de 2025.
+
 [5] Planeta W. "A importância do storytelling no universo digital". Acessado em 24 de junho de 2025.
