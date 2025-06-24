@@ -78,6 +78,18 @@ const recentPosts = sortedPosts.slice(0, 3);
                                         width={400}
                                         height={225}
                                         class="post-image"
+
+                                        // --- ATRIBUTOS ADICIONADOS PARA MELHORAR A RESOLUÇÃO ---
+                                            
+                                            // 1. Pede ao Astro para criar versões com estas larguras em pixels.
+                                            //    Incluímos tamanhos maiores para telas de desktop.
+                                            widths={[400, 720, 1080]} 
+
+                                            // 2. Informa ao navegador o tamanho que a imagem ocupará na tela.
+                                            //    Isso o ajuda a escolher a imagem certa do 'srcset' gerado pelo Astro.
+                                            sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 400px"
+                                            
+                                            class="post-image"
                                     />
                                 )}
                             </div>
