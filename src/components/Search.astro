@@ -1,45 +1,76 @@
 ---
 // src/components/Search.astro
 ---
-
 <div id="search" class="search-container"></div>
 
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-
-<script src="/pagefind/pagefind-ui.js" is:inline></script>
-
-<script is:inline>
-  window.addEventListener('DOMContentLoaded', () => {
-    try {
-      new PagefindUI({ 
-        element: "#search",
-        showSubResults: true,
-        // Você pode descomentar a linha abaixo para traduzir o placeholder
-        // translations: {
-        //     placeholder: "Buscar no site..."
-        // }
-      });
-    } catch (e) {
-      // Se o pagefind não carregar (ex: em modo de desenvolvimento sem build),
-      // este bloco evita um erro no console.
-      console.error("PagefindUI não pôde ser inicializado:", e);
-    }
-  });
-</script>
-
-<style>
-    /* Estilos para o container da busca. O Pagefind cuida do resto. */
-    .search-container {
-        margin-left: auto; /* Alinha à direita no header */
-        min-width: 200px; /* Garante um espaço mínimo */
-    }
-
-    /* Ajuste fino opcional para combinar com seu site */
+<style is:global>
+    /* 1. VARIÁVEIS DE TEMA DO PAGEFIND
+      Aqui, nós dizemos ao Pagefind para usar as cores do nosso site.
+    */
     :root {
         --pagefind-ui-primary: var(--accent-lilac);
         --pagefind-ui-text: var(--color-text-primary);
         --pagefind-ui-background: var(--color-bg);
         --pagefind-ui-border: var(--color-bg-light);
         --pagefind-ui-tag: var(--accent-turquoise);
+        --pagefind-ui-font: var(--font-serif);
+    }
+
+    /* 2. ESTILOS DIRETOS PARA O CAMPO DE BUSCA
+      Aqui, personalizamos a aparência da barra de busca em si.
+    */
+    .pagefind-ui__search-input {
+        background-color: var(--color-bg-light) !important;
+        border-color: var(--color-bg-form) !important;
+        border-radius: 8px !important;
+        color: var(--color-text-primary) !important;
+        font-family: var(--font-serif) !important;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        padding: 0.5rem 1rem !important;
+        height: 40px;
+    }
+
+    .pagefind-ui__search-input:focus {
+        border-color: var(--accent-lilac) !important;
+        box-shadow: 0 0 0 2px rgba(153, 85, 187, 0.5) !important;
+    }
+
+    /* Ajuste para a cor do texto do placeholder */
+    .pagefind-ui__search-input::placeholder {
+        color: var(--color-text-secondary);
+        opacity: 0.8;
+    }
+
+    /* Ajuste para o botão de limpar (X) */
+    .pagefind-ui__search-clear {
+        color: var(--color-text-secondary);
+    }
+
+    /* 3. AJUSTES PARA DISPOSITIVOS MÓVEIS
+      Garante que a busca não quebre o layout em telas pequenas.
+    */
+    @media (max-width: 768px) {
+        .search-container {
+            /* No mobile, a busca vai para o menu, então a removemos do header principal */
+            display: none;
+        }
     }
 </style>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      new PagefindUI({ 
+        element: "#search",
+        showSubResults: true,
+        translations: {
+             placeholder: "Buscar no site..."
+        }
+      });
+    } catch (e) {
+      console.error("PagefindUI não pôde ser inicializado:", e);
+    }
+  });
+</script>
