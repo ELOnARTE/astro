@@ -9,38 +9,30 @@ const { pathname } = Astro.url;
             <span class="elo">ELO</span><span class="n">n</span><span class="arte">ARTE</span>
         </a>
 
-        <div class="nav-links">
-            <a href="/" class:list={{ active: pathname === '/' }}>
-                Início
-            </a>
-            <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>
-                Sobre
-            </a>
-            <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>
-                Blog
-            </a>
-            <a href="/contato" class:list={{ active: pathname === '/contato' }}>
-                Contato
-            </a>
+        <div class="desktop-nav-group">
+            <div class="nav-links">
+                <a href="/" class:list={{ active: pathname === '/' }}>Início</a>
+                <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>Sobre</a>
+                <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>Blog</a>
+                <a href="/contato" class:list={{ active: pathname === '/contato' }}>Contato</a>
+            </div>
+            <Search />
         </div>
-        
-        <Search />
 
         <div class="mobile-menu-container">
             <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
             <label for="mobile-menu-toggle" class="mobile-menu-button" aria-label="Abrir menu">
                 <svg class="mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg class="mobile-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </label>
             <div class="mobile-nav">
                 <a href="/">Início</a>
                 <a href="/sobre">Sobre</a>
                 <a href="/blog">Blog</a>
-                
                 <a href="#" data-pagefind-search class="mobile-search-trigger">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     <span>Buscar</span>
                 </a>
-
                 <a href="/contato">Contato</a>
             </div>
         </div>
@@ -48,60 +40,108 @@ const { pathname } = Astro.url;
 </header>
 
 <style>
-    /* ... Seus estilos de Header existentes ... */
-    .nav-links {
-        display: none; /* Escondido por padrão */
-        gap: 1rem;
-        align-items: center; /* Alinha a busca com os links */
+    .main-header {
+        background-color: rgba(15, 23, 42, .8);
+        backdrop-filter: blur(8px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--color-bg-light);
     }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .logo {
+        font-size: 1.75rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: #fff;
+        z-index: 101;
+    }
+    .logo .elo { color: var(--accent-turquoise); }
+    .logo .n { color: var(--accent-lilac); }
+    .logo .arte { color: var(--accent-lightpink); }
+
+    /* --- ESTILOS CORRIGIDOS --- */
+
+    /* Agrupador para navegação de desktop */
+    .desktop-nav-group {
+        display: none; /* Escondido por padrão, aparece em telas maiores */
+        align-items: center;
+        gap: 2rem;
+    }
+    .nav-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    /* Regra de mídia para mostrar o menu de desktop */
     @media (min-width: 768px) {
-        .nav-links {
-            display: flex; /* Visível em telas maiores */
+        .desktop-nav-group {
+            display: flex;
         }
     }
+    .nav-links a {
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        padding: 0.5rem 0.25rem;
+        transition: color 0.3s ease;
+        position: relative;
+        border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active {
+        color: #fff;
+        font-weight: 700;
+        border-bottom-color: var(--accent-lilac);
+    }
+
+    /* Agrupador para o menu mobile */
     .mobile-menu-container {
         display: block;
     }
-     @media (min-width: 768px) {
+    @media (min-width: 768px) {
         .mobile-menu-container {
             display: none;
         }
     }
-    .mobile-nav {
-        display: none;
+    .mobile-menu-toggle { display: none; }
+    .mobile-menu-button { cursor: pointer; position: relative; width: 28px; height: 28px; }
+    .mobile-menu-icon, .mobile-close-icon {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh; /* Ocupa a tela inteira */
+        inset: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .mobile-close-icon { opacity: 0; transform: rotate(-90deg); }
+    .mobile-menu-toggle:checked ~ .mobile-menu-button .mobile-menu-icon { opacity: 0; transform: rotate(90deg); }
+    .mobile-menu-toggle:checked ~ .mobile-menu-button .mobile-close-icon { opacity: 1; transform: rotate(0deg); }
+    
+    .mobile-nav {
+        position: fixed; /* Chave da correção: ocupa a tela sem empurrar o conteúdo */
+        inset: 0; /* Ocupa de cima a baixo, da esquerda à direita */
         padding-top: 6rem;
         background-color: var(--color-bg);
-        text-align: center;
-        display: none;
-        flex-direction: column; /* Organiza os itens verticalmente */
-        align-items: center;
-        justify-content: center; /* Centraliza verticalmente */
-        gap: 1rem;
-    }
-    .mobile-nav a {
-        display: block;
-        padding: 1rem 1.5rem;
-        color: var(--color-text-primary);
-        text-decoration: none;
-        font-size: 1.5rem; /* Aumenta a fonte para melhor toque */
-        width: 100%;
-    }
-    .mobile-menu-toggle:checked ~ .mobile-nav {
-        display: flex; /* Muda para flex para permitir o alinhamento */
-    }
-
-    /* 2. ESTILOS PARA O GATILHO DE BUSCA MOBILE */
-    .mobile-search-trigger {
-        display: inline-flex;
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
-        cursor: pointer;
+        gap: 1rem;
+        transform: translateY(-100%); /* Começa escondido acima da tela */
+        transition: transform 0.3s ease-in-out;
     }
-    /* ... o resto dos seus estilos ... */
+    .mobile-menu-toggle:checked ~ .mobile-nav {
+        transform: translateY(0); /* Move para a posição visível */
+    }
+    .mobile-nav a { padding: 1rem 1.5rem; color: var(--color-text-primary); text-decoration: none; font-size: 1.5rem; }
+    .mobile-search-trigger { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+
 </style>
