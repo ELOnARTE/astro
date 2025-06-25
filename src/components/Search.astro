@@ -1,0 +1,45 @@
+---
+// src/components/Search.astro
+---
+
+<div id="search" class="search-container"></div>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      new PagefindUI({ 
+        element: "#search",
+        showSubResults: true,
+        // Você pode descomentar a linha abaixo para traduzir o placeholder
+        // translations: {
+        //     placeholder: "Buscar no site..."
+        // }
+      });
+    } catch (e) {
+      // Se o pagefind não carregar (ex: em modo de desenvolvimento sem build),
+      // este bloco evita um erro no console.
+      console.error("PagefindUI não pôde ser inicializado:", e);
+    }
+  });
+</script>
+
+<style>
+    /* Estilos para o container da busca. O Pagefind cuida do resto. */
+    .search-container {
+        margin-left: auto; /* Alinha à direita no header */
+        min-width: 200px; /* Garante um espaço mínimo */
+    }
+
+    /* Ajuste fino opcional para combinar com seu site */
+    :root {
+        --pagefind-ui-primary: var(--accent-lilac);
+        --pagefind-ui-text: var(--color-text-primary);
+        --pagefind-ui-background: var(--color-bg);
+        --pagefind-ui-border: var(--color-bg-light);
+        --pagefind-ui-tag: var(--accent-turquoise);
+    }
+</style>

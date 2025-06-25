@@ -1,5 +1,6 @@
 ---
 // src/components/Header.astro
+import Search from './Search.astro';
 const { pathname } = Astro.url;
 ---
 <header class="main-header">
@@ -22,6 +23,8 @@ const { pathname } = Astro.url;
                 Contato
             </a>
         </div>
+
+        <Search />
 
         <div class="mobile-menu-container">
             <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
