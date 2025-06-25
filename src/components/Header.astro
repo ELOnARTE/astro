@@ -9,6 +9,7 @@ const { pathname } = Astro.url;
             <span class="elo">ELO</span><span class="n">n</span><span class="arte">ARTE</span>
         </a>
 
+        {/* NAVEGAÇÃO PARA DESKTOP */}
         <div class="desktop-nav-group">
             <div class="nav-links">
                 <a href="/" class:list={{ active: pathname === '/' }}>Início</a>
@@ -19,42 +20,45 @@ const { pathname } = Astro.url;
             <Search />
         </div>
 
+        {/* BOTÃO PARA MOBILE */}
         <button id="mobile-menu-button" class="mobile-menu-button" aria-label="Abrir menu" aria-expanded="false">
             <svg class="mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             <svg class="mobile-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
     </nav>
-
-    <div id="mobile-menu" class="mobile-nav">
-        <a href="/">Início</a>
-        <a href="/sobre">Sobre</a>
-        <a href="/blog">Blog</a>
-        <a href="#" data-pagefind-search class="mobile-search-trigger">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <span>Buscar</span>
-        </a>
-        <a href="/contato">Contato</a>
-    </div>
 </header>
 
+<div id="mobile-menu" class="mobile-nav">
+    <a href="/">Início</a>
+    <a href="/sobre">Sobre</a>
+    <a href="/blog">Blog</a>
+    <a href="#" data-pagefind-search class="mobile-search-trigger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>Buscar</span>
+    </a>
+    <a href="/contato">Contato</a>
+</div>
+
 <script>
-    // SCRIPT PARA CONTROLAR O MENU MOBILE
     const menuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const body = document.body;
 
-    if (menuButton && mobileMenu) {
+    if (menuButton) {
         menuButton.addEventListener('click', () => {
             const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
 
             menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-            mobileMenu.classList.toggle('is-open');
-            body.classList.toggle('no-scroll'); // Evita que a página role quando o menu está aberto
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('is-open');
+            }
+            body.classList.toggle('no-scroll');
         });
     }
 </script>
 
 <style>
+    /* Estilos gerais do header (sem alterações) */
     .main-header {
         background-color: rgba(15, 23, 42, .8);
         backdrop-filter: blur(8px);
@@ -84,23 +88,13 @@ const { pathname } = Astro.url;
     .logo .n { color: var(--accent-lilac); }
     .logo .arte { color: var(--accent-lightpink); }
 
-    /* --- LÓGICA DE EXIBIÇÃO --- */
-    .desktop-nav-group {
-        display: none; 
-    }
-    .mobile-menu-button {
-        display: block;
-    }
+    /* Lógica de exibição (sem alterações) */
+    .desktop-nav-group { display: none; }
+    .mobile-menu-button { display: block; }
 
     @media (min-width: 768px) {
-        .desktop-nav-group {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        .mobile-menu-button {
-            display: none;
-        }
+        .desktop-nav-group { display: flex; align-items: center; gap: 2rem; }
+        .mobile-menu-button { display: none; }
     }
 
     .nav-links { display: flex; gap: 1rem; }
@@ -108,7 +102,7 @@ const { pathname } = Astro.url;
     .nav-links a:hover { color: #fff; }
     .nav-links a.active { color: #fff; font-weight: 700; border-bottom-color: var(--accent-lilac); }
 
-    /* ESTILOS DO MENU MOBILE REFINADOS */
+    /* Estilos do Menu Mobile */
     .mobile-menu-button {
         position: relative;
         z-index: 101;
@@ -126,40 +120,35 @@ const { pathname } = Astro.url;
         transition: opacity 0.2s ease, transform 0.2s ease;
     }
     .mobile-close-icon { opacity: 0; transform: rotate(-90deg); }
-    
-    .mobile-menu-button[aria-expanded="true"] .mobile-menu-icon {
-        opacity: 0;
-        transform: rotate(90deg);
-    }
-    .mobile-menu-button[aria-expanded="true"] .mobile-close-icon {
-        opacity: 1;
-        transform: rotate(0deg);
-    }
+    .mobile-menu-button[aria-expanded="true"] .mobile-menu-icon { opacity: 0; transform: rotate(90deg); }
+    .mobile-menu-button[aria-expanded="true"] .mobile-close-icon { opacity: 1; transform: rotate(0deg); }
     
     .mobile-nav {
         position: fixed;
         inset: 0;
         padding-top: 6rem;
-        background-color: var(--color-bg);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        /* Começa invisível e fora da tela */
         opacity: 0;
         transform: translateY(-100%);
         transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out;
         z-index: 99;
-        pointer-events: none; /* Não pode ser clicado quando escondido */
+        pointer-events: none;
+        
+        /* --- CORREÇÃO APLICADA AQUI --- */
+        /* Cor de fundo escura com 95% de opacidade para melhor legibilidade */
+        background-color: rgba(15, 23, 42, 0.98);
+        /* Efeito de "vidro fosco", igual ao header */
+        backdrop-filter: blur(8px);
     }
-    /* Estilo para quando o menu está aberto */
     .mobile-nav.is-open {
         transform: translateY(0);
         opacity: 1;
-        pointer-events: auto; /* Pode ser clicado quando visível */
+        pointer-events: auto;
     }
-    /* Classe para travar o scroll do body */
     :global(body.no-scroll) {
         overflow: hidden;
     }
