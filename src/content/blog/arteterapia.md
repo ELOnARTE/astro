@@ -24,5 +24,7 @@ Se você sente que há algo em seu interior esperando para ser expresso, talvez 
 
 #### **Referências**
 [1] Pós USCS. "Benefícios da Arteterapia para o bem-estar e a saúde mental". Acessado em 24 de junho de 2025.
+
 [2] Jornal da USP. "Arteterapia produz efeitos positivos no tratamento de doenças mentais e físicas". Acessado em 24 de junho de 2025.
+
 [3] Ministério da Saúde do Brasil. "Práticas Integrativas e Complementares em Saúde (PICS)". Acessado em 24 de junho de 2025.

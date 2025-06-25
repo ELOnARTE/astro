@@ -24,7 +24,11 @@ Aprender não precisa ser uma tarefa árida. Pode ser uma jornada de criação, 
 
 #### **Referências**
 [1] Universidade Feevale. "A arte na educação infantil sua contribuição para o desenvolvimento". Acessado em 24 de junho de 2025.
+
 [2] Jornal da USP. “O aprendizado da arte estimula o estudante a olhar e pensar o mundo”. Acessado em 24 de junho de 2025.
+
 [3] Instituto Ayrton Senna. "Estimulando a criatividade na educação: benefícios e estratégias". Acessado em 24 de junho de 2025.
+
 [4] Programa Pleno. "O que é aprendizagem baseada em projetos e quais suas características?". Acessado em 24 de junho de 2025.
+
 [5] FIA. "Aprendizagem baseada em projetos: entenda o que é e como funciona". Acessado em 24 de junho de 2025.

@@ -24,6 +24,9 @@ Este é um convite para olhar para fora a fim de enxergar mais claramente o que 
 
 #### **Referências**
 [1] Iberdrola. "Arte Ambiental: o que é, características e artistas". Acessado em 24 de junho de 2025.
+
 [2] Sérgio Astral. "Harmonia Criativa: A Conexão entre Arte e Meio Ambiente". Acessado em 24 de junho de 2025.
+
 [3] Ruschmann, C. B. F. "Formação Artística e Consciência Ambiental". Acessado em 24 de junho de 2025.
+
 [4] Academia do Psicólogo. "Ecopsicologia: Entendendo a Conexão entre Mente e Natureza". Acessado em 24 de junho de 2025.
