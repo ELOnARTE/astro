@@ -10,11 +10,13 @@ const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
     <div class="tags-container">
         <h1>Todas as Tags</h1>
         <ul class="tag-list">
-            {uniqueTags.map(tag => (
-                <li>
-                    <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
-                </li>
-            ))}
+            {uniqueTags
+                .filter((tag) => typeof tag === 'string' && tag)
+                .map(tag => (
+                    <li>
+                        <a href={`/tags/${tag!.toLowerCase()}`}>{tag}</a>
+                    </li>
+                ))}
         </ul>
     </div>
 </Layout>
