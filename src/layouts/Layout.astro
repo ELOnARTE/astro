@@ -1,9 +1,9 @@
 ---
 // src/layouts/Layout.astro
-import '../styles/global.css';
 import Header from '../components/Header.astro'; // 1. Importa o Header
 import Footer from '../components/Footer.astro'; // 2. Importa o Footer
-import Seo from '../components/Seo.astro';
+import Seo from '../components/Seo.astro'; // 3. Importa o SEO
+import { ViewTransitions } from 'astro:transitions'; // 4. Importe o ViewTransitions
 
 //... outros imports
 interface Props {
@@ -28,6 +28,8 @@ const { title, description, image } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/images/site.webmanifest">
+
+      <ViewTransitions /> {/* Adiciona o componente ViewTransitions aqui */}
 </head>
 <body>
     <Header /> {/* <-- 3. Adiciona o componente Header aqui */}
