@@ -11,13 +11,13 @@ const { pathname } = Astro.url;
 
         <div class="nav-links">
             <a href="/" class:list={{ active: pathname === '/' }}>
-                Serviços oferecidos
+                Serviços
             </a>
             <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>
                 Sobre nós
             </a>
             <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>
-                Artigos do Blog
+                Blog
             </a>
             <a href="/#contato" class:list={{ active: pathname === '/#contato' }}>
                 Contato
