@@ -72,23 +72,27 @@ const { pathname } = Astro.url;
     .logo .n { color: var(--accent-lilac); }
     .logo .arte { color: var(--accent-lightpink); }
 
-    /* --- ESTILOS CORRIGIDOS --- */
-
     .desktop-nav-group {
-        display: none; /* Escondido em mobile */
+        display: none; 
     }
     .mobile-menu-button-wrapper {
-        display: block; /* Visível em mobile */
+        display: block;
     }
 
     @media (min-width: 768px) {
         .desktop-nav-group {
-            display: flex; /* Visível em desktop */
+            display: flex;
             align-items: center;
             gap: 2rem;
         }
         .mobile-menu-button-wrapper {
-            display: none; /* Escondido em desktop */
+            display: none;
+        }
+        
+        /* --- LINHA ADICIONADA PARA A CORREÇÃO --- */
+        /* Garante que a sobreposição do menu mobile NUNCA apareça em desktop */
+        .mobile-nav {
+            display: none !important;
         }
     }
 
@@ -106,10 +110,7 @@ const { pathname } = Astro.url;
     
     .mobile-nav {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         padding-top: 6rem;
         background-color: var(--color-bg);
         display: flex;
@@ -121,10 +122,10 @@ const { pathname } = Astro.url;
         transition: transform 0.35s ease-in-out;
         z-index: 99;
     }
-    /* Mudei o seletor para ser relativo ao Header */
     :global(#mobile-menu-toggle:checked) ~ .mobile-nav {
         transform: translateY(0);
     }
     .mobile-nav a { padding: 1rem 1.5rem; color: var(--color-text-primary); text-decoration: none; font-size: 1.5rem; }
     .mobile-search-trigger { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+
 </style>
