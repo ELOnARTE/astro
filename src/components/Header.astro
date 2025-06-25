@@ -11,32 +11,33 @@ const { pathname } = Astro.url;
 
         <div class="desktop-nav-group">
             <div class="nav-links">
-                <a href="/" class:list={{ active: pathname === '/' }}>Serviços</a>
-                <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>Sobre nós</a>
+                <a href="/" class:list={{ active: pathname === '/' }}>Início</a>
+                <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>Sobre</a>
                 <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>Blog</a>
                 <a href="/contato" class:list={{ active: pathname === '/contato' }}>Contato</a>
             </div>
             <Search />
         </div>
 
-        <div class="mobile-menu-container">
+        <div class="mobile-menu-button-wrapper">
             <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle">
             <label for="mobile-menu-toggle" class="mobile-menu-button" aria-label="Abrir menu">
                 <svg class="mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 <svg class="mobile-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </label>
-            <div class="mobile-nav">
-                <a href="/">Serviços</a>
-                <a href="/sobre">Sobre nós</a>
-                <a href="/blog">Blog</a>
-                <a href="#" data-pagefind-search class="mobile-search-trigger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <span>Buscar</span>
-                </a>
-                <a href="/contato">Contato</a>
-            </div>
         </div>
     </nav>
+
+    <div class="mobile-nav">
+        <a href="/">Início</a>
+        <a href="/sobre">Sobre</a>
+        <a href="/blog">Blog</a>
+        <a href="#" data-pagefind-search class="mobile-search-trigger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Buscar</span>
+        </a>
+        <a href="/contato">Contato</a>
+    </div>
 </header>
 
 <style>
@@ -73,61 +74,42 @@ const { pathname } = Astro.url;
 
     /* --- ESTILOS CORRIGIDOS --- */
 
-    /* Agrupador para navegação de desktop */
     .desktop-nav-group {
-        display: none; /* Escondido por padrão, aparece em telas maiores */
-        align-items: center;
-        gap: 2rem;
+        display: none; /* Escondido em mobile */
     }
-    .nav-links {
-        display: flex;
-        gap: 1rem;
+    .mobile-menu-button-wrapper {
+        display: block; /* Visível em mobile */
     }
 
-    /* Regra de mídia para mostrar o menu de desktop */
     @media (min-width: 768px) {
         .desktop-nav-group {
-            display: flex;
+            display: flex; /* Visível em desktop */
+            align-items: center;
+            gap: 2rem;
         }
-    }
-    .nav-links a {
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        padding: 0.5rem 0.25rem;
-        transition: color 0.3s ease;
-        position: relative;
-        border-bottom: 2px solid transparent;
-    }
-    .nav-links a:hover { color: #fff; }
-    .nav-links a.active {
-        color: #fff;
-        font-weight: 700;
-        border-bottom-color: var(--accent-lilac);
+        .mobile-menu-button-wrapper {
+            display: none; /* Escondido em desktop */
+        }
     }
 
-    /* Agrupador para o menu mobile */
-    .mobile-menu-container {
-        display: block;
-    }
-    @media (min-width: 768px) {
-        .mobile-menu-container {
-            display: none;
-        }
-    }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-links a { color: var(--color-text-secondary); text-decoration: none; padding: 0.5rem 0.25rem; transition: color 0.3s ease; position: relative; border-bottom: 2px solid transparent; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: #fff; font-weight: 700; border-bottom-color: var(--accent-lilac); }
+
     .mobile-menu-toggle { display: none; }
-    .mobile-menu-button { cursor: pointer; position: relative; width: 28px; height: 28px; }
-    .mobile-menu-icon, .mobile-close-icon {
-        position: absolute;
-        inset: 0;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-    }
+    .mobile-menu-button { cursor: pointer; position: relative; width: 28px; height: 28px; background: none; border: none; padding: 0; }
+    .mobile-menu-icon, .mobile-close-icon { position: absolute; inset: 0; color: white; transition: opacity 0.2s ease, transform 0.2s ease; }
     .mobile-close-icon { opacity: 0; transform: rotate(-90deg); }
     .mobile-menu-toggle:checked ~ .mobile-menu-button .mobile-menu-icon { opacity: 0; transform: rotate(90deg); }
     .mobile-menu-toggle:checked ~ .mobile-menu-button .mobile-close-icon { opacity: 1; transform: rotate(0deg); }
     
     .mobile-nav {
-        position: fixed; /* Chave da correção: ocupa a tela sem empurrar o conteúdo */
-        inset: 0; /* Ocupa de cima a baixo, da esquerda à direita */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         padding-top: 6rem;
         background-color: var(--color-bg);
         display: flex;
@@ -135,13 +117,14 @@ const { pathname } = Astro.url;
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        transform: translateY(-100%); /* Começa escondido acima da tela */
-        transition: transform 0.3s ease-in-out;
+        transform: translateY(-100%);
+        transition: transform 0.35s ease-in-out;
+        z-index: 99;
     }
-    .mobile-menu-toggle:checked ~ .mobile-nav {
-        transform: translateY(0); /* Move para a posição visível */
+    /* Mudei o seletor para ser relativo ao Header */
+    :global(#mobile-menu-toggle:checked) ~ .mobile-nav {
+        transform: translateY(0);
     }
     .mobile-nav a { padding: 1rem 1.5rem; color: var(--color-text-primary); text-decoration: none; font-size: 1.5rem; }
     .mobile-search-trigger { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
-
 </style>

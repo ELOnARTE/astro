@@ -1,12 +1,11 @@
 ---
 // src/components/Search.astro
 ---
+
 <div id="search" class="search-container"></div>
 
 <style is:global>
-    /* 1. VARIÁVEIS DE TEMA DO PAGEFIND
-      Aqui, nós dizemos ao Pagefind para usar as cores do nosso site.
-    */
+    /* 1. Variáveis de Tema do Pagefind */
     :root {
         --pagefind-ui-primary: var(--accent-lilac);
         --pagefind-ui-text: var(--color-text-primary);
@@ -16,9 +15,7 @@
         --pagefind-ui-font: var(--font-serif);
     }
 
-    /* 2. ESTILOS DIRETOS PARA O CAMPO DE BUSCA
-      Aqui, personalizamos a aparência da barra de busca em si.
-    */
+    /* 2. Estilos Diretos para o Campo de Busca */
     .pagefind-ui__search-input {
         background-color: var(--color-bg-light) !important;
         border-color: var(--color-bg-form) !important;
@@ -35,27 +32,31 @@
         box-shadow: 0 0 0 2px rgba(153, 85, 187, 0.5) !important;
     }
 
-    /* Ajuste para a cor do texto do placeholder */
     .pagefind-ui__search-input::placeholder {
         color: var(--color-text-secondary);
         opacity: 0.8;
     }
-
-    /* Ajuste para o botão de limpar (X) */
     .pagefind-ui__search-clear {
         color: var(--color-text-secondary);
     }
-
-    /* 3. AJUSTES PARA DISPOSITIVOS MÓVEIS
-      Garante que a busca não quebre o layout em telas pequenas.
-   
-    @media (max-width: 768px) {
-        .search-container {
-            /* No mobile, a busca vai para o menu, então a removemos do header principal */
-            display: none;
-        }
+    
+    /* 3. --- NOVO TRECHO PARA CORRIGIR A COR DO TEXTO DOS RESULTADOS --- */
+    .pagefind-ui__result-link,
+    .pagefind-ui__result-title,
+    .pagefind-ui__result-excerpt {
+        color: var(--color-text-secondary) !important;
     }
-     */
+
+    .pagefind-ui__result-title {
+        color: var(--color-text-primary) !important;
+    }
+    
+    /* Muda a cor do título ao passar o mouse */
+    .pagefind-ui__result-link:hover .pagefind-ui__result-title {
+        color: var(--accent-lilac) !important;
+    }
+    /* --- FIM DO NOVO TRECHO --- */
+
 </style>
 
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
