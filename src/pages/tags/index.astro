@@ -1,0 +1,51 @@
+---
+// src/pages/tags/index.astro
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
+---
+<Layout title="Tags | ELOnARTE" description="Explore todos os tópicos e categorias do nosso blog.">
+    <div class="tags-container">
+        <h1>Todas as Tags</h1>
+        <ul class="tag-list">
+            {uniqueTags.map(tag => (
+                <li>
+                    <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
+                </li>
+            ))}
+        </ul>
+    </div>
+</Layout>
+
+<style>
+    .tags-container {
+        max-width: 70ch;
+        margin: auto;
+        padding: 4rem 1.5rem;
+        text-align: center;
+    }
+    .tag-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .tag-list a {
+        display: block;
+        padding: 0.5rem 1.25rem;
+        background-color: var(--color-bg-light);
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: all 0.2s ease;
+    }
+    .tag-list a:hover {
+        background-color: var(--accent-lilac);
+        color: white;
+    }
+</style>
