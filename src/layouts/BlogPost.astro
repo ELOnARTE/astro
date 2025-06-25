@@ -2,6 +2,7 @@
 // src/layouts/BlogPost.astro
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
+import Comments from '../components/Comments.astro';
 
 export interface Props {
     post: CollectionEntry<'blog'>;
@@ -38,6 +39,8 @@ const { post } = Astro.props;
     
     <slot />
 </article>
+
+<Comments />
 
 <style>
     .prose { max-width: 80ch; margin: auto; padding: 2rem 1.5rem 4rem; }
