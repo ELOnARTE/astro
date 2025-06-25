@@ -19,26 +19,40 @@ const { pathname } = Astro.url;
             <Search />
         </div>
 
-        <div class="mobile-menu-container">
-            <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
-            <label for="mobile-menu-toggle" class="mobile-menu-button" aria-label="Abrir menu">
-                <svg class="mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                <svg class="mobile-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </label>
-
-            <div class="mobile-nav">
-                <a href="/">Início</a>
-                <a href="/sobre">Sobre</a>
-                <a href="/blog">Blog</a>
-                <a href="#" data-pagefind-search class="mobile-search-trigger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <span>Buscar</span>
-                </a>
-                <a href="/contato">Contato</a>
-            </div>
-        </div>
+        <button id="mobile-menu-button" class="mobile-menu-button" aria-label="Abrir menu" aria-expanded="false">
+            <svg class="mobile-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <svg class="mobile-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
     </nav>
+
+    <div id="mobile-menu" class="mobile-nav">
+        <a href="/">Início</a>
+        <a href="/sobre">Sobre</a>
+        <a href="/blog">Blog</a>
+        <a href="#" data-pagefind-search class="mobile-search-trigger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Buscar</span>
+        </a>
+        <a href="/contato">Contato</a>
+    </div>
 </header>
+
+<script>
+    // SCRIPT PARA CONTROLAR O MENU MOBILE
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const body = document.body;
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+
+            menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+            mobileMenu.classList.toggle('is-open');
+            body.classList.toggle('no-scroll'); // Evita que a página role quando o menu está aberto
+        });
+    }
+</script>
 
 <style>
     .main-header {
@@ -65,17 +79,16 @@ const { pathname } = Astro.url;
         font-weight: 700;
         text-decoration: none;
         color: #fff;
-        z-index: 101;
     }
     .logo .elo { color: var(--accent-turquoise); }
     .logo .n { color: var(--accent-lilac); }
     .logo .arte { color: var(--accent-lightpink); }
 
-    /* --- LÓGICA DE EXIBIÇÃO CORRIGIDA --- */
+    /* --- LÓGICA DE EXIBIÇÃO --- */
     .desktop-nav-group {
-        display: none;
+        display: none; 
     }
-    .mobile-menu-container {
+    .mobile-menu-button {
         display: block;
     }
 
@@ -85,7 +98,7 @@ const { pathname } = Astro.url;
             align-items: center;
             gap: 2rem;
         }
-        .mobile-menu-container {
+        .mobile-menu-button {
             display: none;
         }
     }
@@ -96,10 +109,9 @@ const { pathname } = Astro.url;
     .nav-links a.active { color: #fff; font-weight: 700; border-bottom-color: var(--accent-lilac); }
 
     /* ESTILOS DO MENU MOBILE REFINADOS */
-    .mobile-menu-toggle { display: none; }
     .mobile-menu-button {
         position: relative;
-        z-index: 101; /* Garante que o botão fique acima de tudo */
+        z-index: 101;
         cursor: pointer;
         width: 28px;
         height: 28px;
@@ -114,8 +126,15 @@ const { pathname } = Astro.url;
         transition: opacity 0.2s ease, transform 0.2s ease;
     }
     .mobile-close-icon { opacity: 0; transform: rotate(-90deg); }
-    .mobile-menu-toggle:checked ~ .mobile-menu-button .mobile-menu-icon { opacity: 0; transform: rotate(90deg); }
-    .mobile-menu-toggle:checked ~ .mobile-menu-button .mobile-close-icon { opacity: 1; transform: rotate(0deg); }
+    
+    .mobile-menu-button[aria-expanded="true"] .mobile-menu-icon {
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+    .mobile-menu-button[aria-expanded="true"] .mobile-close-icon {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
     
     .mobile-nav {
         position: fixed;
@@ -127,14 +146,24 @@ const { pathname } = Astro.url;
         align-items: center;
         justify-content: center;
         gap: 1rem;
+        /* Começa invisível e fora da tela */
+        opacity: 0;
         transform: translateY(-100%);
-        transition: transform 0.35s ease-in-out;
-        z-index: 99; /* Fica abaixo do logo e do botão */
+        transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out;
+        z-index: 99;
+        pointer-events: none; /* Não pode ser clicado quando escondido */
     }
-    /* O SELETOR CORRIGIDO E MAIS SIMPLES */
-    .mobile-menu-toggle:checked ~ .mobile-nav {
+    /* Estilo para quando o menu está aberto */
+    .mobile-nav.is-open {
         transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto; /* Pode ser clicado quando visível */
     }
+    /* Classe para travar o scroll do body */
+    :global(body.no-scroll) {
+        overflow: hidden;
+    }
+
     .mobile-nav a { padding: 1rem 1.5rem; color: var(--color-text-primary); text-decoration: none; font-size: 1.5rem; }
     .mobile-search-trigger { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
 </style>
