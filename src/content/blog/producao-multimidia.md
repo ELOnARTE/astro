@@ -1,7 +1,7 @@
 ---
 title: 'Produção Multimídia: A Nova Tela da Expressão Artística'
 description: 'Descubra como a produção multimídia vai além da técnica, transformando-se em uma poderosa ferramenta de storytelling para dar vida às suas ideias e construir uma presença online autêntica.'
-pubDate: '2025-06-24'
+pubDate: 2025-06-24
 heroImage: '../../assets/producao-multimidia.webp'
 tags: ['Produção Multimídia', 'Arte Digital', 'Storytelling Visual', 'Marketing de Conteúdo', 'Design Gráfico', 'Criação de Vídeos', 'Presença Online']
 ---

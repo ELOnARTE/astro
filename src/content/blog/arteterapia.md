@@ -1,7 +1,7 @@
 ---
 title: 'Arteterapia: Quando a Alma Pinta o que as Palavras Não Dizem'
 description: 'Explore a Arteterapia, uma jornada de autoconhecimento onde a expressão criativa se torna uma poderosa ferramenta de cura para a mente e as emoções.'
-pubDate: '2025-06-25'
+pubDate: 2025-06-25
 heroImage: '../../assets/arteterapia.webp'
 tags: ['Arteterapia', 'Saúde Mental', 'Terapias Integrativas', 'Autoconhecimento', 'Expressão Criativa', 'Cura Emocional', 'Bem-Estar']
 ---
