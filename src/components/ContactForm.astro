@@ -24,45 +24,34 @@
 
 <script>
 // Seu script do formulário continua o mesmo
-const form = document.getElementById('contact-form') as HTMLFormElement;
-// ... etc
 </script>
 
 <style>
-    /* --- GRADIENTE APLICADO AQUI --- */
     .contact-section {
-        background: linear-gradient(to bottom, var(--color-bg-light), var(--color-bg));
+        /* Gradiente final que começa do azul claro e volta para o fundo escuro */
+        background: linear-gradient(to bottom, var(--color-bg-light), var(--color-bg) 70%);
         text-align: center;
         padding: 4rem 1.5rem;
-        margin-top: 4rem; /* Garante espaço acima */
-        margin-bottom: 4rem;
-        border-radius: 16px;
+        margin: 0; /* Removemos a margem para se conectar */
+        border-radius: 0;
         scroll-margin-top: 5rem;
     }
-
     .contact-section h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
         color: var(--color-text-primary);
+        font-weight: 700;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
     .contact-section p {
         max-width: 600px;
         margin: 0 auto 2rem;
-        color: var(--color-text-secondary);
+        color: var(--color-text-primary);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.4);
     }
-    .contact-form {
-        max-width: 500px;
-        margin: 0 auto;
-        text-align: left;
-    }
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-    .form-group label {
-        display: block;
-        margin-bottom: .5rem;
-        font-size: .9rem;
-    }
+    .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: .5rem; font-size: .9rem; color: var(--color-text-secondary); }
     .form-group input,
     .form-group textarea {
         width: 100%;
@@ -74,18 +63,8 @@ const form = document.getElementById('contact-form') as HTMLFormElement;
         font-family: var(--font-serif);
     }
     .form-group input:focus,
-    .form-group textarea:focus {
-        outline: 0;
-        border-color: var(--accent-lilac);
-    }
-    #form-status {
-        margin-top: 1.5rem;
-        font-weight: 700;
-    }
-    #form-status.success {
-        color: var(--accent-green);
-    }
-    #form-status.error {
-        color: var(--accent-red);
-    }
+    .form-group textarea:focus { outline: 0; border-color: var(--accent-lilac); }
+    #form-status { margin-top: 1.5rem; font-weight: 700; }
+    #form-status.success { color: var(--accent-green); }
+    #form-status.error { color: var(--accent-red); }
 </style>

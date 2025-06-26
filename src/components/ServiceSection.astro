@@ -9,7 +9,7 @@ interface Props {
 
 const { id, title, subtitle, accentColor } = Astro.props;
 ---
-<section id={id} class="service-section" style={`--section-accent: ${accentColor};`}>
+<section id={id} class="service-section">
     <div class="section-header">
         <div class="icon-wrapper">
             <slot name="icon" />
@@ -25,27 +25,26 @@ const { id, title, subtitle, accentColor } = Astro.props;
 <style>
     .service-section {
         padding: 4rem 1.5rem;
-        margin-bottom: 4rem;
-        border-radius: 16px;
+        margin-bottom: 0; /* Removemos a margem para a próxima seção se conectar */
+        border-radius: 0;
         position: relative;
-        border-left: 4px solid var(--section-accent);
     }
     
-    /* --- GRADIENTES PERSONALIZADOS POR SEÇÃO --- */
+    /* --- GRADIENTES PERSONALIZADOS E INTERLIGADOS --- */
     
-    /* #artes-digitais usa a cor --accent-turquoise: #06b6d4 -> rgba(6, 182, 212) */
+    /* Começa Laranja (do Hero), passa pelo Turquesa (própria), termina no Lilás (da próxima) */
     #artes-digitais {
-        background: linear-gradient(to bottom, rgba(6, 182, 212, 0.15), var(--color-bg) 60%);
+        background: linear-gradient(to bottom, #f97316, var(--accent-turquoise) 50%, var(--accent-lilac));
     }
 
-    /* #arteterapia usa a cor --accent-lilac: #9955bb -> rgba(153, 85, 187) */
+    /* Começa Lilás, passa por si mesma, termina no Rosa (da próxima) */
     #arteterapia {
-        background: linear-gradient(to bottom, rgba(153, 85, 187, 0.15), var(--color-bg) 60%);
+        background: linear-gradient(to bottom, var(--accent-lilac), var(--accent-lilac) 50%, var(--accent-lightpink));
     }
 
-    /* #ensino usa a cor --accent-lightpink: #f472b6 -> rgba(244, 114, 182) */
+    /* Começa Rosa, passa por si mesma, termina no Azul Claro (da próxima) */
     #ensino {
-        background: linear-gradient(to bottom, rgba(244, 114, 182, 0.15), var(--color-bg) 60%);
+        background: linear-gradient(to bottom, var(--accent-lightpink), var(--accent-lightpink) 50%, var(--color-bg-light));
     }
 
     .section-header {
@@ -61,19 +60,22 @@ const { id, title, subtitle, accentColor } = Astro.props;
         width: 48px;
         height: 48px;
         margin-bottom: 0.5rem;
+        filter: drop-shadow(0 0 5px rgba(255,255,255,0.7)); /* Adiciona um brilho sutil ao ícone */
     }
     .section-header h2 {
         font-size: 1.75rem;
         margin: 0;
-        font-weight: 400;
+        font-weight: 700; /* Deixei em negrito para contrastar com o fundo colorido */
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Sombra no texto para legibilidade */
     }
     .subtitle {
         text-align: center;
-        color: var(--color-text-secondary);
+        color: var(--color-text-primary); /* Clareei o subtítulo para legibilidade */
         margin-bottom: 3.5rem;
         max-width: 60ch;
         margin-left: auto;
         margin-right: auto;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.4);
     }
     .cards-grid {
         display: grid;
