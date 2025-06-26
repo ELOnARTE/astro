@@ -4,8 +4,9 @@ import { Image } from 'astro:assets';
 import heroImage from '../assets/helo.webp';
 ---
 <section id="hero" class="hero">
-    <h4>Boas-vindas a este elegante<br>elo na arte inspirada!</h4>
+    <h3>Boas-vindas a este elegante<br>elo na arte inspirada!</h3>
     <p>Conectando arte, terapia e tecnologia<br>para realizar, inspirar, incluir...</p>
+     <Image src={heroImage} alt="Descrição da sua imagem" class="hero-image" />
     <a href="#artes-digitais" class="btn">Conheça Nossos Serviços</a>
 </section>
 
