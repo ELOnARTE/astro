@@ -28,12 +28,29 @@ const { id, title, subtitle, accentColor } = Astro.props;
         margin-bottom: 4rem;
         border-radius: 16px;
         position: relative;
-
-        /* --- CORREÇÃO APLICADA AQUI --- */
-        /* Gradiente de fundo sutil restaurado */
-        background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-light), var(--color-bg));
+        /* O gradiente padrão foi removido daqui para ser aplicado por ID */
         border-left: 4px solid var(--section-accent);
     }
+    
+    /* --- NOVOS ESTILOS DE GRADIENTE POR SEÇÃO --- */
+    
+    /* #artes-digitais usa a cor --accent-turquoise: #06b6d4 -> rgba(6, 182, 212, ...) */
+    #artes-digitais {
+        background: linear-gradient(to bottom, rgba(6, 182, 212, 0.1), var(--color-bg) 50%);
+    }
+
+    /* #arteterapia usa a cor --accent-lilac: #9955bb -> rgba(153, 85, 187, ...) */
+    #arteterapia {
+        background: linear-gradient(to bottom, rgba(153, 85, 187, 0.1), var(--color-bg) 50%);
+    }
+
+    /* #ensino usa a cor --accent-lightpink: #f472b6 -> rgba(244, 114, 182, ...) */
+    #ensino {
+        background: linear-gradient(to bottom, rgba(244, 114, 182, 0.1), var(--color-bg) 50%);
+    }
+
+    /* ... O resto dos estilos permanece o mesmo ... */
+
     .section-header {
         display: flex;
         flex-direction: column;
