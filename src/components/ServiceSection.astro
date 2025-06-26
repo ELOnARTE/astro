@@ -25,26 +25,26 @@ const { id, title, subtitle, accentColor } = Astro.props;
 <style>
     .service-section {
         padding: 4rem 1.5rem;
-        margin-bottom: 0; /* Removemos a margem para a próxima seção se conectar */
+        margin: 0;
         border-radius: 0;
         position: relative;
     }
     
-    /* --- GRADIENTES PERSONALIZADOS E INTERLIGADOS --- */
+    /* --- GRADIENTES INTERLIGADOS (E ESCUROS) --- */
     
-    /* Começa Laranja (do Hero), passa pelo Turquesa (própria), termina no Lilás (da próxima) */
+    /* Começa com a sua cor (turquesa) e transita para a próxima (lilás) */
     #artes-digitais {
-        background: linear-gradient(to bottom, #f97316, var(--accent-turquoise) 50%, var(--accent-lilac));
+        background: linear-gradient(to bottom, rgba(6, 182, 212, 0.1), rgba(153, 85, 187, 0.1));
     }
 
-    /* Começa Lilás, passa por si mesma, termina no Rosa (da próxima) */
+    /* Começa com a sua cor (lilás) e transita para a próxima (rosa) */
     #arteterapia {
-        background: linear-gradient(to bottom, var(--accent-lilac), var(--accent-lilac) 50%, var(--accent-lightpink));
+        background: linear-gradient(to bottom, rgba(153, 85, 187, 0.1), rgba(244, 114, 182, 0.1));
     }
 
-    /* Começa Rosa, passa por si mesma, termina no Azul Claro (da próxima) */
+    /* Começa com a sua cor (rosa) e transita para a cor da seção final (azul claro) */
     #ensino {
-        background: linear-gradient(to bottom, var(--accent-lightpink), var(--accent-lightpink) 50%, var(--color-bg-light));
+        background: linear-gradient(to bottom, rgba(244, 114, 182, 0.1), var(--color-bg-light));
     }
 
     .section-header {
@@ -60,22 +60,19 @@ const { id, title, subtitle, accentColor } = Astro.props;
         width: 48px;
         height: 48px;
         margin-bottom: 0.5rem;
-        filter: drop-shadow(0 0 5px rgba(255,255,255,0.7)); /* Adiciona um brilho sutil ao ícone */
     }
     .section-header h2 {
         font-size: 1.75rem;
         margin: 0;
-        font-weight: 700; /* Deixei em negrito para contrastar com o fundo colorido */
-        text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Sombra no texto para legibilidade */
+        font-weight: 400;
     }
     .subtitle {
         text-align: center;
-        color: var(--color-text-primary); /* Clareei o subtítulo para legibilidade */
+        color: var(--color-text-secondary);
         margin-bottom: 3.5rem;
         max-width: 60ch;
         margin-left: auto;
         margin-right: auto;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.4);
     }
     .cards-grid {
         display: grid;

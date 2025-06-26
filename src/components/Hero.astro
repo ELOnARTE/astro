@@ -21,18 +21,17 @@ import heroImage from '../assets/helo.webp';
 
 <style>
 .hero {
-    padding: 4rem 1.5rem; /* Aumentamos um pouco o padding para dar mais respiro */
-    margin-bottom: 0; /* Removemos a margem para a próxima seção se conectar */
-    border-radius: 0; /* Removemos o raio da borda para uma transição suave */
-    border-left: none; /* Removemos a borda lateral */
+    padding: 4rem 1.5rem;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
     text-align: center;
     
-    /* --- GRADIENTE DO AMANHECER APLICADO AQUI --- */
+    /* --- GRADIENTE SUTIL: Do fundo escuro para o azul --- */
     background: linear-gradient(
         to bottom, 
-        #0b1222 0%,      /* Um azul ainda mais escuro para o topo do céu */
-        #06b6d4 85%,     /* Azul celeste, a cor principal */
-        #f97316 100%     /* Laranja do sol nascente, focado na base */
+        var(--color-bg) 30%,      /* Começa com o fundo principal escuro */
+        rgba(6, 182, 212, 0.1)  /* Termina com um brilho sutil de turquesa */
     );
 }
 
@@ -57,7 +56,7 @@ import heroImage from '../assets/helo.webp';
     height: auto;
     margin: 2rem auto;
     border-radius: 50%;
-    box-shadow: 0 0 35px rgba(249, 115, 22, 0.5); /* Sombra laranja mais forte */
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.3); /* Sombra turquesa */
 }
 .hero .btn {
     display: inline-block;
@@ -68,18 +67,18 @@ import heroImage from '../assets/helo.webp';
     cursor: pointer;
     margin-top: 1rem;
     background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.5); /* Borda branca translúcida */
-    color: white;
+    border: 2px solid var(--color-bg-light);
+    color: var(--color-text-secondary);
     transition: all 0.3s ease;
     font-size: 0.9rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 .hero .btn:hover {
-    background-color: white;
-    color: #0f172a;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-primary);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 @media (max-width: 768px) {
     .hero h2 { font-size: 2rem; }
