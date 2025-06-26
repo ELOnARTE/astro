@@ -4,26 +4,27 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-/* Estilo Normal (com todos os pesos) */
+/* =================================================================== */
+/* == BASE NOVA (ELOnARTE) - ESTILOS PRINCIPAIS ====================== */
+/* =================================================================== */
+
 @font-face {
   font-family: 'Lora';
   font-style: normal;
-  font-weight: 100 900; /* Define o intervalo de pesos que este arquivo suporta */
+  font-weight: 100 900;
   font-display: swap;
   src: url('/fonts/Lora-Regular.woff2') format('woff2');
 }
 
-/* Estilo Itálico (com todos os pesos) */
 @font-face {
   font-family: 'Lora';
   font-style: italic;
-  font-weight: 100 900; /* Define o intervalo de pesos para o itálico */
+  font-weight: 100 900;
   font-display: swap;
   src: url('/fonts/Lora-Italic.woff2') format('woff2');
 }
 
 :root {
-    /* Suas novas variáveis de cor e fontes */
     --color-bg: #0f172a;
     --color-bg-light: #1e293b;
     --color-bg-section-1: #0c2a4c;
@@ -38,10 +39,7 @@
     --accent-lightpink: #f472b6;
     --accent-green: #34d399;
     --accent-red: #f87171;
-    
-    /* ATUALIZAÇÃO DA FONTE PRINCIPAL PARA LORA */
-    --font-serif: 'Lora', 'Source Serif 4 Fallback', serif; /* Mantemos o Fallback por segurança */
-
+    --font-serif: 'Lora', 'Source Serif 4 Fallback', serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
 }
@@ -92,6 +90,11 @@ html {
     border: none;
     cursor: pointer;
     transition: background-color .3s ease, transform .3s ease;
+    
+    /* --- LINHAS ADICIONADAS PARA CORRIGIR O TEXTO --- */
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .btn:hover {
