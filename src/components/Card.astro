@@ -13,37 +13,29 @@ const { title, description } = Astro.props;
 </div>
 
 <style>
-.card {
-    /* EFEITO DE VIDRO TRANSLÚCIDO: */
-    /* 1. Fundo preto com baixa opacidade. Ele irá escurecer qualquer cor de fundo da seção. */
-    background-color: rgba(0, 0, 0, 0.25);
-    
-    /* 2. O desfoque que cria o efeito de "vidro fosco". */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Suporte para o navegador Safari */
-
-    /* 3. Uma borda sutil para definir os limites do "vidro". */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    
-    border-radius: 12px; /* Um pouco mais arredondado para um visual moderno */
-    padding: 1.5rem;
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background-color: rgba(0, 0, 0, 0.4); /* Escurece um pouco mais ao passar o mouse */
-}
-
-.card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    color: var(--color-text-primary);
-}
-.card p {
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-}
+    .card {
+        background-color: rgba(30, 41, 59, 0.7);
+        padding: 2rem;
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        border: 1px solid var(--color-bg-light);
+    }
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-color: var(--accent-lilac);
+    }
+    .card h3 {
+        font-size: 1.25rem;
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        color: var(--color-text-primary);
+    }
+    .card p {
+        /* --- CORREÇÃO APLICADA AQUI --- */
+        font-size: 1rem; /* Aumentado para 16px (padrão do corpo) */
+        line-height: 1.6;
+        color: var(--color-text-secondary);
+    }
 </style>
