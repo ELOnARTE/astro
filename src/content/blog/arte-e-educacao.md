@@ -1,5 +1,5 @@
 ---
-title: 'Arte e Educação: Aprender é um Ato de Criar'
+title: 'Arte e Educação: Aprender é um Ato de Recriar'
 description: 'Como a fusão entre arte e educação pode transformar o aprendizado de temas complexos, como tecnologia e idiomas, em uma jornada criativa, engajadora e profundamente humana.'
 pubDate: 2025-06-26
 heroImage: '../../assets/arteduca.webp'
