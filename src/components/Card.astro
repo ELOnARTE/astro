@@ -14,7 +14,10 @@ const { title, description } = Astro.props;
 
 <style>
     .card {
-        background-color: rgba(30, 41, 59, 0.7);
+        /* --- CORREÇÃO APLICADA AQUI --- */
+        /* Usando RGBA para o fundo: (30, 41, 59) é a cor --color-bg-light, com 70% de opacidade */
+        background-color: rgba(30, 41, 59, 0.7); 
+        
         padding: 2rem;
         border-radius: 12px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -33,8 +36,7 @@ const { title, description } = Astro.props;
         color: var(--color-text-primary);
     }
     .card p {
-        /* --- CORREÇÃO APLICADA AQUI --- */
-        font-size: 1rem; /* Aumentado para 16px (padrão do corpo) */
+        font-size: 1rem;
         line-height: 1.6;
         color: var(--color-text-secondary);
     }
