@@ -1,54 +1,68 @@
 ---
 // src/components/ServiceSection.astro
-const { id, title, subtitle, accentColor, accentClass } = Astro.props;
+interface Props {
+    id: string;
+    title: string;
+    subtitle: string;
+    accentColor: string;
+}
+
+const { id, title, subtitle, accentColor } = Astro.props;
 ---
-<section id={id} class:list={["service-section", accentClass]} style={`--section-accent: ${accentColor}`}>
-    <h2 class:list={["accent", accentClass]}>{title}</h2>
+<section id={id} class="service-section" style={`--section-accent: ${accentColor};`}>
+    <div class="section-header">
+        <div class="icon-wrapper">
+            <slot name="icon" />
+        </div>
+        <h2 style={`color: ${accentColor};`}>{title}</h2>
+    </div>
     <p class="subtitle">{subtitle}</p>
     <div class="cards-grid">
-        <slot /> <!-- Os componentes <Card> irão aqui -->
+        <slot />
     </div>
 </section>
 
 <style>
-.service-section {
-    padding: 3rem 1.5rem;
-    margin-bottom: 4rem;
-    border-radius: 12px;
-    border-left: 4px solid var(--section-accent);
-    scroll-margin-top: 5rem;
-}
-#artes-digitais { background: linear-gradient(to bottom,var(--color-bg),var(--color-bg-section-1),var(--color-bg)); }
-#arteterapia { background: linear-gradient(to bottom,var(--color-bg),var(--color-bg-section-2),var(--color-bg)); }
-#ensino { background: linear-gradient(to bottom,var(--color-bg),var(--color-bg-section-3),var(--color-bg)); }
+    .service-section {
+        padding: 4rem 1.5rem;
+        margin-bottom: 4rem;
+        border-radius: 16px;
+        position: relative;
 
-.service-section h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: .5rem;
-    color: var(--section-accent);
-}
-.service-section .subtitle {
-    text-align: center;
-    color: var(--color-text-secondary);
-    margin-bottom: 3rem;
-}
-.cards-grid {
-    display: grid;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px){
-    .cards-grid{
-        grid-template-columns: repeat(2, 1fr);
+        /* --- CORREÇÃO APLICADA AQUI --- */
+        /* Gradiente de fundo sutil restaurado */
+        background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-light), var(--color-bg));
+        border-left: 4px solid var(--section-accent);
     }
-    #artes-digitais .cards-grid, #ensino .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .section-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
     }
-}
-@media (min-width: 1024px){
-    #ensino .cards-grid {
-        grid-template-columns: repeat(4, 1fr);
+    .icon-wrapper {
+        color: var(--section-accent);
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0.5rem;
     }
-}
+    .section-header h2 {
+        font-size: 1.75rem;
+        margin: 0;
+        font-weight: 400;
+    }
+    .subtitle {
+        text-align: center;
+        color: var(--color-text-secondary);
+        margin-bottom: 3.5rem;
+        max-width: 60ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cards-grid {
+        display: grid;
+        gap: 1.5rem;
+    }
 </style>

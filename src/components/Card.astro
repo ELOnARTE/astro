@@ -15,12 +15,12 @@ const { title, description } = Astro.props;
 <style>
     .card {
         /* --- CORREÇÃO APLICADA AQUI --- */
-        /* Usando RGBA para o fundo: (30, 41, 59) é a cor --color-bg-light, com 70% de opacidade */
-        background-color: rgba(30, 41, 59, 0.7); 
+        /* Usando RGBA da cor de fundo principal (--color-bg: #0f172a), com 50% de opacidade */
+        background-color: rgba(15, 23, 42, 0.5); 
         
         padding: 2rem;
         border-radius: 12px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         height: 100%;
         border: 1px solid var(--color-bg-light);
     }
@@ -28,6 +28,7 @@ const { title, description } = Astro.props;
         transform: translateY(-8px);
         box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         border-color: var(--accent-lilac);
+        background-color: rgba(30, 41, 59, 0.7); /* Fica um pouco mais claro no hover */
     }
     .card h3 {
         font-size: 1.25rem;
