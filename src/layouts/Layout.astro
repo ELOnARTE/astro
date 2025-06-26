@@ -1,18 +1,16 @@
 ---
 // src/layouts/Layout.astro
 import '../styles/global.css';
-import Header from '../components/Header.astro'; // 1. Importa o Header
-import Footer from '../components/Footer.astro'; // 2. Importa o Footer
-import Seo from '../components/Seo.astro'; // 3. Importa o SEO
-import { ViewTransitions } from 'astro:transitions'; // 4. Importe o ViewTransitions
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Seo from '../components/Seo.astro';
+import { ViewTransitions } from 'astro:transitions';
 
-//... outros imports
 interface Props {
   title?: string;
   description?: string;
   image?: string;
 }
-// ADICIONE ESTA LINHA PARA EXTRAIR AS PROPRIEDADES
 const { title, description, image } = Astro.props;
 ---
 <html lang="pt-BR">
@@ -20,25 +18,28 @@ const { title, description, image } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preload" href="/fonts/source-serif-4-v13-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/source-serif-4-v13-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+    {/* --- LINKS DE PRÉ-CARREGAMENTO ATUALIZADOS PARA LORA --- */}
+    <link rel="preload" href="/fonts/Lora-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Lora-Italic.woff2" as="font" type="font/woff2" crossorigin>
+    {/* --- FIM DA ATUALIZAÇÃO --- */}
+    
+    <link rel="preconnect" href="https://formspree.io" crossorigin>
 
     <Seo title={title} description={description} image={image} />
     
-    <!-- Seus links de Favicon, etc. -->
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/images/site.webmanifest">
 
-      <ViewTransitions /> {/* Adiciona o componente ViewTransitions aqui */}
+    <ViewTransitions />
 </head>
 <body>
-    <Header /> {/* <-- 3. Adiciona o componente Header aqui */}
+    <Header />
     
     <main>
-        <slot /> <!-- O conteúdo da sua página será injetado aqui -->
+        <slot />
     </main>
 
-    <Footer /> {/* <-- 4. Adiciona o componente Footer aqui */}
+    <Footer />
 </body>
 </html>
