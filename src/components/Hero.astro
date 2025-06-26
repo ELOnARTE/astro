@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import heroImage from '../assets/helo.webp'; 
 ---
 <section id="hero" class="hero">
-    <h2>Boas-vindas a este elegante<br>elo na arte inspirada!</h2>
+    <h2>Boas-vindas a este<br>elegante elo na arte<br>inspirada!</h2>
     <p>Conectando arte, terapia e tecnologia<br>para realizar, inspirar, incluir...</p>
     
     <Image 
@@ -47,6 +47,7 @@ import heroImage from '../assets/helo.webp';
 }
 
 .hero-image {
+    display: block; 
     width: 100%;
     max-width: 350px;
     height: auto;
@@ -56,7 +57,27 @@ import heroImage from '../assets/helo.webp';
 }
 
 .hero .btn {
-    /* Estilos para o botão, se houver */
+    /* Estilo do botão fantasma */
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 1rem; /* Adiciona um espaço acima do botão */
+
+    /* Novo estilo sutil */
+    background-color: transparent;
+    border: 2px solid var(--color-bg-light); /* Borda com a cor de fundo mais clara */
+    color: var(--color-text-secondary); /* Texto com a cor secundária */
+    transition: all 0.3s ease;
+}
+
+.hero .btn:hover {
+    background-color: var(--color-bg-light); /* Fundo preenchido no hover */
+    color: var(--color-text-primary); /* Texto principal no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 @media (max-width: 768px) {
