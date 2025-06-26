@@ -1,22 +1,22 @@
 ---
 // src/components/Hero.astro
 import { Image } from 'astro:assets';
-import heroImage from '../assets/helo.webp';
+import heroImage from '../assets/helo.webp'; 
 ---
 <section id="hero" class="hero">
     <h2>Boas-vindas a este elegante<br>elo na arte inspirada!</h2>
     <p>Conectando arte, terapia e tecnologia<br>para realizar, inspirar, incluir...</p>
-
-    <Image
-        src={heroImage}
-        alt="Ilustração abstrata e cósmica representando a essência da ELOnARTE"
+    
+    <Image 
+        src={heroImage} 
+        alt="Ilustração abstrata e cósmica representando a essência da ELOnARTE" 
         class="hero-image"
         width={500}
         height={500}
         quality={'mid'}
     />
 
-    <a href="#servicos" class="btn">Conheça Nossos Serviços</a>
+    <a href="#artes-digitais" class="btn">Conheça Nossos Serviços</a>
 </section>
 
 <style>
@@ -24,21 +24,25 @@ import heroImage from '../assets/helo.webp';
     padding: 3rem 1.5rem;
     margin-bottom: 4rem;
     border-radius: 12px;
-    border-left: 4px solid;
+    border-left: 4px solid var(--accent-lightpink); /* Borda rosa para combinar com o "nascer do sol" */
     text-align: center;
-    /* --- CORREÇÃO APLICADA AQUI --- */
-    /* Gradiente linear inspirado nas cores do "elo" */
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(153, 85, 187, 0.15), rgba(244, 114, 182, 0.15), rgba(15, 23, 42, 0.5));
-    border-color: var(--color-text-primary);
+    
+    /* --- GRADIENTE DO AMANHECER APLICADO AQUI --- */
+    background: linear-gradient(
+        to bottom, 
+        #0f172a, /* Azul escuro (topo) */
+        #06b6d4 70%, /* Azul celeste (meio) */
+        #f97316 110% /* Laranja do sol nascente (base, extrapolando para um efeito mais forte) */
+    );
 }
+
 .hero h2 {
     font-size: 2.5rem;
-    font-weight: 400; /* Sem negrito */
+    font-weight: 400;
     line-height: 1.2;
     margin-bottom: 1.5rem;
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 .hero p {
     font-size: 1.125rem;
@@ -46,17 +50,15 @@ import heroImage from '../assets/helo.webp';
     max-width: 700px;
     margin: 0 auto 2rem;
 }
-
 .hero-image {
-    display: block;
+    display: block; 
     width: 100%;
     max-width: 350px;
     height: auto;
     margin: 2rem auto;
     border-radius: 50%;
-    box-shadow: 0 0 25px rgba(153, 85, 187, 0.3);
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.4); /* Sombra laranja */
 }
-
 .hero .btn {
     display: inline-block;
     padding: 0.75rem 2rem;
@@ -73,20 +75,14 @@ import heroImage from '../assets/helo.webp';
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
-
 .hero .btn:hover {
     background-color: var(--color-bg-light);
     color: var(--color-text-primary);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-
 @media (max-width: 768px) {
-    .hero h2 {
-        font-size: 2rem;
-    }
-    .hero p {
-        font-size: 1rem;
-    }
+    .hero h2 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
 }
 </style>
