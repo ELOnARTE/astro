@@ -1,11 +1,11 @@
 ---
-// src/components/PostCard.astro (Versão Final Otimizada)
+// src/components/PostCard.astro (Versão Final com Otimização de Imagens Responsivas)
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 
 interface Props {
   post: CollectionEntry<'blog'>;
-  isLCP?: boolean; // Propriedade para identificar a imagem LCP
+  isLCP?: boolean;
 }
 
 const { post, isLCP = false } = Astro.props;
@@ -18,12 +18,13 @@ const { post, isLCP = false } = Astro.props;
                 <Image
                     src={post.data.heroImage}
                     alt={`Imagem de capa para o post: ${post.data.title}`}
-                    width={800}
-                    height={450}
                     quality={75}
                     loading={isLCP ? 'eager' : 'lazy'}
                     fetchpriority={isLCP ? 'high' : 'auto'}
                     class="post-image"
+                    
+                    widths={[320, 480, 800, 1200]}
+                    sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 30vw"
                 />
             )}
         </div>
