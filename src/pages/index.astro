@@ -1,17 +1,15 @@
 ---
 // src/pages/index.astro
 
-// 1. Imports simplificados
+// 1. Importe o 'type CollectionEntry' de 'astro:content'
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import PostCard from '../components/PostCard.astro'; // Nosso novo componente
-import { getCollection } from 'astro:content';
+import PostCard from '../components/PostCard.astro'; // Usando nosso componente otimizado
 
-// 2. Lógica para buscar apenas posts com "featured: true"
 const allPosts = await getCollection('blog');
-// Certifique-se de que todos os posts possuem a propriedade 'featured' no schema e nos arquivos de conteúdo.
-// Caso não queira adicionar a propriedade, remova o filtro ou ajuste para uma propriedade existente, por exemplo:
-const featuredPosts = allPosts; // Mostra todos os posts
-// Se quiser filtrar por outra propriedade existente, ajuste aqui.
+const featuredPosts = allPosts
+    .filter(post => post.data.featured)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout
@@ -22,12 +20,16 @@ const featuredPosts = allPosts; // Mostra todos os posts
         <section id="blog-highlight" class="featured-section">
             <div class="section-header">
                 <h1>O elegante elo na arte</h1>
-                <p class="subtitle">Reflexões sobre arte, consciência e tecnologia.</p>
+                <p class="subtitle">Nossas reflexões sobre arte, tecnologia e consciência. Comece por aqui.</p>
             </div>
             
             <div class="blog-cards-grid">
-                {featuredPosts.map((post, index) => (
-                     <PostCard post={post} isLCP={index === 0} />
+                {/* 2. AQUI ESTÁ A CORREÇÃO:
+                  - Adicionamos o tipo (post: CollectionEntry<'blog'>)
+                  - Adicionamos o 'index' para a lógica da imagem LCP
+                */}
+                {featuredPosts.map((post: CollectionEntry<'blog'>, index) => (
+                    <PostCard post={post} isLCP={index === 0} />
                 ))}
             </div>
 
@@ -39,6 +41,7 @@ const featuredPosts = allPosts; // Mostra todos os posts
 </Layout>
 
 <style>
+    /* Seus estilos continuam os mesmos */
     .featured-section {
         padding: 4rem 1.5rem;
     }
@@ -47,7 +50,7 @@ const featuredPosts = allPosts; // Mostra todos os posts
         margin-bottom: 3.5rem;
     }
     .section-header h1 {
-        font-size: 2.5rem; /* Ajuste o tamanho conforme preferir */
+        font-size: 2.5rem;
         font-weight: 400;
         margin-bottom: 1rem;
     }
@@ -66,9 +69,7 @@ const featuredPosts = allPosts; // Mostra todos os posts
     .cta-container {
         text-align: center;
     }
-    /* Estilo para o botão, pode reutilizar ou criar um novo */
     .btn {
-      /* Recomendo usar um estilo de botão global ou copiar um existente */
       display: inline-block;
       padding: 0.75rem 2rem;
       border-radius: 8px;
