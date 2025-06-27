@@ -26,7 +26,7 @@ const featuredPosts = allPosts; // Mostra todos os posts
             </div>
             
             <div class="blog-cards-grid">
-                {featuredPosts.map(post => (
+                {featuredPosts.map((post, index) => (
                      <PostCard post={post} isLCP={index === 0} />
                 ))}
             </div>
