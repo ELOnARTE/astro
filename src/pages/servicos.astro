@@ -1,0 +1,75 @@
+---
+// src/pages/servicos.astro
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceSection from '../components/ServiceSection.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout
+    title="Serviços | ELOnARTE"
+    description="Criamos, publicamos e construímos sua presença online. Navegue pelo seu universo interior e encontre equilíbrio e bem-estar."
+>
+    <div class="container">
+        <Hero />
+        
+        <ServiceSection
+            id="artes-digitais"
+            title="Artes Digitais"
+            subtitle="Criamos, publicamos e construímos sua presença online."
+            accentColor="var(--accent-turquoise)">
+            <Card title="Produção Multimídia" description="Deixamos suas ideias fluírem em cores, movimentos e sons." />
+            <Card title="Publicações Digitais" description="Lançamos seus e-books, músicas e podcasts nas principais plataformas." />
+            <Card title="Desenvolvimento Web" description="Construímos portais e aplicativos que são obras de arte digitais." />
+        </ServiceSection>
+        
+        <ServiceSection
+            id="arteterapia"
+            title="Arteterapia e Terapias Integrativas"
+            subtitle="Navegue pelo seu universo interior e encontre equilíbrio e bem-estar."
+            accentColor="var(--accent-lilac)">
+            <Card title="Sessões de Arteterapia" description="Utilize a expressão criativa como ferramenta de autoconhecimento e cura." />
+            <Card title="Terapias Holísticas" description="Combinamos práticas integrativas para um bem-estar completo." />
+        </ServiceSection>
+        
+        <ServiceSection
+            id="ensino"
+            title="Arte e Educação"
+            subtitle="Aprenda conosco de uma forma leve, artística e inovadora."
+            accentColor="var(--accent-lightpink)">
+            <Card title="Ferramentas Criativas" description="Aulas práticas de design, desenvolvimento web, produção multimídia e mais." />
+            <Card title="Inteligência Artificial" description="Desvende os mistérios da IA para otimizar seu trabalho e estudos." />
+            <Card title="Idiomas e Programação" description="Aulas com uma metodologia divertida e eficaz." />
+            <Card title="Expressões do Eu Profundo" description="Estudo aprofundado do ateliê da Consciência através das artes." />
+        </ServiceSection>
+
+        <section class="cta-final">
+            <h2>Interessado em nossos serviços?</h2>
+            <p>Vamos conversar sobre como podemos colaborar.</p>
+            <a href="/contato" class="btn-contato">Entre em Contato</a>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .cta-final {
+        text-align: center;
+        padding: 4rem 1.5rem;
+        background-color: var(--color-bg-light);
+    }
+    .btn-contato {
+        /* Estilize como preferir, similar ao botão do passo 3 */
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+        background-color: var(--accent-lilac);
+        color: white;
+        transition: all 0.3s ease;
+    }
+    .btn-contato:hover {
+        opacity: 0.9;
+        transform: translateY(-3px);
+    }
+</style>

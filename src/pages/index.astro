@@ -1,154 +1,86 @@
 ---
 // src/pages/index.astro
 
-// Imports dos componentes
+// 1. Imports simplificados
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import ServiceSection from '../components/ServiceSection.astro';
-import Card from '../components/Card.astro';
-import ContactForm from '../components/ContactForm.astro';
+import PostCard from '../components/PostCard.astro'; // Nosso novo componente
+import { getCollection } from 'astro:content';
 
-// Imports do Astro para conteúdo e imagens
-import { getCollection, type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets'; // 1. Importamos o componente Image
-
-// Busca os posts da coleção 'blog'
+// 2. Lógica para buscar apenas posts com "featured: true"
 const allPosts = await getCollection('blog');
-
-// Ordena os posts por data
-const sortedPosts = allPosts.sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-
-// Pega apenas os 3 mais recentes
-const recentPosts = sortedPosts.slice(0, 3);
+// Certifique-se de que todos os posts possuem a propriedade 'featured' no schema e nos arquivos de conteúdo.
+// Caso não queira adicionar a propriedade, remova o filtro ou ajuste para uma propriedade existente, por exemplo:
+// const featuredPosts = allPosts; // Mostra todos os posts
+const featuredPosts = allPosts.filter(post => post.data.featured === true);
 ---
 
 <Layout
-    title="ELOnARTE | Conectando Arte, Terapia & Tecnologia"
+    title="ELOnARTE | O elegante elo na arte"
     description="Explore um universo onde arte, terapias integrativas e tecnologias inovadoras se encontram."
 >
     <div class="container">
-        <Hero />
-        
-        <ServiceSection
-            id="artes-digitais"
-            title="Artes Digitais"
-            subtitle="Criamos, publicamos e construímos sua presença online."
-            accentColor="var(--accent-turquoise)">
-            <Card title="Produção Multimídia" description="Deixamos suas ideias fluírem em cores, movimentos e sons." />
-            <Card title="Publicações Digitais" description="Lançamos seus e-books, músicas e podcasts nas principais plataformas." />
-            <Card title="Desenvolvimento Web" description="Construímos portais e aplicativos que são obras de arte digitais." />
-        </ServiceSection>
-        
-        <ServiceSection
-            id="arteterapia"
-            title="Arteterapia e Terapias Integrativas"
-            subtitle="Navegue pelo seu universo interior e encontre equilíbrio e bem-estar."
-            accentColor="var(--accent-lilac)">
-            <Card title="Sessões de Arteterapia" description="Utilize a expressão criativa como ferramenta de autoconhecimento e cura." />
-            <Card title="Terapias Holísticas" description="Combinamos práticas integrativas para um bem-estar completo." />
-        </ServiceSection>
-        
-        <ServiceSection
-            id="ensino"
-            title="Arte e Educação"
-            subtitle="Aprenda conosco de uma forma leve, artística e inovadora."
-            accentColor="var(--accent-lightpink)">
-            <Card title="Ferramentas Criativas" description="Aulas práticas de design, desenvolvimento web, produção multimídia e mais." />
-            <Card title="Inteligência Artificial" description="Desvende os mistérios da IA para otimizar seu trabalho e estudos." />
-            <Card title="Idiomas e Programação" description="Aulas com uma metodologia divertida e eficaz." />
-            <Card title="Expressões do Eu Profundo" description="Estudo aprofundado do ateliê da Consciência através das artes." />
-        </ServiceSection>
+        <section id="blog-highlight" class="featured-section">
+            <div class="section-header">
+                <h1>O elegante elo na arte</h1>
+                <p class="subtitle">Nossas reflexões sobre arte, tecnologia e consciência. Comece por aqui.</p>
+            </div>
+            
+            <div class="blog-cards-grid">
+                {featuredPosts.map(post => (
+                    <PostCard post={post} />
+                ))}
+            </div>
 
-        {recentPosts.length > 0 && (
-            <section id="blog-highlight" class="service-section">
-                <h2 style="color: var(--color-text-primary);">Artigos em destaque no Blog</h2>
-                <p class="subtitle">Nossas reflexões mais recentes sobre arte, tecnologia e consciência.</p>
-                
-                {/* 2. Nova estrutura para os cards do blog */}
-                <div class="blog-cards-grid">
-                    {recentPosts.map((post: CollectionEntry<'blog'>) => (
-                        <a href={`/blog/${post.slug}/`} class="post-card">
-                            <div class="card-image-container">
-                                {post.data.heroImage && (
-                                    <Image
-                                        src={post.data.heroImage}
-                                        alt={`Imagem de capa para o post: ${post.data.title}`}
-                                        width={720}
-                                        height={405}
-                                        widths={[400, 720, 1080]} 
-                                        sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 400px"
-                                        class="post-image"
-                                    />
-                                )}
-                            </div>
-                            <div class="card-text-content">
-                                <h3>{post.data.title}</h3>
-                                <p>{post.data.description}</p>
-                            </div>
-                        </a>
-                    ))}
-                </div>
-
-                <div class="cta-container">
-                    <a href="/blog" class="btn">Ver Todas as Publicações</a>
-                </div>
-            </section>
-        )}
-
-        <ContactForm />
+            <div class="cta-container">
+                <a href="/blog" class="btn">Ver Todas as Publicações</a>
+            </div>
+        </section>
     </div>
 </Layout>
 
 <style>
-    /* 3. Estilos para a nova seção de blog */
+    .featured-section {
+        padding: 4rem 1.5rem;
+    }
+    .section-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    .section-header h1 {
+        font-size: 2.5rem; /* Ajuste o tamanho conforme preferir */
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+    .subtitle {
+        font-size: 1.125rem;
+        color: var(--color-text-secondary);
+        max-width: 60ch;
+        margin: 0 auto;
+    }
     .blog-cards-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
-    }
-    .post-card {
-        display: block;
-        background-color: var(--color-bg-light);
-        border-radius: 12px;
-        overflow: hidden;
-        text-decoration: none;
-        color: var(--color-text-primary);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid transparent;
-        height: 100%;
-    }
-    .post-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        border-color: var(--accent-turquoise);
-    }
-    .card-image-container {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        background-color: var(--color-bg);
-    }
-    .post-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .card-text-content {
-        padding: 1.5rem;
-    }
-    .card-text-content h3 {
-        font-size: 1.25rem;
-        margin-top: 0;
-        margin-bottom: 0.75rem;
-    }
-    .card-text-content p {
-        font-size: 0.95rem;
-        color: var(--color-text-secondary);
-        line-height: 1.6;
+        margin-bottom: 3rem;
     }
     .cta-container {
         text-align: center;
-        margin-top: 3rem;
+    }
+    /* Estilo para o botão, pode reutilizar ou criar um novo */
+    .btn {
+      /* Recomendo usar um estilo de botão global ou copiar um existente */
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      background-color: var(--color-bg-light);
+      color: var(--color-text-primary);
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+        background-color: var(--accent-turquoise);
+        color: var(--color-bg);
+        transform: translateY(-3px);
     }
 </style>

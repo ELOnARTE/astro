@@ -2,6 +2,7 @@
 title: 'O Ateliê da Consciência: Dialogando com a Natureza Através da Arte'
 description: 'Uma reflexão profunda sobre como a observação da natureza, aliada à prática artística, pode se tornar uma poderosa ferramenta para o autoconhecimento e a expansão da consciência.'
 pubDate: 2025-06-26
+featured: true
 heroImage: '../../assets/atelie.webp'
 tags: ['Arte e Natureza', 'Ecopsicologia', 'Espiritualidade', 'Consciência', 'Meditação Criativa', 'Autoconhecimento Profundo', 'Arte Contemplativa']
 ---

@@ -1,0 +1,96 @@
+---
+// src/components/PostCard.astro
+// Este componente agora reflete o seu design do blog.
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+---
+
+<div class="post-card">
+    <a href={`/blog/${post.slug}/`} class="card-link-area">
+        <div class="image-container">
+            {post.data.heroImage && (
+                <Image
+                    src={post.data.heroImage}
+                    alt={`Imagem de capa para o post: ${post.data.title}`}
+                    width={800}
+                    height={450}
+                    quality={'high'}
+                    class="post-image"
+                />
+            )}
+        </div>
+        <div class="post-text">
+            <h2 class="post-title">{post.data.title}</h2>
+            <p class="post-date">
+                {new Date(post.data.pubDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+            <p class="post-description">{post.data.description}</p>
+        </div>
+    </a>
+    
+    {post.data.tags && post.data.tags.length > 0 && (
+        <div class="tags-container">
+            {post.data.tags.map(tag => (
+                <a href={`/tags/${String(tag).toLowerCase()}/`} class="tag">
+                    {tag}
+                </a>
+            ))}
+        </div>
+    )}
+</div>
+
+<style>
+    .post-card {
+        background-color: var(--color-bg-light);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid transparent;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .post-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        border-color: var(--accent-lilac);
+    }
+    .card-link-area {
+        text-decoration: none;
+        color: var(--color-text-primary);
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .image-container { width: 100%; aspect-ratio: 16 / 9; background-color: var(--color-bg); }
+    .post-image { width: 100%; height: 100%; object-fit: cover; }
+    .post-text { padding: 1.5rem 1.5rem 0; flex-grow: 1; }
+    .post-title { font-size: 1.5rem; margin: 0 0 0.5rem; }
+    .post-date { color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+    .post-description { font-size: 1rem; margin-bottom: 1rem; }
+    .tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0 1.5rem 1.5rem;
+    }
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        background-color: var(--accent-turquoise);
+        color: var(--color-bg);
+        border-radius: 999px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
+    .tag:hover {
+        background-color: var(--accent-lightpink);
+    }
+</style>

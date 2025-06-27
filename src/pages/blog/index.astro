@@ -2,7 +2,7 @@
 // src/pages/blog/index.astro
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import PostCard from '../../components/PostCard.astro';
 
 // Busca os posts da coleção 'blog'
 const allPosts = await getCollection('blog');
@@ -25,44 +25,9 @@ const sortedPosts = allPosts.sort(
             {sortedPosts.length > 0 ? (
                 <ul class="post-list">
                     {sortedPosts.map((post: CollectionEntry<'blog'>) => (
-                        <li>
-                            {/* O link agora envolve todo o card, mas as tags internas não serão links */}
-                            <div class="post-card">
-                                <a href={`/blog/${post.slug}/`} class="card-link-area">
-                                    <div class="image-container">
-                                        {post.data.heroImage && (
-                                            <Image
-                                                src={post.data.heroImage}
-                                                alt={`Imagem de capa para o post: ${post.data.title}`}
-                                                width={800}  
-                                                height={450} 
-                                                quality={'high'}
-                                                class="post-image"
-                                            />
-                                        )}
-                                    </div>
-                                    <div class="post-text">
-                                        <h2 class="post-title">{post.data.title}</h2>
-                                        <p class="post-date">
-                                            {new Date(post.data.pubDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
-                                        </p>
-                                        <p class="post-description">{post.data.description}</p>
-                                    </div>
-                                </a>
-                                
-                                {/* --- NOVO TRECHO PARA EXIBIR AS TAGS --- */}
-                                {post.data.tags && post.data.tags.length > 0 && (
-                                    <div class="tags-container">
-                                        {post.data.tags.map(tag => (
-                                            <a href={`/tags/${tag.toLowerCase()}/`} class="tag">
-                                                {tag}
-                                            </a>
-                                        ))}
-                                    </div>
-                                )}
-                                {/* --- FIM DO NOVO TRECHO --- */}
-                            </div>
-                        </li>
+                       <li>
+                        <PostCard post={post} />
+                    </li>
                     ))}
                 </ul>
             ) : (

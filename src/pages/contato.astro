@@ -1,0 +1,58 @@
+---
+// src/pages/contato.astro
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<Layout
+    title="Contato | ELOnARTE"
+    description="Fale conosco! Envie sua mensagem, tire dúvidas ou solicite um orçamento."
+>
+    <div class="container">
+        <ContactForm />
+
+        <section class="outros-contatos">
+            <h2>Outras Formas de Conectar</h2>
+            <p>Prefere outro meio? Sem problemas. Você também pode nos encontrar aqui:</p>
+            <div class="contatos-wrapper">
+                <a href="mailto:leon@elonarte.com" class="contato-item">
+                    📧 E-mail
+                </a>
+                <a href="https://wa.me/5531983444220" class="contato-item" target="_blank">
+                    💬 WhatsApp
+                </a>
+                <a href="https://t.me/elonarte" class="contato-item" target="_blank">
+                    📱 Telegram
+                </a>
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .outros-contatos {
+        text-align: center;
+        padding: 4rem 1.5rem;
+    }
+    .contatos-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+    .contato-item {
+        /* Estilo dos links de contato */
+        padding: 0.75rem 1.5rem;
+        border: 1px solid var(--color-bg-light);
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: all 0.3s ease;
+    }
+    .contato-item:hover {
+        background-color: var(--color-bg-light);
+        color: var(--color-text-primary);
+        border-color: var(--accent-lilac);
+    }
+</style>
