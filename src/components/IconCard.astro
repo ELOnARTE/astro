@@ -17,7 +17,9 @@ const { title, description } = Astro.props;
 </div>
 <style>
     .icon-card {
-        background-color: var(--color-bg-dark, #080C15);
+        /* APLICANDO A COR DE FUNDO SOLICITADA */
+        background-color: var(--color-bg-dark);
+        
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 1.5rem;
@@ -25,12 +27,16 @@ const { title, description } = Astro.props;
         align-items: flex-start;
         gap: 1.5rem;
         height: 100%;
+        /* Adicionamos a transição para a cor de fundo */
         transition: border-color 0.3s ease, background-color 0.3s ease;
     }
+
+    /* EFEITO HOVER REFINADO */
     .icon-card:hover {
         border-color: var(--accent-turquoise);
-        background-color: var(--color-bg-light);
+        background-color: var(--color-bg-light); /* O card "acende" sutilmente */
     }
+
     .icon-wrapper {
         color: var(--accent-turquoise);
         background-color: rgba(6, 182, 212, 0.1);
