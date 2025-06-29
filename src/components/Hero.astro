@@ -16,7 +16,12 @@ import heroImage from '../assets/helo.webp';
         quality={'mid'}
     />
 
-    <a href="#artes-digitais" class="btn">Conheça Nossos Serviços</a>
+   <a href="/servicos" class="cta-button">
+      <span>Conheça nossos Serviços</span>
+      <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+      </svg>
+    </a>
 </section>
 
 <style>
@@ -26,15 +31,12 @@ import heroImage from '../assets/helo.webp';
     border-radius: 0;
     border-left: none;
     text-align: center;
-    
-    /* --- GRADIENTE SUTIL: Do fundo escuro para o azul --- */
     background: linear-gradient(
         to bottom, 
-        var(--color-bg) 30%,      /* Começa com o fundo principal escuro */
-        rgba(6, 182, 212, 0.1)  /* Termina com um brilho sutil de turquesa */
+        var(--color-bg) 30%,
+        rgba(6, 182, 212, 0.1)
     );
 }
-
 .hero h2 {
     font-size: 2.5rem;
     font-weight: 400;
@@ -56,30 +58,43 @@ import heroImage from '../assets/helo.webp';
     height: auto;
     margin: 2rem auto;
     border-radius: 50%;
-    box-shadow: 0 0 25px rgba(6, 182, 212, 0.3); /* Sombra turquesa */
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.3);
 }
-.hero .btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-    margin-top: 1rem;
-    background-color: transparent;
-    border: 2px solid var(--color-bg-light);
-    color: var(--color-text-secondary);
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+
+/* ================ SUBSTITUA OS ESTILOS DO BOTÃO ANTIGO (.hero .btn) POR ESTES ================ */
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* Espaço entre o texto e a seta */
+  background-color: var(--accent-turquoise);
+  color: var(--color-bg);
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.hero .btn:hover {
-    background-color: var(--color-bg-light);
-    color: var(--color-text-primary);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+.cta-button:hover {
+  background-color: var(--accent-lilac);
+  transform: translateY(-3px);
 }
+
+.arrow-icon {
+  transition: transform 0.3s ease-out; /* Define a animação da seta */
+}
+
+.cta-button:hover .arrow-icon {
+  transform: translateX(5px); /* Move a seta para a direita no hover */
+}
+
+/* ========================================================================================= */
+
 @media (max-width: 768px) {
     .hero h2 { font-size: 2rem; }
     .hero p { font-size: 1rem; }
