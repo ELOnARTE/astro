@@ -1,0 +1,57 @@
+---
+// src/components/TableOfContents.astro
+import type { MarkdownHeading } from 'astro';
+
+export interface Props {
+  headings: MarkdownHeading[];
+}
+
+// Filtramos para mostrar apenas os títulos <h2> (depth: 2) e <h3> (depth: 3)
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter(h => h.depth > 1 && h.depth < 4);
+---
+{filteredHeadings.length > 2 && (
+  <aside class="toc">
+    <h2 class="toc-title">Neste Artigo</h2>
+    <ol class="toc-list">
+      {filteredHeadings.map(heading => (
+        <li class={`toc-item depth-${heading.depth}`}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ol>
+  </aside>
+)}
+
+<style>
+  .toc {
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-bg-form);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .toc-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  .toc-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .toc-item a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease;
+    display: block;
+    padding: 0.25rem 0;
+  }
+  .toc-item a:hover {
+    color: var(--color-text-primary);
+  }
+  .toc-item.depth-3 {
+    padding-left: 1.5rem;
+  }
+</style>
