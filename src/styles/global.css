@@ -27,6 +27,7 @@
 :root {
     --color-bg: #0f172a;
     --color-bg-light: #1e293b;
+    --color-bg-dark: #080C15;
     --color-bg-section-1: #0c2a4c;
     --color-bg-section-2: #2d1a4d;
     --color-bg-section-3: #3d1a4a;
@@ -39,7 +40,7 @@
     --accent-lightpink: #f472b6;
     --accent-green: #34d399;
     --accent-red: #f87171;
-    --font-serif: 'Lora', 'Source Serif 4 Fallback', serif;
+    --font-serif: 'Lora', serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
 }
