@@ -7,9 +7,8 @@ import Layout from '../layouts/Layout.astro';
 import PostCard from '../components/PostCard.astro'; // Usando nosso componente otimizado
 
 const allPosts = await getCollection('blog');
-const featuredPosts = allPosts
-    .filter(post => post.data.featured)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const featuredPosts = allPosts.filter(post => post.data.featured);
+    featuredPosts.sort(() => Math.random() - 0.5);
 ---
 
 <Layout
