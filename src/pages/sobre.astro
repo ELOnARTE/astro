@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import aboutImage from '../assets/elonarte.png'; // Imagem Principal da ELOnARTE
 import purposeImage from '../assets/fonte.webp'; // Imagem de Nossa Essência e Propósito
+import eternoAgora from '../assets/eterno_Agora.webp'; // Imagem de Nossa História
 ---
 <Layout
     title="Sobre a ELOnARTE"
@@ -16,12 +17,12 @@ import purposeImage from '../assets/fonte.webp'; // Imagem de Nossa Essência e 
         </header>
 
         <div class="image-wrapper">
-            <Image src={aboutImage} alt="Ilustração abstrata e cósmica representando a essência da ELOnARTE" class="about-image" />
+            <Image src={aboutImage} alt="Ilustração cósmica representando a essência da ELOnARTE" class="about-image" />
         </div>
 
         <section class="content-section">
-            <h2>Nossa Essência e Propósito</h2>
-            <p>A ELOnARTE já nasceu com a profunda intenção de ser um catalisador para o crescimento. Nossa missão é capacitar cada ser humano a criar e recriar-se, a desenvolver seus dons e a evoluir continuamente. Acreditamos em um ciclo virtuoso onde podemos ser nutridos e nutrir, ser curados e curar, ser educados e educar. Buscamos satisfazer a necessidade universal de paz e realização, conduzindo à expressão criativa plena com integridade, respeito e responsabilidade. Nosso real objetivo é ser fonte de inspiração para nós mesmos e para quem mais quiser recebê-la.</p>
+            <h2>Nossa Essência, Intenção e Propósito</h2>
+            <p>A ELOnARTE já floresceu com a profunda intenção de ser um catalisador para o crescimento. Nosso propósito é capacitar cada ser humano a criar e recriar-se, a desenvolver seus dons e a evoluir continuamente. Acreditamos em um ciclo virtuoso onde podemos ser nutridos e nutrir, ser curados e curar, ser educados e educar. Buscamos satisfazer a necessidade universal de paz e realização, conduzindo à expressão criativa plena com integridade, respeito e responsabilidade. Nosso real objetivo é ser fonte de inspiração para nós mesmos e para quem mais quiser recebê-la.</p>
         <div class="inline-image-wrapper">
                 <Image src={purposeImage} alt="Fonte de luz, inspiração e criação." />
             </div>
@@ -31,6 +32,9 @@ import purposeImage from '../assets/fonte.webp'; // Imagem de Nossa Essência e 
             <h2>Nossa História</h2>
             <p>A jornada da ELOnARTE começou em 8 de agosto de 2002, sob o nome de <strong>Partilhar Luz</strong>, idealizada por Leonardo da Fonte (Leonarte). A semente foi plantada com a intenção de expressar percepções para a construção de um mundo novo, pleno de criatividade amorosa, paz e realizações — um mundo onde somos a mudança que gostaríamos de ver florescer na Terra, através de nossos sentimentos, pensamentos, palavras e ações.</p>
             <p><strong>Leonarte</strong>, o coração do projeto, é produtor artístico, arteterapeuta, educador e desenvolvedor, unindo todas as facetas da ELOnARTE em seu trabalho e oferecendo cursos e retiros de autoconhecimento e autoexpressão.</p>
+<div class="inline-image-wrapper">
+                <Image src={eternoAgora} alt="O eterno Agora, uma história sem fim." />
+            </div>
         </section>
 
         <section class="content-section services">
