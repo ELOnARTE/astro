@@ -1,23 +1,42 @@
 ---
 // src/components/Seo.astro
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
+// 1. Mantemos seus imports e adicionamos os tipos que precisamos
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import type { ImageMetadata } from 'astro';
+
+// 2. Importamos a sua imagem padrão para que o Astro a processe
+import defaultSocialImage from '../assets/social-card-padrao.jpg';
+
+// 3. Atualizamos a 'Props' para aceitar tanto uma string quanto um objeto de imagem
 interface Props {
   title?: string;
   description?: string;
-  image?: string;
-  // Adicione outras props que precisar
+  image?: string | ImageMetadata;
 }
 
 const {
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
-  image = '/default-social-image.png', // Crie uma imagem padrão para compartilhar
+  image, // Removemos o valor padrão daqui, pois a lógica ficará mais explícita abaixo
 } = Astro.props;
 
+// 4. LÓGICA CENTRAL: Determinamos qual imagem usar
+//    Se uma 'image' foi passada (de um post), usamos ela.
+//    Senão, usamos a imagem padrão que importamos.
+let imagePath;
+if (image) {
+    // Se a prop 'image' for um objeto (de heroImage), pegamos o 'src'. Senão, usamos a string.
+    imagePath = typeof image === 'string' ? image : image.src;
+} else {
+    // Se nenhuma imagem foi passada, usamos a padrão.
+    imagePath = defaultSocialImage.src;
+}
+
+// 5. Construímos a URL final e absoluta para a imagem
+const imageUrl = new URL(imagePath, Astro.site);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
-
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
@@ -25,13 +44,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
-<meta property="og:image" content={new URL(image, Astro.site)} />
+<meta property="og:image" content={imageUrl} />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={SITE_TITLE} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={new URL(image, Astro.site)} />
+<meta name="twitter:image" content={imageUrl} />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

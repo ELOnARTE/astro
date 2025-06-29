@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://elonart.pages.dev',
+	site: 'https://elonarte.com',
 	integrations: [mdx(), sitemap()],
 	
 // ADICIONE A SEÇÃO VITE ABAIXO
