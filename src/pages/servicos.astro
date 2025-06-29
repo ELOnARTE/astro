@@ -1,25 +1,42 @@
 ---
-// src/pages/servicos.astro (Versão Final - Direta e Elegante)
+// src/pages/servicos.astro (Versão Final - Inspirada na página Sobre)
+
 import Layout from '../layouts/Layout.astro';
 import ServiceSection from '../components/ServiceSection.astro';
 import IconCard from '../components/IconCard.astro';
+import { Image } from 'astro:assets';
+
+// 1. Importe a nova imagem de topo que você salvou
+import servicesHeroImage from '../assets/helo.webp'; 
 ---
 <Layout
     title="Serviços | ELOnARTE"
     description="Soluções criativas em arte, tecnologia e bem-estar para transformar suas ideias em realidade e promover seu crescimento pessoal."
 >
-    <div class="services-page-container">
+    <div class="services-container">
         
-        <header class="page-header">
-            <h1>Soluções Criativas para seu Potencial</h1>
-            <p class="page-subtitle">Unimos arte, tecnologia e terapia para oferecer serviços que inspiram, curam e realizam. Explore nossas frentes de atuação e descubra como podemos colaborar.</p>
+        <header class="services-header">
+            <h1>Soluções para a Expressão Plena</h1>
+            <p class="subtitle">Unimos arte, tecnologia e terapia para oferecer serviços que inspiram, curam e realizam. Explore como podemos colaborar para manifestar o seu potencial.</p>
         </header>
-        
+
+        <div class="image-wrapper">
+            <Image 
+                src={servicesHeroImage} 
+                alt="Uma representação abstrata dos serviços da ELOnARTE, unindo arte, terapia e tecnologia." 
+                class="services-image" 
+            />
+        </div>
+
         <div class="sections-wrapper">
             <ServiceSection
                 id="artes-digitais"
                 title="Artes Digitais"
                 accentColor="var(--accent-turquoise)">
+                <div slot="description">
+                    <p>Da concepção à publicação, damos vida às suas ideias com sensibilidade artística e excelência técnica, criando uma presença online que não apenas funciona, mas também encanta e inspira.</p>
+                </div>
+
                 <IconCard title="Produção Multimídia" description="Deixamos suas ideias fluírem em cores, movimentos e sons.">
                     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 </IconCard>
@@ -35,6 +52,10 @@ import IconCard from '../components/IconCard.astro';
                 id="arteterapia"
                 title="Arteterapia e Terapias"
                 accentColor="var(--accent-lilac)">
+                 <div slot="description">
+                    <p>Oferecemos um espaço seguro e acolhedor para a jornada de autoconhecimento. Utilize a expressão criativa e práticas integrativas como ferramentas de cura e equilíbrio para seu bem-estar.</p>
+                </div>
+                
                 <IconCard title="Sessões de Arteterapia" description="Expresse o inexprimível e encontre clareza através da arte.">
                     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
                 </IconCard>
@@ -47,6 +68,10 @@ import IconCard from '../components/IconCard.astro';
                 id="ensino"
                 title="Arte e Educação"
                 accentColor="var(--accent-lightpink)">
+                <div slot="description">
+                    <p>Aprender é um ato de recriar. Oferecemos uma metodologia leve, artística e inovadora para você desvendar novas ferramentas, otimizar seu trabalho e aprofundar seu autoconhecimento.</p>
+                </div>
+                
                 <IconCard title="Ferramentas Criativas" description="Aulas práticas de design, web, produção multimídia e mais.">
                     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
                 </IconCard>
@@ -71,35 +96,45 @@ import IconCard from '../components/IconCard.astro';
 </Layout>
 
 <style>
-    .services-page-container {
-        max-width: 1100px;
+    .services-container {
+        max-width: 90ch;
         margin: auto;
-        padding: 0 1.5rem;
+        padding: 2rem 1.5rem 4rem;
     }
-    .page-header {
+    .services-header {
         text-align: center;
-        padding: 4rem 0 5rem;
+        margin-bottom: 3rem;
     }
-    .page-header h1 {
+    .services-header h1 {
         font-size: 2.8rem;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
-    .page-subtitle {
-        font-size: 1.2rem;
+    .subtitle {
+        font-size: 1.25rem;
         color: var(--color-text-secondary);
-        max-width: 65ch;
+        max-width: 60ch;
         margin: auto;
+    }
+    .image-wrapper {
+        margin-bottom: 4rem;
+    }
+    .services-image {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
+        border-radius: 16px;
     }
     .sections-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 3rem;
     }
     .cta-final {
         text-align: center;
         padding: 6rem 1.5rem;
-        margin: 6rem 0;
+        margin: 6rem 0 2rem;
         background-color: var(--color-bg-light);
         border-radius: 16px;
     }
