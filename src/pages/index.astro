@@ -20,7 +20,7 @@ const featuredPosts = allPosts
         <section id="blog-highlight" class="featured-section">
             <div class="section-header">
                 <h1>O elegante elo na arte</h1>
-                <p class="subtitle">Percebendo o belo em toda a parte.</p>
+                <p class="subtitle">A inspirar liberdade em expressar o zelo no belo:</p>
             </div>
             
             <div class="blog-cards-grid">
@@ -29,7 +29,12 @@ const featuredPosts = allPosts
                   - Adicionamos o 'index' para a lógica da imagem LCP
                 */}
                 {featuredPosts.map((post: CollectionEntry<'blog'>, index) => (
-                    <PostCard post={post} isLCP={index === 0} />
+                    <PostCard 
+                        post={post} 
+                        isLCP={index === 0}
+                        showDate={false}
+                        tagLimit={1}
+                    />
                 ))}
             </div>
 
