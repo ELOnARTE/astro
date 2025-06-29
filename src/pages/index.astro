@@ -88,4 +88,39 @@ const featuredPosts = allPosts.filter(post => post.data.featured);
         color: var(--color-bg);
         transform: translateY(-3px);
     }
+    /* CSS para a animação de entrada */
+    .blog-cards-grid > * {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .blog-cards-grid > .is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 </style>
+
+<script>
+    // Script para observar os cards e adicionar a classe quando visíveis
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Adiciona a classe com um pequeno atraso para cada card
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                }, index * 100); // Atraso de 100ms entre cada card
+                
+                // Para de observar o elemento depois que a animação foi aplicada
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        rootMargin: '0px',
+        threshold: 0.1 // A animação começa quando 10% do card está visível
+    });
+
+    // Pega todos os cards e começa a observá-los
+    const cards = document.querySelectorAll('.blog-cards-grid > *');
+    cards.forEach(card => observer.observe(card));
+</script>
