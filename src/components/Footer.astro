@@ -1,14 +1,14 @@
 ---
-// Lógica do código antigo para obter o ano atual dinamicamente
+// src/components/Footer.astro
+
+// Lógica para obter o ano atual dinamicamente
 const today = new Date();
 ---
 
 <footer class="main-footer">
-    {/* Texto de Copyright combinando a data dinâmica do antigo com o nome do novo */}
     <p>&copy; {today.getFullYear()} <span class="elo">ELO</span><span class="n">n</span><span class="arte">ARTE</span>.
         <br> Todos os direitos reservados.</p>
     
-    {/* Links de redes sociais trazidos do código antigo */}
     <div class="social-links">
         <a href="https://mastodon.art/@elonarte" target="_blank" rel="noopener noreferrer">
             <span class="sr-only">Mastodon.Art</span>
@@ -28,41 +28,50 @@ const today = new Date();
                 <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
             </svg>
         </a>
-    </div>
+        <a href="https://youtube.com/@elonarte" target="_blank" rel="noopener noreferrer">
+            <span class="sr-only">YouTube</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
+                <path fill="currentColor" d="M8.051 1.999a.75.75 0 0 1 .522.13l6.25 4.5a.75.75 0 0 1 0 1.242l-6.25 4.5a.75.75 0 0 1-1.044-.622V2.75a.75.75 0 0 1 .522-.751zM1.5 12.12V3.88a.75.75 0 0 1 1.125-.65l3.5 2.5a.75.75 0 0 1 0 1.3l-3.5 2.5a.75.75 0 0 1-1.125-.65zM14.5 3.88v8.24a.75.75 0 0 1-1.125.65l-3.5-2.5a.75.75 0 0 1 0-1.3l3.5-2.5a.75.75 0 0 1 1.125.65z"/>
+            </svg>
+        </a>
+
+        <a href="/rss.xml" target="_blank" rel="noopener noreferrer">
+            <span class="sr-only">Feed RSS</span>
+            <svg viewBox="0 0 256 256" aria-hidden="true" width="24" height="24">
+                <path fill="currentColor" d="M64 192a32 32 0 1 1-32-32a32 32 0 0 1 32 32M40 80v49.33a88.06 88.06 0 0 1 88.06 88.06H176A136.15 136.15 0 0 0 40 80m0-48v42.67a133.33 133.33 0 0 1 133.33 133.33H216A176.2 176.2 0 0 0 40 32"></path>
+            </svg>
+        </a>
+        </div>
 </footer>
 
 <style>
-    /* Estilos do novo design como base */
+    /* NENHUMA ALTERAÇÃO NECESSÁRIA AQUI. SEU CSS ESTÁ PERFEITO. */
     .main-footer {
         text-align: center;
-        padding: 3rem 1.5rem; /* Aumentado o padding lateral para melhor espaçamento */
+        padding: 3rem 1.5rem;
         margin-top: 2rem;
         border-top: 1px solid var(--color-bg-light);
         color: var(--color-text-secondary);
     }
-
-    /* Estilos do logo colorido */
     .elo { color: var(--accent-turquoise); }
     .n { color: var(--accent-lilac); }
     .arte { color: var(--accent-lightpink); }
-
-    /* Estilos para os links sociais (adaptados do código antigo) */
     .social-links {
         display: flex;
         justify-content: center;
-        gap: 1.5rem; /* Aumentado o espaçamento */
-        margin-top: 1.5rem; /* Aumentado a margem */
+        gap: 1.5rem;
+        margin-top: 1.5rem;
     }
     .social-links a {
-        color: var(--color-text-secondary); /* Usando a cor do novo tema */
+        color: var(--color-text-secondary);
         text-decoration: none;
         transition: color .3s ease, transform .3s ease;
     }
     .social-links a:hover {
-        color: var(--accent-lilac); /* Usando a cor de destaque do novo tema */
+        color: var(--accent-lilac);
         transform: scale(1.1);
     }
-    .sr-only { /* Classe de acessibilidade essencial do código antigo */
+    .sr-only {
         position: absolute;
         width: 1px;
         height: 1px;
