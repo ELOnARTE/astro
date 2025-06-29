@@ -1,0 +1,59 @@
+---
+// src/pages/blog/[slug].astro
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+    // 1. Buscamos e ordenamos todos os posts por data (do mais novo para o mais antigo)
+    const posts = (await getCollection('blog')).sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    );
+
+    return posts.map((post, index) => {
+        // 2. Lógica para encontrar o post anterior e o próximo
+        const prevPost = posts[index + 1] ?? null;
+        const nextPost = posts[index - 1] ?? null;
+
+        // 3. Lógica para encontrar posts relacionados (baseado em tags)
+        const relatedPosts = posts.filter(p => {
+            if (p.slug === post.slug) return false;
+            if (!p.data.tags || !post.data.tags) return false;
+            return p.data.tags.some(tag => (post.data.tags ?? []).includes(tag));
+        }).slice(0, 3);
+
+        return {
+            params: { slug: post.slug },
+            props: { 
+                post,
+                relatedPosts,
+                prevPost: prevPost ? { slug: prevPost.slug, title: prevPost.data.title } : null,
+                nextPost: nextPost ? { slug: nextPost.slug, title: nextPost.data.title } : null,
+            },
+        };
+    });
+}
+type Props = {
+    post: CollectionEntry<'blog'>;
+    relatedPosts: CollectionEntry<'blog'>[];
+    prevPost: { slug: string; title: string } | null;
+    nextPost: { slug: string; title: string } | null;
+};
+
+const { post, relatedPosts, prevPost, nextPost } = Astro.props;
+const { Content } = await post.render();
+---
+<Layout 
+    title={post.data.title} 
+    description={post.data.description} 
+    image={post.data.heroImage?.src}
+>
+    <BlogPost 
+        post={post}
+        relatedPosts={relatedPosts}
+        prevPost={prevPost}
+        nextPost={nextPost}
+    >
+        <Content />
+    </BlogPost>
+</Layout>
