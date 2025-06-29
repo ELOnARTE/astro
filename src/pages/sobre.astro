@@ -101,13 +101,14 @@ import purposeImage from '../assets/elo.webp';
         margin-bottom: 4rem;
     }
     .about-image {
-        width: 100%;
-        height: auto;
-        max-height: 400px;
-        object-fit: cover;
-        border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
+    width: 100%;
+    height: auto;
+    max-height: 450px; /* Aumentei um pouco para dar mais espaço vertical */
+    object-fit: contain; /* <- A MUDANÇA PRINCIPAL: Garante que toda a imagem apareça */
+    border-radius: 16px;
+    /* Adicionamos uma cor de fundo para preencher o espaço vazio que possa surgir */
+    background-color: hsla(222, 47%, 11%, 0.5); 
+}
     .content-section {
         margin-bottom: 3.5rem;
     }
