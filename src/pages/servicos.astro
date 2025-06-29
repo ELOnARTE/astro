@@ -1,75 +1,134 @@
 ---
-// src/pages/servicos.astro
+// src/pages/servicos.astro (Versão Otimizada)
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceSection from '../components/ServiceSection.astro';
-import Card from '../components/Card.astro';
+import IconCard from '../components/IconCard.astro'; // Usando o novo IconCard
 ---
-
 <Layout
     title="Serviços | ELOnARTE"
-    description="Criamos, publicamos e construímos sua presença online. Navegue pelo seu universo interior e encontre equilíbrio e bem-estar."
+    description="Soluções criativas em arte, tecnologia e bem-estar para transformar suas ideias em realidade e promover seu crescimento pessoal."
 >
-    <div class="container">
-        <Hero />
+    <div class="services-page-container">
         
-        <ServiceSection
-            id="artes-digitais"
-            title="Artes Digitais"
-            subtitle="Criamos, publicamos e construímos sua presença online."
-            accentColor="var(--accent-turquoise)">
-            <Card title="Produção Multimídia" description="Deixamos suas ideias fluírem em cores, movimentos e sons." />
-            <Card title="Publicações Digitais" description="Lançamos seus e-books, músicas e podcasts nas principais plataformas." />
-            <Card title="Desenvolvimento Web" description="Construímos portais e aplicativos que são obras de arte digitais." />
-        </ServiceSection>
+        <Hero>
+            <h1 slot="title">Soluções Criativas para Seus Projetos e Bem-Estar</h1>
+            <p slot="subtitle">Unimos arte, tecnologia e terapia para oferecer serviços que inspiram, curam e realizam. Explore como podemos colaborar para manifestar o seu potencial.</p>
+        </Hero>
         
-        <ServiceSection
-            id="arteterapia"
-            title="Arteterapia e Terapias Integrativas"
-            subtitle="Navegue pelo seu universo interior e encontre equilíbrio e bem-estar."
-            accentColor="var(--accent-lilac)">
-            <Card title="Sessões de Arteterapia" description="Utilize a expressão criativa como ferramenta de autoconhecimento e cura." />
-            <Card title="Terapias Holísticas" description="Combinamos práticas integrativas para um bem-estar completo." />
-        </ServiceSection>
-        
-        <ServiceSection
-            id="ensino"
-            title="Arte e Educação"
-            subtitle="Aprenda conosco de uma forma leve, artística e inovadora."
-            accentColor="var(--accent-lightpink)">
-            <Card title="Ferramentas Criativas" description="Aulas práticas de design, desenvolvimento web, produção multimídia e mais." />
-            <Card title="Inteligência Artificial" description="Desvende os mistérios da IA para otimizar seu trabalho e estudos." />
-            <Card title="Idiomas e Programação" description="Aulas com uma metodologia divertida e eficaz." />
-            <Card title="Expressões do Eu Profundo" description="Estudo aprofundado do ateliê da Consciência através das artes." />
-        </ServiceSection>
+        <div class="container">
+            <ServiceSection
+                id="artes-digitais"
+                title="Artes Digitais"
+                accentColor="var(--accent-turquoise)">
+                <div slot="description">
+                    <p>Da concepção à publicação, damos vida às suas ideias com sensibilidade artística e excelência técnica. Criamos uma presença online que não apenas funciona, mas também encanta e inspira.</p>
+                </div>
+
+                <IconCard title="Produção Multimídia" description="Deixamos suas ideias fluírem em cores, movimentos e sons.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </IconCard>
+                <IconCard title="Publicações Digitais" description="Lançamos e-books, músicas e podcasts nas principais plataformas.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                </IconCard>
+                <IconCard title="Desenvolvimento Web" description="Construímos portais e aplicativos que são obras de arte digitais.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </IconCard>
+            </ServiceSection>
+            
+            <ServiceSection
+                id="arteterapia"
+                title="Arteterapia e Terapias"
+                accentColor="var(--accent-lilac)">
+                <div slot="description">
+                    <p>Oferecemos um espaço seguro e acolhedor para a jornada de autoconhecimento. Utilize a expressão criativa e práticas integrativas como ferramentas de cura e equilíbrio para seu bem-estar.</p>
+                </div>
+
+                <IconCard title="Sessões de Arteterapia" description="Expresse o inexprimível e encontre clareza através da arte.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                </IconCard>
+                <IconCard title="Terapias Holísticas" description="Combinamos práticas para um bem-estar completo: corpo, mente e espírito.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10.5c.62-.56 1.26-1.04 2-1.45"></path><path d="m18.5 14.5c.56.62 1.04 1.26 1.45 2"></path><path d="M14.5 18.5c-.62.56-1.26 1.04-2 1.45"></path><path d="m10.5 14.5c-.56-.62-1.04-1.26-1.45-2"></path><path d="M10.5 9.5c.56.62 1.04 1.26 1.45 2"></path><path d="M5.5 14.5c-.56-.62-1.04-1.26-1.45-2"></path><path d="m9.5 18.5c.62.56 1.26 1.04 2 1.45"></path><path d="M14.5 5.5c.62-.56 1.26-1.04 2-1.45"></path><circle cx="12" cy="12" r="2"></circle></svg>
+                </IconCard>
+            </ServiceSection>
+            
+            <ServiceSection
+                id="ensino"
+                title="Arte e Educação"
+                accentColor="var(--accent-lightpink)">
+                <div slot="description">
+                    <p>Aprender é um ato de recriar. Oferecemos uma metodologia leve, artística e inovadora para você desvendar novas ferramentas, otimizar seu trabalho e aprofundar seu autoconhecimento.</p>
+                </div>
+                
+                <IconCard title="Ferramentas Criativas" description="Aulas práticas de design, web, produção multimídia e mais.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
+                </IconCard>
+                <IconCard title="Inteligência Artificial" description="Desvende os mistérios da IA para otimizar seu trabalho e estudos.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"></path><rect x="4" y="12" width="16" height="8" rx="2"></rect><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M12 12v-2"></path><path d="m9 12-1-1"></path><path d="m15 12 1-1"></path></svg>
+                </IconCard>
+                <IconCard title="Expressões do Eu Profundo" description="Estudo do ateliê da Consciência através das artes.">
+                    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.25 10.75L12 19l-8.25-8.25"></path><path d="M12 19V5"></path></svg>
+                </IconCard>
+            </ServiceSection>
+        </div>
 
         <section class="cta-final">
-            <h2>Interessado em nossos serviços?</h2>
-            <p>Vamos conversar sobre como podemos colaborar.</p>
-            <a href="/contato" class="btn-contato">Entre em Contato</a>
+            <h2>Pronto para começar sua jornada?</h2>
+            <p>Seja para um projeto criativo ou para o seu desenvolvimento pessoal, estamos aqui para criar juntos.</p>
+            <a href="/contato" class="cta-button">
+                <span>Vamos conversar</span>
+                <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
         </section>
     </div>
 </Layout>
 
 <style>
+    .services-page-container > .container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
     .cta-final {
         text-align: center;
-        padding: 4rem 1.5rem;
+        padding: 6rem 1.5rem;
+        margin-top: 4rem;
         background-color: var(--color-bg-light);
+        border-radius: 16px;
     }
-    .btn-contato {
-        /* Estilize como preferir, similar ao botão do passo 3 */
-        display: inline-block;
-        padding: 0.75rem 2rem;
-        border-radius: 8px;
-        font-weight: 700;
-        text-decoration: none;
-        background-color: var(--accent-lilac);
-        color: white;
-        transition: all 0.3s ease;
+    .cta-final h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
-    .btn-contato:hover {
-        opacity: 0.9;
-        transform: translateY(-3px);
+    .cta-final p {
+        color: var(--color-text-secondary);
+        max-width: 50ch;
+        margin: 0 auto 2rem;
+    }
+    /* Estilos para o botão interativo */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background-color: var(--accent-lilac);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: var(--accent-lilac-dark);
+      transform: translateY(-3px);
+    }
+    .arrow-icon {
+      transition: transform 0.3s ease-out;
+    }
+    .cta-button:hover .arrow-icon {
+      transform: translateX(5px);
     }
 </style>

@@ -1,0 +1,59 @@
+---
+// src/components/IconCard.astro
+export interface Props {
+    title: string;
+    description: string;
+}
+const { title, description } = Astro.props;
+---
+<div class="icon-card">
+    <div class="icon-wrapper">
+        <slot name="icon" />
+    </div>
+    <div class="text-wrapper">
+        <h3>{title}</h3>
+        <p>{description}</p>
+    </div>
+</div>
+<style>
+    .icon-card {
+        background-color: var(--color-bg-dark, #080C15);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        height: 100%;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+    .icon-card:hover {
+        border-color: var(--accent-turquoise);
+        background-color: var(--color-bg-light);
+    }
+    .icon-wrapper {
+        color: var(--accent-turquoise);
+        background-color: rgba(6, 182, 212, 0.1);
+        border-radius: 8px;
+        padding: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .icon-wrapper :global(svg) { /* Estiliza o SVG que for passado */
+        width: 28px;
+        height: 28px;
+    }
+    .text-wrapper h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        color: var(--color-text-primary);
+    }
+    .text-wrapper p {
+        margin-bottom: 0;
+        color: var(--color-text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+</style>

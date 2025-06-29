@@ -3,79 +3,54 @@
 interface Props {
     id: string;
     title: string;
-    subtitle: string;
     accentColor: string;
 }
-
-const { id, title, subtitle, accentColor } = Astro.props;
+const { id, title, accentColor } = Astro.props;
 ---
 <section id={id} class="service-section">
-    <div class="section-header">
-        <div class="icon-wrapper">
-            <slot name="icon" />
-        </div>
-        <h2 style={`color: ${accentColor};`}>{title}</h2>
+    <div class="section-title">
+        <h2 style={`--accent-color: ${accentColor};`}>{title}</h2>
     </div>
-    <p class="subtitle">{subtitle}</p>
-    <div class="cards-grid">
-        <slot />
+    <div class="section-content">
+        <div class="description">
+            <slot name="description" />
+        </div>
+        <div class="cards-grid">
+            <slot />
+        </div>
     </div>
 </section>
-
 <style>
     .service-section {
-        padding: 4rem 1.5rem;
-        margin: 0;
-        border-radius: 0;
-        position: relative;
+        padding: 4rem 0;
+        border-bottom: 1px solid var(--color-bg-light);
     }
-    
-    /* --- GRADIENTES INTERLIGADOS (E ESCUROS) --- */
-    
-    /* Começa com a sua cor (turquesa) e transita para a próxima (lilás) */
-    #artes-digitais {
-        background: linear-gradient(to bottom, rgba(6, 182, 212, 0.1), rgba(153, 85, 187, 0.1));
+    .section-title h2 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 2.5rem;
+        padding-left: 1.5rem;
+        border-left: 4px solid var(--accent-color);
     }
-
-    /* Começa com a sua cor (lilás) e transita para a próxima (rosa) */
-    #arteterapia {
-        background: linear-gradient(to bottom, rgba(153, 85, 187, 0.1), rgba(244, 114, 182, 0.1));
+    .section-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
-
-    /* Começa com a sua cor (rosa) e transita para a cor da seção final (azul claro) */
-    #ensino {
-        background: linear-gradient(to bottom, rgba(244, 114, 182, 0.1), var(--color-bg-light));
-    }
-
-    .section-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        text-align: center;
-        margin-bottom: 0.5rem;
-    }
-    .icon-wrapper {
-        color: var(--section-accent);
-        width: 48px;
-        height: 48px;
-        margin-bottom: 0.5rem;
-    }
-    .section-header h2 {
-        font-size: 1.75rem;
-        margin: 0;
-        font-weight: 400;
-    }
-    .subtitle {
-        text-align: center;
+    .description :global(p) {
+        font-size: 1.125rem;
+        line-height: 1.7;
         color: var(--color-text-secondary);
-        margin-bottom: 3.5rem;
-        max-width: 60ch;
-        margin-left: auto;
-        margin-right: auto;
     }
     .cards-grid {
         display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 1.5rem;
+    }
+    @media (min-width: 992px) {
+        .section-content {
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
     }
 </style>
