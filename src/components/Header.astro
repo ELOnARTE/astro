@@ -97,9 +97,35 @@ const { pathname } = Astro.url;
         text-decoration: none;
         color: #fff;
     }
-    .logo .elo { color: var(--accent-turquoise); }
-    .logo .n { color: var(--accent-lilac); }
-    .logo .arte { color: var(--accent-lightpink); }
+    
+    /* Para um efeito neon mais realista, adicionamos uma leve animação de pulso */
+    @keyframes pulse-glow {
+        0% {
+            text-shadow: 0 0 4px currentColor, 0 0 8px currentColor, 0 0 12px currentColor;
+        }
+        100% {
+            text-shadow: 0 0 6px currentColor, 0 0 12px currentColor, 0 0 18px currentColor;
+        }
+    }
+
+    .logo span {
+        /* Aplicamos a animação a todas as partes do logo */
+        animation: pulse-glow 3s infinite alternate;
+    }
+    
+    /* Cores Neon com o efeito de brilho (text-shadow) */
+    .logo .elo { 
+        color: #08F7FE; /* Neon Turquesa */
+        text-shadow: 0 0 5px #08F7FE, 0 0 10px #08F7FE, 0 0 20px #08F7FE;
+    }
+    .logo .n { 
+        color: #BE00FE; /* Neon Violeta */
+        text-shadow: 0 0 5px #BE00FE, 0 0 10px #BE00FE, 0 0 20px #BE00FE;
+    }
+    .logo .arte { 
+        color: #FF00F5; /* Neon Rosa */
+        text-shadow: 0 0 5px #FF00F5, 0 0 10px #FF00F5, 0 0 20px #FF00F5;
+    }
 
     .desktop-nav-group { display: none; }
     .mobile-menu-button { display: block; }
