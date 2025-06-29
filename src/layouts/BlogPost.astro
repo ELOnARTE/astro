@@ -86,9 +86,16 @@ const { Content, headings } = await post.render();
 
 <style>
     /* 7. Mantemos TODOS os seus estilos existentes */
-    .prose :global(p) { /* Usamos :global(p) para garantir que estamos estilizando os parágrafos do Markdown */
-        line-height: 1.8; /* O padrão costuma ser 1.5 ou 1.6. Experimente 1.7 ou 1.8 */
-        margin-bottom: 1.5em; /* Aumenta um pouco o espaço entre parágrafos */
+    .prose { 
+        /* Define uma largura máxima para o texto, ideal para leitura */
+        max-width: 75ch; /* 'ch' é uma unidade relativa à largura do caractere '0' */
+        
+        /* Centraliza o bloco de texto na página */
+        margin-left: auto;
+        margin-right: auto;
+
+        /* Garante as margens laterais em telas menores */
+        padding: 2rem 1.5rem 4rem; 
     }
     .post-header { text-align: center; margin-bottom: 2rem; border-bottom: 1px solid var(--color-bg-light); padding-bottom: 2rem; }
     .hero-image { width: 100%; height: auto; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
