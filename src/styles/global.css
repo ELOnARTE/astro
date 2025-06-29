@@ -139,7 +139,7 @@ img {
 
 code {
     padding: 2px 5px;
-    background-color: var(--color-bg-light); 
+    background-color: var(--color-bg-dark); 
     border-radius: 2px;
 }
 
