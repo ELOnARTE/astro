@@ -17,3 +17,4 @@ export default defineConfig({
     }
   }
 });
+// Forçando o recache do build em 30/06/2025
