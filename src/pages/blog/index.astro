@@ -1,5 +1,6 @@
 ---
 // src/pages/blog/index.astro
 // Este arquivo serve apenas para redirecionar para a primeira página da paginação.
-return Astro.redirect('/blog/1');
+// Adicionamos o código de status 301 para um redirecionamento permanente e invisível.
+return Astro.redirect('/blog/1', 301);
 ---
