@@ -1,5 +1,5 @@
 ---
-// src/components/Header.astro
+// src/components/Header.astro (Versão Final com Script Robusto)
 const { pathname } = Astro.url;
 ---
 <header class="main-header">
@@ -10,21 +10,11 @@ const { pathname } = Astro.url;
 
         <div class="desktop-nav-group">
             <div class="nav-links">
-                <a href="/" class:list={{ active: pathname === '/' }}>
-                    Início
-                </a>
-                <a href="/servicos" class:list={{ active: pathname === '/servicos' || pathname.startsWith('/servicos/') }}>
-                    Serviços
-                </a>
-                <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>
-                    Sobre
-                </a>
-                <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>
-                    Blog
-                </a>
-                <a href="/contato" class:list={{ active: pathname === '/contato' }}>
-                    Contato
-                </a>
+                <a href="/" class:list={{ active: pathname === '/' }}>Início</a>
+                <a href="/servicos" class:list={{ active: pathname === '/servicos' || pathname.startsWith('/servicos/') }}>Serviços</a>
+                <a href="/sobre" class:list={{ active: pathname === '/sobre' || pathname.startsWith('/sobre/') }}>Sobre</a>
+                <a href="/blog" class:list={{ active: pathname === '/blog' || pathname.startsWith('/blog/') }}>Blog</a>
+                <a href="/contato" class:list={{ active: pathname === '/contato' }}>Contato</a>
             </div>
         </div>
 
@@ -44,30 +34,43 @@ const { pathname } = Astro.url;
 </div>
 
 <script>
-    const menuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const body = document.body;
+    function initMobileMenu() {
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
 
-    if (menuButton && mobileMenu) {
-        menuButton.addEventListener('click', () => {
+        if (!menuButton || !mobileMenu) {
+            // Se os elementos não forem encontrados, não faz nada.
+            return;
+        }
+
+        // Função para fechar o menu
+        const closeMenu = () => {
+            menuButton.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('is-open');
+            body.classList.remove('no-scroll');
+        };
+
+        // Função para alternar o menu
+        const toggleMenu = () => {
             const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-
-            menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+            menuButton.setAttribute('aria-expanded', String(!isExpanded));
             mobileMenu.classList.toggle('is-open');
             body.classList.toggle('no-scroll');
-        });
+        };
 
+        // Adiciona o evento de clique ao botão principal
+        menuButton.addEventListener('click', toggleMenu);
+
+        // Adiciona o evento de clique a cada link do menu para fechá-lo
         const mobileNavLinks = mobileMenu.querySelectorAll('a');
         mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (link.hasAttribute('data-pagefind-search')) return;
-
-                menuButton.setAttribute('aria-expanded', 'false');
-                mobileMenu.classList.remove('is-open');
-                body.classList.remove('no-scroll');
-            });
+            link.addEventListener('click', closeMenu);
         });
     }
+
+    // Executa a função na primeira carga da página E após cada transição do Astro
+    document.addEventListener('astro:page-load', initMobileMenu);
 </script>
 
 <style>
