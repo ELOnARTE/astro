@@ -34,10 +34,10 @@
     --color-bg-form: #334155;
     --color-text-primary: #dbeafe;
     --color-text-secondary: #cbd5e1;
-    --accent-lilac: #9955bb;
+    --accent-lilac: #9D48FF; /* Neon Roxo Laser */ 
     --accent-lilac-dark: #6d28d9;
-    --accent-turquoise: #06b6d4;
-    --accent-lightpink: #f472b6;
+    --accent-turquoise: #08F7FE; /* Neon Turquesa */
+    --accent-lightpink: #FF79F2; /* Neon Rosa Chiclete */
     --accent-green: #34d399;
     --accent-red: #f87171;
     --font-serif: 'Lora', serif;
