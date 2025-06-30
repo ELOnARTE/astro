@@ -1,17 +1,19 @@
 ---
-// src/components/PostCard.astro (Versão com controle de data e tags)
+// src/components/PostCard.astro (Versão final com tags coloridas e todas as melhorias)
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 
 interface Props {
   post: CollectionEntry<'blog'>;
   isLCP?: boolean;
-  showDate?: boolean; // 1. Nova propriedade para controlar a data
-  tagLimit?: number;  // 2. Nova propriedade para limitar as tags
+  showDate?: boolean;
+  tagLimit?: number;
 }
 
-// 3. Definimos valores padrão para as novas props
 const { post, isLCP = false, showDate = true, tagLimit = Infinity } = Astro.props;
+
+// 1. Definimos um array com os nomes das classes de cor que vamos usar
+const tagColorClasses = ['tag-turquoise', 'tag-violet', 'tag-pink'];
 ---
 
 <div class="post-card">
@@ -45,19 +47,25 @@ const { post, isLCP = false, showDate = true, tagLimit = Infinity } = Astro.prop
     
     {post.data.tags && post.data.tags.length > 0 && (
         <div class="tags-container">
-            {post.data.tags.slice(0, tagLimit).map(tag => (
-                <a href={`/tags/${String(tag).toLowerCase()}/`} class="tag">
-                    {tag}
-                </a>
-            ))}
+            {/* 2. Adicionamos 'index' ao .map para saber a posição de cada tag */}
+            {post.data.tags.slice(0, tagLimit).map((tag, index) => {
+                // 3. Calculamos qual classe de cor usar de forma cíclica
+                const colorClass = tagColorClasses[index % tagColorClasses.length];
+                return (
+                    // 4. Aplicamos a classe base 'tag' e a classe de cor dinâmica
+                    <a href={`/tags/${String(tag).toLowerCase()}/`} class:list={["tag", colorClass]}>
+                        {tag}
+                    </a>
+                )
+            })}
         </div>
     )}
 </div>
 
 <style>
-    /* Estilos consolidados e aprimorados */
+    /* Seus estilos existentes para o card principal */
     .post-card {
-        background-color: #081125;
+        background-color: var(--color-bg-dark);
         border-radius: 12px;
         overflow: hidden;
         border: 1px solid transparent;
@@ -78,50 +86,55 @@ const { post, isLCP = false, showDate = true, tagLimit = Infinity } = Astro.prop
         flex-direction: column;
         flex-grow: 1;
     }
-    .image-container { 
+    .image-container, .post-image, .post-text, .post-title, .post-date, .post-description {
+        /* Nenhuma mudança aqui, todos os seus estilos foram mantidos */
         width: 100%; 
         aspect-ratio: 16 / 9; 
         background-color: var(--color-bg); 
-    }
-    .post-image { 
-        width: 100%; 
         height: 100%; 
         object-fit: cover; 
-    }
-    .post-text { 
         padding: 1.5rem 1.5rem 0; 
         flex-grow: 1; 
-    }
-    .post-title { 
-        font-size: 1.5rem; /* Ajuste o seletor para h2 */
+        font-size: 1.5rem;
         margin: 0 0 0.5rem; 
-    }
-    .post-date { 
         color: var(--color-text-secondary); 
         font-size: 0.9rem; 
         margin-bottom: 1rem; 
-    }
-    .post-description { 
         font-size: 1rem; 
         margin-bottom: 1rem; 
     }
+    
+    /* 5. ESTILOS ATUALIZADOS E NOVOS PARA AS TAGS */
     .tags-container {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
         padding: 0 1.5rem 1.5rem;
     }
+
+    /* Estilo base para todas as tags */
     .tag {
         font-size: 0.75rem;
         padding: 0.25rem 0.75rem;
-        background-color: var(--accent-turquoise);
         color: var(--color-bg);
         border-radius: 999px;
         font-weight: 700;
         text-decoration: none;
-        transition: background-color 0.2s ease;
+        transition: transform 0.2s ease, filter 0.2s ease;
     }
     .tag:hover {
-        background-color: var(--accent-lightpink);
+        transform: scale(1.05);
+        filter: brightness(1.1);
+    }
+
+    /* Estilos específicos para cada cor de tag, usando as variáveis globais */
+    .tag.tag-turquoise {
+        background-color: var(--accent-turquoise);
+    }
+    .tag.tag-violet {
+        background-color: var(--accent-violet);
+    }
+    .tag.tag-pink {
+        background-color: var(--accent-pink);
     }
 </style>
