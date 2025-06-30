@@ -17,9 +17,7 @@ const { title, description } = Astro.props;
 </div>
 <style>
     .icon-card {
-        /* APLICANDO A COR DE FUNDO SOLICITADA */
         background-color: var(--color-bg-dark);
-        
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 1.5rem;
@@ -27,26 +25,29 @@ const { title, description } = Astro.props;
         align-items: flex-start;
         gap: 1.5rem;
         height: 100%;
-        /* Adicionamos a transição para a cor de fundo */
         transition: border-color 0.3s ease, background-color 0.3s ease;
     }
 
-    /* EFEITO HOVER REFINADO */
     .icon-card:hover {
-        border-color: var(--accent-turquoise);
-        background-color: var(--color-bg-light); /* O card "acende" sutilmente */
+        /* A borda no hover agora usa a cor da seção */
+        border-color: var(--section-accent-color);
+        background-color: var(--color-bg-light);
     }
 
     .icon-wrapper {
-        color: var(--accent-turquoise);
-        background-color: rgba(6, 182, 212, 0.1);
+        /* O ícone agora usa a cor da seção */
+        color: var(--section-accent-color);
+        
+        /* O fundo do ícone agora é um brilho sutil que funciona com qualquer cor */
+        background-color: rgba(255, 255, 255, 0.05);
+        
         border-radius: 8px;
         padding: 0.75rem;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .icon-wrapper :global(svg) { /* Estiliza o SVG que for passado */
+    .icon-wrapper :global(svg) {
         width: 28px;
         height: 28px;
     }
