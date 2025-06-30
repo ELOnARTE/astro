@@ -1,0 +1,70 @@
+---
+// src/pages/blog/[page].astro (Versão Final com Paginação)
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+import type { Page } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import Pagination from '../../components/Pagination.astro'; // Importamos nosso componente de paginação
+
+// A função getStaticPaths agora usa a função 'paginate' do Astro para gerar as páginas
+export async function getStaticPaths({ paginate }) {
+    const allPosts = await getCollection('blog');
+    const sortedPosts = allPosts.sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    );
+
+    return paginate(sortedPosts, {
+        pageSize: 6
+    });
+}
+
+// O Astro passa automaticamente uma prop 'page' com os dados da página atual
+type Props = {
+    page: Page<CollectionEntry<'blog'>>;
+};
+
+const { page } = Astro.props;
+---
+
+<Layout
+    title={`Blog | Página ${page.currentPage}`}
+    description="Artigos e reflexões sobre arte, tecnologia e consciência. Explore nossas publicações."
+>
+    {/* Mantemos a sua estrutura de container e header para consistência visual */}
+    <div class="container">
+        <header class="blog-header">
+            <h1>Blog</h1>
+            <p>Nossas reflexões mais recentes sobre arte, tecnologia e consciência.</p>
+        </header>
+        
+        <main>
+            {page.data.length > 0 ? (
+                <ul class="post-list">
+                    {/* Agora, o loop usa 'page.data' que contém apenas os posts desta página */}
+                    {page.data.map((post) => (
+                       <li>
+                        <PostCard post={post} />
+                    </li>
+                    ))}
+                </ul>
+            ) : (
+                <p class="no-posts">Ainda não há publicações no blog. Volte em breve!</p>
+            )}
+        </main>
+
+        <Pagination page={page} />
+    </div>
+</Layout>
+
+<style>
+    /* Mantivemos os estilos essenciais para o layout da página.
+       Os estilos específicos do card (.post-card, .tags-container, etc.)
+       devem viver dentro do componente PostCard.astro para melhor organização. */
+    .container { max-width: 900px; margin: auto; padding-bottom: 4rem; }
+    .blog-header { text-align: center; margin: 4rem 0; }
+    .blog-header h1 { font-size: 3rem; }
+    .blog-header p { font-size: 1.125rem; color: var(--color-text-secondary); }
+    .post-list { list-style: none; padding: 0; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+    .no-posts { text-align: center; padding: 4rem 1rem; background-color: var(--color-bg-light); border-radius: 8px; }
+</style>
