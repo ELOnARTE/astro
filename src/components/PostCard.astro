@@ -113,15 +113,20 @@ const tagColorClasses = ['tag-turquoise', 'tag-violet', 'tag-pink'];
     }
 
     /* Estilo base para todas as tags */
-    .tag {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.75rem;
-        color: var(--color-bg);
-        border-radius: 999px;
-        font-weight: 700;
-        text-decoration: none;
-        transition: transform 0.2s ease, filter 0.2s ease;
-    }
+   .tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.85rem; /* Aumentei um pouco o padding para o texto respirar melhor */
+    color: var(--color-bg);
+    border-radius: 999px;
+    
+    /* --- AS 3 MUDANÇAS PARA MAIOR VISIBILIDADE --- */
+    font-weight: 800; /* Deixa o negrito mais "pesado" que o padrão 700 */
+    text-transform: uppercase; /* Coloca o texto em caixa alta */
+    letter-spacing: 0.05em; /* Adiciona um pequeno respiro entre as letras */
+
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
     .tag:hover {
         transform: scale(1.05);
         filter: brightness(1.1);
