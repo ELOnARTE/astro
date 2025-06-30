@@ -1,9 +1,14 @@
 ---
 // src/components/Pagination.astro
-import type { Page } from 'astro';
-
 export interface Props {
-  page: Page;
+  page: {
+    currentPage: number;
+    totalPages: number;
+    url: {
+      prev?: string;
+      next?: string;
+    };
+  };
 }
 
 const { page } = Astro.props;
