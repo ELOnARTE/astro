@@ -1,9 +1,12 @@
 ---
-// src/components/Pagination.astro
+// src/components/Pagination.astro (Versão Corrigida usando 'lastPage')
+
+// A interface agora reflete corretamente a estrutura do objeto 'page' do Astro,
+// usando 'lastPage' em vez de 'totalPages'.
 export interface Props {
   page: {
     currentPage: number;
-    totalPages: number;
+    lastPage: number; // Correto: a propriedade do Astro é 'lastPage'
     url: {
       prev?: string;
       next?: string;
@@ -14,7 +17,8 @@ export interface Props {
 const { page } = Astro.props;
 ---
 
-{page.totalPages > 1 && (
+{/* Usamos 'page.lastPage' na condição para exibir a navegação */}
+{page.lastPage > 1 && (
     <nav class="pagination-nav" aria-label="Navegação de posts">
         {page.url.prev ? (
             <a href={page.url.prev} class="nav-link prev">
@@ -25,7 +29,8 @@ const { page } = Astro.props;
         )}
 
         <span class="page-info">
-            Página {page.currentPage} de {page.totalPages}
+            {/* E usamos 'page.lastPage' no texto de informação */}
+            Página {page.currentPage} de {page.lastPage}
         </span>
         
         {page.url.next ? (
@@ -39,6 +44,7 @@ const { page } = Astro.props;
 )}
 
 <style>
+    /* Seus estilos não precisam de nenhuma alteração */
     .pagination-nav {
         display: flex;
         justify-content: space-between;
