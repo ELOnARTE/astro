@@ -8,7 +8,7 @@ import { Image } from 'astro:assets';
 import servicesHeroImage from '../assets/helo.webp';
 import artesDigitais from '../assets/artes_digitais.png'; // Imagem de Artes Digitais
 import arteTerapia from '../assets/arteterapia.png'; // Imagem de Arteterapia
-import artEnsina from '../assets/artensina.png'; // Imagem de Arte Educação
+import artEnsina from '../assets/arte-ensina.png'; // Imagem de Arte Educação
 ---
 <Layout
     title="Serviços | ELOnARTE"
@@ -88,10 +88,10 @@ import artEnsina from '../assets/artensina.png'; // Imagem de Arte Educação
                 <IconCard title="Expressões do Eu Profundo" description="Estudo do ateliê da Consciência através das artes.">
                     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.25 10.75L12 19l-8.25-8.25"></path><path d="M12 19V5"></path></svg>
                 </IconCard>
-                 <div class="inline-image-wrapper">
+            </ServiceSection>
+             <div class="inline-image-wrapper">
                 <Image src={artEnsina} alt="Arte Educação" />
             </div>
-            </ServiceSection>
         </div>
 
         <section class="cta-final">
