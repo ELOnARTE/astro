@@ -5,9 +5,10 @@ import Layout from '../layouts/Layout.astro';
 import ServiceSection from '../components/ServiceSection.astro';
 import IconCard from '../components/IconCard.astro';
 import { Image } from 'astro:assets';
-
-// 1. Importe a nova imagem de topo que você salvou
-import servicesHeroImage from '../assets/helo.webp'; 
+import servicesHeroImage from '../assets/helo.webp';
+import artesDigitais from '../assets/artes_digitais.png'; // Imagem de Artes Digitais
+import arteTerapia from '../assets/arteterapia.png'; // Imagem de Arteterapia
+import artEnsina from '../assets/artensina.png'; // Imagem de Arte Educação
 ---
 <Layout
     title="Serviços | ELOnARTE"
@@ -46,6 +47,9 @@ import servicesHeroImage from '../assets/helo.webp';
                 <IconCard title="Desenvolvimento Full Stack" description="Construímos portais e aplicativos ágeis, que são verdadeiras obras de arte digitais.">
                     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                 </IconCard>
+                <div class="inline-image-wrapper">
+                <Image src={artesDigitais} alt="Artes Digitais" />
+            </div>
             </ServiceSection>
             
             <ServiceSection
@@ -62,6 +66,9 @@ import servicesHeroImage from '../assets/helo.webp';
                 <IconCard title="Terapias Holísticas" description="Combinamos práticas para um bem-estar completo: corpo, mente e espírito.">
                     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10.5c.62-.56 1.26-1.04 2-1.45"></path><path d="m18.5 14.5c.56.62 1.04 1.26 1.45 2"></path><path d="M14.5 18.5c-.62.56-1.26 1.04-2 1.45"></path><path d="m10.5 14.5c-.56-.62-1.04-1.26-1.45-2"></path><path d="M10.5 9.5c.56.62 1.04 1.26 1.45 2"></path><path d="M5.5 14.5c-.56-.62-1.04-1.26-1.45-2"></path><path d="m9.5 18.5c.62.56 1.26 1.04 2 1.45"></path><path d="M14.5 5.5c.62-.56 1.26-1.04 2-1.45"></path><circle cx="12" cy="12" r="2"></circle></svg>
                 </IconCard>
+                <div class="inline-image-wrapper">
+                <Image src={arteTerapia} alt="Arteterapia" />
+            </div>
             </ServiceSection>
             
             <ServiceSection
@@ -81,6 +88,9 @@ import servicesHeroImage from '../assets/helo.webp';
                 <IconCard title="Expressões do Eu Profundo" description="Estudo do ateliê da Consciência através das artes.">
                     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.25 10.75L12 19l-8.25-8.25"></path><path d="M12 19V5"></path></svg>
                 </IconCard>
+                 <div class="inline-image-wrapper">
+                <Image src={artEnsina} alt="Arte Educação" />
+            </div>
             </ServiceSection>
         </div>
 
