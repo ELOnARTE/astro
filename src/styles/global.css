@@ -44,15 +44,15 @@
 }
 
 :root {
-    --color-bg: #000015; /* Azul Noturno (Fundo Principal) */
+    --color-bg: #000011; /* Azul Noturno (Fundo Principal) */
     --color-bg-light: #0D112B; /* Azul Claro (Suave e Aconchegante) */
     --color-bg-dark: #000008; /* Azul Profundo (Intenso e Misterioso) */
     --color-bg-section-1: #0c2a4c; /* Roxo Claro (Seções) */
     --color-bg-section-2: #2d1a4d; /* Roxo Médio (Seções) */
     --color-bg-section-3: #3d1a4a; /* Roxo Escuro (Seções) */
     --color-bg-form: #334155; /* Azul Escuro (Formulários) */
-    --color-text-primary: #A8D8FF; /* Azul Claro (Texto Primário) */
-    --color-text-secondary: #F0F8FF; /* Azul Claro (Texto Secundário) */
+    --color-text-primary: #8FCFF0; /* Azul Claro (Texto Primário) */
+    --color-text-secondary: #C2E4FF; /* Azul Claro (Texto Secundário) */
     --accent-lilac: #9D48FF; /* Neon Roxo Laser */ 
     --accent-lilac-dark: #6d28d9; /* Roxo Escuro (Botões e Links) */
     --accent-turquoise: #08F7FE; /* Neon Turquesa */
