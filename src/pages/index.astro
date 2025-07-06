@@ -13,7 +13,7 @@ const featuredPosts = allPosts.filter(post => post.data.featured);
 
 <Layout
     title="ELOnARTE .:. O elegante elo na arte"
-    description="Explore um universo onde arte, terapias integrativas e tecnologias inovadoras se encontram."
+    description="Conheça um universo onde arte, terapias integrativas e tecnologias inovadoras se encontram."
 >
     <div class="container">
         <section id="blog-highlight" class="featured-section">
@@ -23,10 +23,6 @@ const featuredPosts = allPosts.filter(post => post.data.featured);
             </div>
             
             <div class="blog-cards-grid">
-                {/* 2. AQUI ESTÁ A CORREÇÃO:
-                  - Adicionamos o tipo (post: CollectionEntry<'blog'>)
-                  - Adicionamos o 'index' para a lógica da imagem LCP
-                */}
                 {featuredPosts.map((post: CollectionEntry<'blog'>, index) => (
                     <PostCard 
                         post={post} 

@@ -18,12 +18,11 @@ const { title, description, image } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {/* --- LINKS DE PRÉ-CARREGAMENTO ATUALIZADOS PARA LORA --- */}
+    {/* --- LINKS DE PRÉ-CARREGAMENTO --- */}
     <link rel="preload" href="/fonts/Lora-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/Lora-Italic.woff2" as="font" type="font/woff2" crossorigin>
-    {/* --- FIM DA ATUALIZAÇÃO --- */}
-    
-    <link rel="preconnect" href="https://formspree.io" crossorigin>
+    <link rel="preload" href="/fonts/OpenSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/OpenSans-Italic.woff2" as="font" type="font/woff2" crossorigin>
 
     <Seo title={title} description={description} image={image} />
     
