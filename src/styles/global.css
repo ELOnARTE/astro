@@ -51,12 +51,12 @@
     --color-bg-section-2: #2d1a4d; /* Roxo Médio (Seções) */
     --color-bg-section-3: #3d1a4a; /* Roxo Escuro (Seções) */
     --color-bg-form: #334155; /* Azul Escuro (Formulários) */
-    --color-text-primary: #e9e9e9; /* Azul Claro (Texto Primário) */
+    --color-text-primary: #eaeaea; /* Branco-Gelo (Texto Primário) */
     --color-text-secondary: #e0e0e0; /* Azul Claro (Texto Secundário) */
-    --accent-lilac: #9D48FF; /* Neon Roxo Laser */ 
+    --accent-lilac: #C08FFF; /* Neon Roxo Laser #9D48FF */ 
     --accent-lilac-dark: #6d28d9; /* Roxo Escuro (Botões e Links) */
-    --accent-turquoise: #08F7FE; /* Neon Turquesa */
-    --accent-lightpink: #FF79F2; /* Neon Rosa Chiclete */
+    --accent-turquoise: #8993FF; /* Neon Turquesa #08F7FE */
+    --accent-lightpink: #FF9EE1; /* Neon Rosa Chiclete #FF79F2 */
     --accent-green: #34d399; /* Verde Neon */
     --accent-red: #f87171; /* Vermelho Neon */
     --font-serif: 'Lora', serif; /* Fonte Serifada para títulos */
