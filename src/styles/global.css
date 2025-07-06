@@ -26,14 +26,14 @@
 
 :root {
     --color-bg: #0D112B; /* Azul Abissal (Profundo e Sereno) */
-    --color-bg-light: #151E31; /* Azul Meia-Noite Sutil */
+    --color-bg-light: #0A192F; /* Azul Meia-Noite Sutil */
     --color-bg-dark: #081125;
     --color-bg-section-1: #0c2a4c;
     --color-bg-section-2: #2d1a4d;
     --color-bg-section-3: #3d1a4a;
     --color-bg-form: #334155;
-    --color-text-primary: #dbeafe;
-    --color-text-secondary: #cbd5e1;
+    --color-text-primary: #A8D8FF;
+    --color-text-secondary: #cde3ff;
     --accent-lilac: #9D48FF; /* Neon Roxo Laser */ 
     --accent-lilac-dark: #6d28d9;
     --accent-turquoise: #08F7FE; /* Neon Turquesa */
