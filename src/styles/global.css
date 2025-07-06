@@ -25,22 +25,22 @@
 }
 
 :root {
-    --color-bg: #00001A; /* Azul Abissal (Profundo e Sereno) */
-    --color-bg-light: #0D112B; /* Azul Meia-Noite Sutil */
-    --color-bg-dark: #081125;
-    --color-bg-section-1: #0c2a4c;
-    --color-bg-section-2: #2d1a4d;
-    --color-bg-section-3: #3d1a4a;
-    --color-bg-form: #334155;
-    --color-text-primary: #A8D8FF;
-    --color-text-secondary: #cde3ff;
+    --color-bg: #00001A; /* Azul Noturno (Fundo Principal) */
+    --color-bg-light: #0D112B; /* Azul Claro (Suave e Aconchegante) */
+    --color-bg-dark: #000015; /* Azul Profundo (Intenso e Misterioso) */
+    --color-bg-section-1: #0c2a4c; /* Roxo Claro (Seções) */
+    --color-bg-section-2: #2d1a4d; /* Roxo Médio (Seções) */
+    --color-bg-section-3: #3d1a4a; /* Roxo Escuro (Seções) */
+    --color-bg-form: #334155; /* Azul Escuro (Formulários) */
+    --color-text-primary: #A8D8FF; /* Azul Claro (Texto Primário) */
+    --color-text-secondary: #F0F8FF; /* Azul Claro (Texto Secundário) */
     --accent-lilac: #9D48FF; /* Neon Roxo Laser */ 
-    --accent-lilac-dark: #6d28d9;
+    --accent-lilac-dark: #6d28d9; /* Roxo Escuro (Botões e Links) */
     --accent-turquoise: #08F7FE; /* Neon Turquesa */
     --accent-lightpink: #FF79F2; /* Neon Rosa Chiclete */
-    --accent-green: #34d399;
-    --accent-red: #f87171;
-    --font-serif: 'Lora', serif;
+    --accent-green: #34d399; /* Verde Neon */
+    --accent-red: #f87171; /* Vermelho Neon */
+    --font-serif: 'Lora', serif; /* Fonte Serifada (Lora) */
     font-synthesis: none;
     text-rendering: optimizeLegibility;
 }
