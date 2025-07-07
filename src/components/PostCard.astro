@@ -42,16 +42,6 @@ const { post, isLCP = false, showDate = true, tagLimit = Infinity } = Astro.prop
             <p class="post-description">{post.data.description}</p>
         </div>
     </a>
-    
-    {post.data.tags && post.data.tags.length > 0 && (
-        <div class="tags-container">
-            {post.data.tags.slice(0, tagLimit).map(tag => (
-                <a href={`/tags/${String(tag).toLowerCase()}/`} class="tag">
-                    {tag}
-                </a>
-            ))}
-        </div>
-    )}
 </div>
 
 <style>
