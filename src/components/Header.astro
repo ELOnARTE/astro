@@ -1,13 +1,13 @@
 ---
 // src/components/Header.astro (Versão Final com Script Robusto)
 import { Image } from 'astro:assets';
-import logoImage from '/src/assets/logo_ELOnARTE.png'; // O '~' é um atalho para a pasta 'src'
+import logoImage from '/src/assets/logo_ELOnARTE.png';
 const { pathname } = Astro.url;
 ---
 <header class="main-header">
     <nav class="container">
         <a href="/" class="logo">
-            <Image src={logoImage} alt="Logo da ELOnARTE" height={40} />
+            <Image src={logoImage} alt="Logo da ELOnARTE" height={30} />
         </a>
 
         <div class="desktop-nav-group">
