@@ -54,6 +54,8 @@
     --color-text-primary: #eaeaea; /* Branco-Gelo (Texto Primário) */
     --color-text-secondary: #e0e0e0; /* Azul Claro (Texto Secundário) */
     --text-heading: #FF79F2; /* Rosa Neon (Títulos e Cabeçalhos) */
+    --text-body: #eaeaea; /* Branco-Gelo (Corpo do Texto) */
+    --accent-highlight: #A65AFF; /* Roxo Neon (Destaques) */
     --accent-lilac: #A65AFF; /* Neon Roxo Laser #9D48FF */ 
     --accent-lilac-dark: #6d28d9; /* Roxo Escuro (Botões e Links) */
     --accent-turquoise: #08F7FE; /* Neon Turquesa #08F7FE */
@@ -88,6 +90,7 @@ body {
 /* REGRA ADICIONADA: Aplica a fonte com serifa a todos os títulos */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
+    color: var(--text-heading);
 }
 
 html {
