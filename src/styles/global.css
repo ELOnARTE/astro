@@ -56,10 +56,10 @@
     --text-heading: #C9A9FF; /* Roxo Claro (Títulos) */
     --text-body: #eaeaea; /* Branco-Gelo (Corpo do Texto) */
     --accent-highlight: #A65AFF; /* Roxo Neon (Destaques) */
-    --accent-lilac: #A65AFF; /* Roxo Claro (Botões e Links) */
+    --accent-lilac: #806AC9; /* Roxo Neon Claro #A65AFF (Botões e Links) */
     --accent-lilac-dark: #5600b8; /* Roxo Neon Escuro (Botões e Links) */
-    --accent-turquoise: #08F7FE; /* Neon Turquesa #08F7FE */
-    --accent-lightpink: #FF79F2; /* Neon Rosa Chiclete #FF79F2 */
+    --accent-turquoise: #00BFFF; /* Neon Turquesa #08F7FE */
+    --accent-lightpink: #FF1493; /* Neon Rosa Chiclete #FF79F2 */
     --accent-green: #34d399; /* Verde Neon */
     --accent-red: #f87171; /* Vermelho Neon */
     --font-serif: 'Lora', serif; /* Fonte Serifada para títulos */
