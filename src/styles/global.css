@@ -137,6 +137,47 @@ html {
 }
 
 /* =================================================================== */
+/* == COMPONENTE: TAGS (VERSÃO REFORÇADA) ============================ */
+/* =================================================================== */
+
+.tag {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 0.25em 0.75em;
+  border-radius: 999px;
+  color: var(--text-body);
+  text-decoration: none;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  border: 1px solid transparent; /* Adiciona uma borda base transparente */
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+/* Variações de cor para as tags (com especificidade aumentada)
+  A regra .tag.tag-cor é mais forte do que apenas .tag-cor 
+*/
+.tag.tag-turquoise { 
+  background-color: rgba(8, 247, 254, 0.15); 
+  border-color: rgba(8, 247, 254, 0.5); 
+}
+
+.tag.tag-purple { 
+  background-color: rgba(166, 90, 255, 0.15); 
+  border-color: rgba(166, 90, 255, 0.5); 
+}
+
+.tag.tag-pink { 
+  background-color: rgba(255, 121, 242, 0.15); 
+  border-color: rgba(255, 121, 242, 0.5); 
+}
+
+/* =================================================================== */
 /* == ESTILOS ÚTEIS DO CSS ANTIGO (Integrados) ======================= */
 /* =================================================================== */
 

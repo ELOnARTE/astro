@@ -111,27 +111,4 @@ const { post, isLCP = false, showDate = true, tagLimit = Infinity } = Astro.prop
         gap: 0.5rem;
         padding: 0 1.5rem 1.5rem;
     }
-    /* Estilo base para todas as tags */
-.tag {
-  display: inline-block;
-  font-size: 0.8em;
-  font-weight: 700;
-  padding: 0.25em 0.75em;
-  border-radius: 999px; /* Usar um valor alto para um formato de "pílula" */
-  color: var(--color-text-primary);
-  text-decoration: none;
-  margin-right: 0.5em;
-  margin-bottom: 0.5em;
-  transition: transform 0.2s ease;
-}
-
-.tag:hover {
-  transform: translateY(-2px);
-  text-decoration: none;
-}
-
-/* Variações de cor para as tags */
-.tag-turquoise { background-color: rgba(8, 247, 254, 0.15); border: 1px solid rgba(8, 247, 254, 0.5); }
-.tag-purple { background-color: rgba(166, 90, 255, 0.15); border: 1px solid rgba(166, 90, 255, 0.5); }
-.tag-pink { background-color: rgba(255, 121, 242, 0.15); border: 1px solid rgba(255, 121, 242, 0.5); }
 </style>
