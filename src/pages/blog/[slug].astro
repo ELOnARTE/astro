@@ -1,5 +1,5 @@
 ---
-// src/pages/blog/[slug].astro
+// src/pages/blog/[slug].astro (Versão Final sem Tags)
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BlogPost from '../../layouts/BlogPost.astro';
@@ -11,28 +11,28 @@ export async function getStaticPaths() {
     );
 
     return posts.map((post, index) => {
-        // 2. Lógica para encontrar o post anterior e o próximo
+        // 2. A lógica para encontrar o post anterior e o próximo continua a mesma
         const prevPost = posts[index + 1] ?? null;
         const nextPost = posts[index - 1] ?? null;
 
-        // 3. Lógica para encontrar posts relacionados (baseado em tags)
-        const relatedPosts = posts.filter(p => {
-            if (p.slug === post.slug) return false;
-            if (!p.data.tags || !post.data.tags) return false;
-            return p.data.tags.some(tag => (post.data.tags ?? []).includes(tag));
-        }).slice(0, 3);
+        // --- LÓGICA DE POSTS RELACIONADOS ATUALIZADA ---
+        // Em vez de usar tags, agora mostramos os 3 posts mais recentes,
+        // garantindo que o post atual não seja incluído na lista.
+        const relatedPosts = posts.filter(p => p.slug !== post.slug).slice(0, 3);
 
         return {
             params: { slug: post.slug },
             props: { 
                 post,
-                relatedPosts,
+                relatedPosts, // A prop continua existindo, mas com a nova lógica
                 prevPost: prevPost ? { slug: prevPost.slug, title: prevPost.data.title } : null,
                 nextPost: nextPost ? { slug: nextPost.slug, title: nextPost.data.title } : null,
             },
         };
     });
 }
+
+// A definição de Props continua a mesma, pois ainda passamos os 'relatedPosts'
 type Props = {
     post: CollectionEntry<'blog'>;
     relatedPosts: CollectionEntry<'blog'>[];

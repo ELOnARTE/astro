@@ -11,10 +11,6 @@ const blogCollection = defineCollection({
     pubDate: z.date(),
     heroImage: image().optional(),
 
-    // Aqui dizemos ao Astro que a propriedade 'tags' é permitida.
-    // Ela deve ser um array de strings e é opcional.
-    tags: z.array(z.string()).optional(),
-
     // =============== ADICIONE APENAS ESTA LINHA ===============
     featured: z.boolean().optional(),
     // ==========================================================
