@@ -4,19 +4,29 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
-const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
+const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())].filter((tag) => typeof tag === 'string' && tag.length > 0);
+
+// MUDANÇA AQUI: Array com as variações de cor que criamos no global.css
+const tagColors = ['turquoise', 'purple', 'pink'];
 ---
 <Layout title="Tags | ELOnARTE" description="Explore todos os tópicos e categorias do nosso blog.">
     <div class="tags-container">
         <h1>Todas as Tags</h1>
         <ul class="tag-list">
             {uniqueTags
-                .filter((tag) => typeof tag === 'string' && tag)
-                .map(tag => (
-                    <li>
-                        <a href={`/tags/${tag!.toLowerCase()}`}>{tag}</a>
-                    </li>
-                ))}
+                .map((tag, index) => {
+                    // MUDANÇA AQUI: Lógica para alternar as cores
+                    if (!tag) return null;
+                    const colorClass = `tag-${tagColors[index % tagColors.length]}`;
+                    return (
+                        <li>
+                            {/* MUDANÇA AQUI: Aplicando as classes globais */}
+                            <a href={`/tags/${tag.toLowerCase()}`} class:list={["tag", colorClass]}>
+                                {tag}
+                            </a>
+                        </li>
+                    )
+                })}
         </ul>
     </div>
 </Layout>
@@ -36,18 +46,5 @@ const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
-    }
-    .tag-list a {
-        display: block;
-        padding: 0.5rem 1.25rem;
-        background-color: var(--color-bg-light);
-        border-radius: 999px;
-        text-decoration: none;
-        color: var(--color-text-secondary);
-        transition: all 0.2s ease;
-    }
-    .tag-list a:hover {
-        background-color: var(--accent-lilac);
-        color: white;
     }
 </style>
