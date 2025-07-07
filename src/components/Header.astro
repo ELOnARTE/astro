@@ -1,11 +1,13 @@
 ---
 // src/components/Header.astro (Versão Final com Script Robusto)
+import { Image } from 'astro:assets';
+import logoImage from '~/assets/logo_ELOnARTE.png'; // O '~' é um atalho para a pasta 'src'
 const { pathname } = Astro.url;
 ---
 <header class="main-header">
     <nav class="container">
         <a href="/" class="logo">
-            <span class="elo">ELO</span><span class="n">n</span><span class="arte">ARTE</span>
+            <Image src={logoImage} alt="Logo da ELOnARTE" height={40} />
         </a>
 
         <div class="desktop-nav-group">
@@ -94,14 +96,10 @@ const { pathname } = Astro.url;
         padding-right: 1.5rem;
     }
     .logo {
-        font-size: 1.75rem;
-        font-weight: 900;
-        text-decoration: none;
-        color: #fff;
+    text-decoration: none;
+    display: inline-flex; /* Garante alinhamento vertical */
+    align-items: center;
     }
-    .logo .elo { color: var(--accent-turquoise); }
-    .logo .n { color: var(--accent-lilac); }
-    .logo .arte { color: var(--accent-lightpink); }
 
     .desktop-nav-group { display: none; }
     .mobile-menu-button { display: block; }
