@@ -1,0 +1,132 @@
+---
+// src/components/Callout.astro
+
+// 1. DEFINIÇÃO DAS PROPRIEDADES (PROPS)
+// Aqui definimos quais "configurações" nosso componente pode receber.
+interface Props {
+  // 'type' controla a cor e o ícone. É opcional e o padrão é 'note'.
+  type?: 'note' | 'warning' | 'danger' | 'success'; 
+  // 'title' é o título do aviso. Também é opcional.
+  title?: string;
+}
+
+// 2. RECEBENDO AS PROPS COM VALORES PADRÃO
+// Se o usuário não passar um 'type', ele será 'note' por padrão.
+const { type = 'note', title } = Astro.props;
+
+// 3. MAPA DE ÍCONES
+// Um objeto para guardar o código SVG de cada ícone. Isso mantém o template limpo.
+const icons = {
+  note: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-info">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </svg>
+  `,
+  warning: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-alert-triangle">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+      <line x1="12" y1="9" x2="12" y2="13"></line>
+      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+  `,
+  danger: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-alert-octagon">
+      <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+  `,
+  success: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-check-circle">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+  `,
+};
+---
+
+<div class={`callout callout-${type}`}>
+
+  {title && (
+    <div class="callout-title">
+      <span set:html={icons[type]} />
+      <h4>{title}</h4>
+    </div>
+  )}
+
+  <div class="callout-content">
+    <slot />
+  </div>
+</div>
+
+
+<style>
+  .callout {
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    border-left: 5px solid;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Cor de fundo padrão */
+  }
+
+  .callout-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .callout-title h4 {
+    margin: 0;
+  }
+
+  .callout-title .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .callout-content {
+    line-height: 1.7;
+  }
+
+  /* Estilos para o tipo 'note' (padrão) */
+  .callout-note {
+    border-color: #17a2b8;
+    background-color: #e2f6f8;
+  }
+  .callout-note .callout-title {
+    color: #0d6e7d;
+  }
+  
+  /* Estilos para o tipo 'warning' */
+  .callout-warning {
+    border-color: #ffc107;
+    background-color: #fff8e1;
+  }
+  .callout-warning .callout-title {
+    color: #c79100;
+  }
+
+  /* Estilos para o tipo 'danger' */
+  .callout-danger {
+    border-color: #dc3545;
+    background-color: #fbebed;
+  }
+  .callout-danger .callout-title {
+    color: #b02a37;
+  }
+  
+  /* Estilos para o tipo 'success' */
+  .callout-success {
+    border-color: #28a745;
+    background-color: #eaf6ec;
+  }
+  .callout-success .callout-title {
+    color: #1e7e34;
+  }
+</style>
